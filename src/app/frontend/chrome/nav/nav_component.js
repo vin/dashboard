@@ -27,6 +27,8 @@ import {stateName as podState} from 'podlist/podlist_state';
 import {stateName as replicaSetState} from 'replicasetlist/replicasetlist_state';
 import {stateName as replicationControllerState} from 'replicationcontrollerlist/replicationcontrollerlist_state';
 import {stateName as secretState} from 'secretlist/list_state';
+import {stateName as serviceClassListState} from 'serviceclasslist/serviceclasslist_state';
+import {stateName as serviceInstanceListState} from 'serviceinstancelist/serviceinstancelist_state';
 import {stateName as serviceState} from 'servicelist/servicelist_state';
 import {stateName as servicesanddiscoveryState} from 'servicesanddiscovery/state';
 import {stateName as statefulSetState} from 'statefulsetlist/statefulsetlist_state';
@@ -51,6 +53,8 @@ export class NavController {
     this.states = {
       'namespace': namespaceState,
       'node': nodeState,
+      'serviceClassList': serviceClassListState,
+      'serviceInstanceList': serviceInstanceListState,
       'workload': workloadState,
       'admin': adminState,
       'pod': podState,

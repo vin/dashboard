@@ -46,7 +46,9 @@ import replicationControllerListModule from './replicationcontrollerlist/replica
 import resourceQuotaDetailModule from './resourcequotadetail/resourcequotadetail_module';
 import secretDetailModule from './secretdetail/module';
 import secretListModule from './secretlist/module';
+import serviceClassListModule from './serviceclasslist/serviceclasslist_module';
 import serviceDetailModule from './servicedetail/servicedetail_module';
+import serviceInstanceListModule from './serviceinstancelist/serviceinstancelist_module';
 import serviceListModule from './servicelist/servicelist_module';
 import servicesanddiscoveryModule from './servicesanddiscovery/module';
 import statefulSetListModule from './statefulsetlist/statefulsetlist_module';
@@ -77,6 +79,8 @@ export default angular
           namespaceListModule.name,
           nodeListModule.name,
           deploymentListModule.name,
+          serviceClassListModule.name,
+          serviceInstanceListModule.name,
           workloadsModule.name,
           adminModule.name,
           serviceDetailModule.name,
