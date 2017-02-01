@@ -15,21 +15,35 @@
 /**
  * @final
  */
-export class ServiceInstanceListController {
+export class ServiceInstanceCardController {
   /**
-   * @param {!backendApi.ServiceInstanceList} serviceInstanceList
    * @ngInject
    */
-  constructor(serviceInstanceList) {
-    /** @export {!backendApi.ServiceInstanceList} */
-    this.serviceInstanceList = serviceInstanceList;
+  constructor() {
+    /** @export {?} */
+    this.serviceInstance;
   }
 
-  /**
-   * @return {boolean}
-   * @export
-   */
-  shouldShowZeroState() {
-    return this.serviceInstanceList.listMeta.totalItems === 0;
+  isSuccess() {
+    return !!this.serviceInstance.Status.Conditions.find(
+        ({Type, Status}) => Type === 'Ready' && Status === 'True');
+  }
+
+  isPending() {
+    return !this.isSuccess();
   }
 }
+
+/**
+ * Definition object for the component that displays service card.
+ *
+ * @type {!angular.Component}
+ */
+export const serviceInstanceCardComponent = {
+  templateUrl: 'serviceinstancelist/serviceinstancecard.html',
+  controller: ServiceInstanceCardController,
+  bindings: {
+    /** {?} */
+    'serviceInstance': '<',
+  },
+};

@@ -15,7 +15,8 @@
 
 const SERVICE_INSTANCE_LIST_FAKE_DATA = {
   'kind': 'ServiceInstanceList',
-  'items': [{
+  'listMeta': {'totalItems': 2},
+  'serviceInstances': [{
     'Status': {'Conditions': [{'Message': '', 'Reason': '', 'Status': 'True', 'Type': 'Ready'}]},
     'apiVersion': 'catalog.k8s.io/v1alpha1',
     'creationTimestamp': null,

@@ -14,7 +14,9 @@
 
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
-
+import filtersModule from 'common/filters/filters_module';
+import {serviceInstanceCardComponent} from './serviceinstancecard_component';
+import {serviceInstanceCardListComponent} from './serviceinstancecardlist_component';
 import stateConfig from './serviceinstancelist_stateconfig';
 
 
@@ -30,7 +32,10 @@ export default angular
           'ngMaterial',
           'ngResource',
           'ui.router',
+          filtersModule.name,
           componentsModule.name,
           chromeModule.name,
         ])
-    .config(stateConfig);
+    .config(stateConfig)
+    .component('kdServiceInstanceCardList', serviceInstanceCardListComponent)
+    .component('kdServiceInstanceCard', serviceInstanceCardComponent);
