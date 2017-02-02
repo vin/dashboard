@@ -48,7 +48,8 @@ export class ServiceInstanceCardController {
   getServiceDetailHref() {
     return this.state_.href(
         stateName,
-        new StateParams(this.serviceInstance.metadata.namespace, this.serviceInstance.metadata.name));
+        new StateParams(
+            this.serviceInstance.metadata.namespace, this.serviceInstance.metadata.name));
   }
 }
 

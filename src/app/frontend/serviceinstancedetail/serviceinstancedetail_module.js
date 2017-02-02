@@ -15,8 +15,9 @@
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
 import filtersModule from 'common/filters/filters_module';
-import {serviceInstanceInfoComponent} from './serviceinstanceinfo_component';
+
 import stateConfig from './serviceinstancedetail_stateconfig';
+import {serviceInstanceInfoComponent} from './serviceinstanceinfo_component';
 
 
 /**
