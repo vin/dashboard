@@ -45,7 +45,7 @@ export class ServiceInstanceCardController {
    * @return {string}
    * @export
    */
-  getServiceDetailHref() {
+  getServiceInstanceDetailHref() {
     return this.state_.href(
         stateName,
         new StateParams(
