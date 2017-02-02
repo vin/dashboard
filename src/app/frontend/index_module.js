@@ -48,6 +48,7 @@ import secretDetailModule from './secretdetail/module';
 import secretListModule from './secretlist/module';
 import serviceClassListModule from './serviceclasslist/serviceclasslist_module';
 import serviceDetailModule from './servicedetail/servicedetail_module';
+import serviceInstanceDetailModule from './serviceinstancedetail/serviceinstancedetail_module';
 import serviceInstanceListModule from './serviceinstancelist/serviceinstancelist_module';
 import serviceListModule from './servicelist/servicelist_module';
 import servicesanddiscoveryModule from './servicesanddiscovery/module';
@@ -81,6 +82,7 @@ export default angular
           deploymentListModule.name,
           serviceClassListModule.name,
           serviceInstanceListModule.name,
+          serviceInstanceDetailModule.name,
           workloadsModule.name,
           adminModule.name,
           serviceDetailModule.name,
