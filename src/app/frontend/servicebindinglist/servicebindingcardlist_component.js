@@ -15,16 +15,26 @@
 /**
  * @final
  */
-export class ServiceInstanceDetailController {
+export class ServiceBindingCardListController {
   /**
-   * @param {?} serviceInstance
-   * @param {?} serviceBindingList
    * @ngInject
    */
-  constructor(serviceInstance, serviceBindingList) {
-    /** @export {?} */
-    this.serviceInstance = serviceInstance;
-    /** @export {?} */
-    this.serviceBindingList = serviceBindingList;
+  constructor() {
+    /** @export {?} Initialized from binding. */
+    this.serviceBindingList;
   }
 }
+
+/**
+ * Definition object for the component that displays service card list.
+ *
+ * @type {!angular.Component}
+ */
+export const serviceBindingCardListComponent = {
+  templateUrl: 'servicebindinglist/servicebindingcardlist.html',
+  controller: ServiceBindingCardListController,
+  bindings: {
+    /** {?} */
+    'serviceBindingList': '<',
+  },
+};

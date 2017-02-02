@@ -16,3 +16,13 @@ limitations under the License.
 
 <kd-service-instance-info serviceInstance="ctrl.serviceInstance"></kd-service-instance-info>
 <!-- TODO(rossholland) add bindings and network functions list when its done -->
+<kd-content-card>
+  <kd-content>
+    <kd-service-binding-card-list service-binding-list="ctrl.serviceBindingList">
+    </kd-service-binding-card-list>
+  </kd-content>
+  <kd-zerostate>
+    <div class="kd-zerostate-title">[[There is nothing to display here|Title for instances card zerostate in stateful set details page.]]</div>
+    <div class="kd-zerostate-text">[[There are currently no bindings used by this Instance.|Text for instances card zerostate in stateful set details page.]]</div>
+  </kd-zerostate>
+</kd-content-card>

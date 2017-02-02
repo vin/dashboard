@@ -46,6 +46,7 @@ import replicationControllerListModule from './replicationcontrollerlist/replica
 import resourceQuotaDetailModule from './resourcequotadetail/resourcequotadetail_module';
 import secretDetailModule from './secretdetail/module';
 import secretListModule from './secretlist/module';
+import serviceBindingListModule from './servicebindinglist/servicebindinglist_module';
 import serviceClassListModule from './serviceclasslist/serviceclasslist_module';
 import serviceDetailModule from './servicedetail/servicedetail_module';
 import serviceInstanceDetailModule from './serviceinstancedetail/serviceinstancedetail_module';
@@ -83,6 +84,7 @@ export default angular
           serviceClassListModule.name,
           serviceInstanceListModule.name,
           serviceInstanceDetailModule.name,
+          serviceBindingListModule.name,
           workloadsModule.name,
           adminModule.name,
           serviceDetailModule.name,

@@ -15,16 +15,35 @@
 /**
  * @final
  */
-export class ServiceInstanceDetailController {
+export class ServiceBindingCardController {
   /**
-   * @param {?} serviceInstance
-   * @param {?} serviceBindingList
    * @ngInject
    */
-  constructor(serviceInstance, serviceBindingList) {
+  constructor() {
     /** @export {?} */
-    this.serviceInstance = serviceInstance;
-    /** @export {?} */
-    this.serviceBindingList = serviceBindingList;
+    this.serviceBinding;
+  }
+
+  isSuccess() {
+    return this.serviceBinding && !!this.serviceBinding.Status.Conditions.find(
+        ({Type, Status}) => Type === 'Ready' && Status === 'True');
+  }
+
+  isPending() {
+    return !this.isSuccess();
   }
 }
+
+/**
+ * Definition object for the component that displays service card.
+ *
+ * @type {!angular.Component}
+ */
+export const serviceBindingCardComponent = {
+  templateUrl: 'servicebindinglist/servicebindingcard.html',
+  controller: ServiceBindingCardController,
+  bindings: {
+    /** {?} */
+    'serviceBinding': '<',
+  },
+};
