@@ -12,16 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {StateParams} from 'common/resource/resourcedetail';
+import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
+
 /**
  * @final
  */
 export class ServiceBindingCardController {
   /**
+   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor() {
+  constructor($state) {
     /** @export {?} */
     this.serviceBinding;
+
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
   }
 
   isSuccess() {
@@ -32,6 +39,16 @@ export class ServiceBindingCardController {
 
   isPending() {
     return !this.isSuccess();
+  }
+
+  /**
+   * @return {string}
+   * @export
+   */
+  getServiceBindingDetailHref() {
+    return this.state_.href(
+        stateName,
+        new StateParams(this.serviceBinding.metadata.namespace, this.serviceBinding.metadata.name));
   }
 }
 
