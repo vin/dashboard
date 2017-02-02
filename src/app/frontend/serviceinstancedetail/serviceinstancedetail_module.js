@@ -15,6 +15,7 @@
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
 import filtersModule from 'common/filters/filters_module';
+import {serviceInstanceInfoComponent} from './serviceinstanceinfo_component';
 import stateConfig from './serviceinstancedetail_stateconfig';
 
 
@@ -34,4 +35,5 @@ export default angular
           componentsModule.name,
           chromeModule.name,
         ])
-    .config(stateConfig);
+    .config(stateConfig)
+    .component('kdServiceInstanceInfo', serviceInstanceInfoComponent);

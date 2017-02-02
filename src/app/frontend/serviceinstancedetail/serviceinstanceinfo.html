@@ -14,5 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-service-instance-info serviceInstance="ctrl.serviceInstance"></kd-service-instance-info>
-<!-- TODO(rossholland) add bindings and network functions list when its done -->
+<kd-info-card>
+  <kd-info-card-header>[[Details|Header in a detail view]]</kd-info-card-header>
+  <kd-info-card-section>
+    <kd-object-meta-info-card object-meta="::$ctrl.service.metadata">
+    </kd-object-meta-info-card>
+  </kd-info-card-section>
+</kd-info-card>
