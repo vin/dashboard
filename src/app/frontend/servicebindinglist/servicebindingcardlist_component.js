@@ -12,16 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {CreateServiceBindingDialogController} from './createservicebindingdialog_controller';
+
+
 /**
  * @final
  */
 export class ServiceBindingCardListController {
   /**
+   * @param {!md.$dialog} $mdDialog
    * @ngInject
    */
-  constructor() {
+  constructor($mdDialog) {
     /** @export {?} Initialized from binding. */
     this.serviceBindingList;
+
+    /** @export {?} Initialized from binding. */
+    this.serviceInstance;
+
+    /** @export {!md.$dialog} */
+    this.mdDialog = $mdDialog;
+  }
+
+  showAddBindingDialog(event){
+    console.log(CreateServiceBindingDialogController);
+    this.mdDialog.show({
+      controller: CreateServiceBindingDialogController,
+      controllerAs: 'ctrl',
+      templateUrl: 'servicebindinglist/createservicebindingdialog.html',
+      parent: angular.element(document.body),
+      targetEvent: event,
+      locals: {
+        'serviceInstance': this.serviceInstance,
+      },
+    });
   }
 }
 
@@ -36,5 +60,7 @@ export const serviceBindingCardListComponent = {
   bindings: {
     /** {?} */
     'serviceBindingList': '<',
+    /** {?} */
+    'serviceInstance': '<?',
   },
 };

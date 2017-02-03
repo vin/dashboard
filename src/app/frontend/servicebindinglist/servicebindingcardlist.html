@@ -15,8 +15,11 @@ limitations under the License.
 -->
 
 <kd-resource-card-list selectable="::false" with-statuses="true">
-  <kd-resource-card-list-header>
-    [[Bindings|Label which appears above the list of such objects.]]
+  <kd-resource-card-list-header class="kd-service-binding-card-list-header">
+    <span class="kd-service-binding-card-list-header-title">
+      [[Bindings|Label which appears above the list of such objects.]]
+    </span>
+    <md-button ng-click="$ctrl.showAddBindingDialog($event)">+ Add Binding</md-button>
   </kd-resource-card-list-header>
   <!--TODO(rossholland) list-resource="::$ctrl.serviceBindingListResource" needs to be added once we're using real data -->
   <kd-resource-card-list-pagination pagination-id="servicebindings"
