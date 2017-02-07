@@ -20,6 +20,8 @@ export class ServiceClassCardListHeaderController {
    * @ngInject
    */
   constructor() {
+    /** @export {?} */
+    this.serviceBrokerList;
   }
 
 }
@@ -31,4 +33,8 @@ export class ServiceClassCardListHeaderController {
 export const serviceClassCardListHeaderComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardlistheader.html',
   controller: ServiceClassCardListHeaderController,
+  bindings: {
+    /** {?} */
+    'serviceBrokerList': '<',
+  },
 };

@@ -15,7 +15,7 @@
 /**
  * @final
  */
-export class ServiceClassCardListController {
+export class ServiceClassCardColumnController {
   /**
    * @ngInject
    */
@@ -29,6 +29,7 @@ export class ServiceClassCardListController {
  * @type {!angular.Component}
  */
 export const serviceClassCardColumnComponent = {
-  templateUrl: 'serviceclasslist/serviceclasscardlist.html',
-  controller: ServiceClassCardListController,
+  templateUrl: 'serviceclasslist/serviceclasscardcolumn.html',
+  controller: ServiceClassCardColumnController,
+  transclude: true,
 };

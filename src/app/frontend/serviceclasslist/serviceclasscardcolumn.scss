@@ -12,29 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * @final
- */
-export class ServiceClassCardListHeaderCatalogSelectorController {
-  /**
-   * @ngInject
-   */
-  constructor() {
-    /** @export {?} */
-    this.serviceBrokerList;
-  }
+@import '../variables';
 
+
+kd-service-class-card-column {
+  border-top: 1px solid $border;
+  display: flex;
+  flex-basis: auto;
+  min-height: $baseline-grid * 4;
+  min-width: $baseline-grid * 10;
+  padding-left: 2 * $baseline-grid;
+  padding-top: $baseline-grid / 2;
+  flex-grow: 1;
 }
-
-/**
- *
- * @type {!angular.Component}
- */
-export const serviceClassCardListHeaderCatalogSelectorComponent = {
-  templateUrl: 'serviceclasslist/serviceclasscardlistheadercatalogselector.html',
-  controller: ServiceClassCardListHeaderCatalogSelectorController,
-  bindings: {
-    /** {?} */
-    'serviceBrokerList': '<',
-  },
-};

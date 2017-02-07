@@ -18,10 +18,13 @@
 export class ServiceClassListController {
   /**
    * @param {!backendApi.ServiceClassList} serviceClassList
+   * @param {!backendApi.ServiceBrokerList} serviceBrokerList
    * @ngInject
    */
-  constructor(serviceClassList) {
+  constructor(serviceClassList, serviceBrokerList) {
     /** @export {!backendApi.ServiceClassList} */
     this.serviceClassList = serviceClassList;
+    /** @export {!backendApi.ServiceBrokerList} */
+    this.serviceBrokerList = serviceBrokerList;
   }
 }

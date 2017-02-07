@@ -16,7 +16,8 @@ limitations under the License.
 
 <kd-content-card ng-if="!ctrl.shouldShowZeroState()">
   <kd-content>
-    <kd-service-class-card-list service-class-list="::ctrl.serviceClassList">
+    <kd-service-class-card-list service-class-list="::ctrl.serviceClassList"
+                                service-broker-list="ctrl.serviceBrokerList">
     </kd-service-class-card-list>
   </kd-content>
 </kd-content-card>

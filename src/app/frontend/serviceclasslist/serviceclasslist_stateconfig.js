@@ -87,6 +87,46 @@ const SERVICE_CLASS_LIST_FAKE_DATA = {
   'apiVersion': 'catalog.k8s.io/v1alpha1',
 };
 
+
+const SERVICE_BROKER_LIST_FAKE_DATA = {
+  'kind': 'ServiceBrokerList',
+  'items': [
+    {
+      'apiVersion': 'catalog.k8s.io/v1alpha1',
+      'kind': 'ServiceBroker',
+      'metadata': {
+        'name': 'k8s',
+        'namespace': 'default',
+        'selfLink': '/apis/catalog.k8s.io/v1alpha1/namespaces/default/servicebrokers/k8s',
+        'uid': 'c4a83335-e415-11e6-bf38-42010a8a0138',
+        'resourceVersion': '17095',
+        'creationTimestamp': '2017-01-26T22:21:22Z',
+      },
+      'name': 'k8s',
+      'spec': {'URL': 'http://k8s-broker:8000'},
+    },
+    {
+      'apiVersion': 'catalog.k8s.io/v1alpha1',
+      'kind': 'ServiceBroker',
+      'metadata': {
+        'name': 'ups',
+        'namespace': 'default',
+        'selfLink': '/apis/catalog.k8s.io/v1alpha1/namespaces/default/servicebrokers/ups',
+        'uid': 'c4ac87a4-e415-11e6-bf38-42010a8a0138',
+        'resourceVersion': '17096',
+        'creationTimestamp': '2017-01-26T22:21:22Z',
+      },
+      'name': 'ups',
+      'spec': {'URL': 'http://ups-broker:8000'},
+    },
+  ],
+  'metadata': {
+    'selfLink': '/apis/catalog.k8s.io/v1alpha1/namespaces/default/servicebrokers',
+    'resourceVersion': '1663596',
+  },
+  'apiVersion': 'catalog.k8s.io/v1alpha1',
+};
+
 import {stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 
@@ -105,6 +145,7 @@ export default function stateConfig($stateProvider) {
     parent: chromeStateName,
     resolve: {
       'serviceClassList': resolveServiceClassList,
+      'serviceBrokerList': resolveServiceBrokerList,
     },
     data: {
       [breadcrumbsConfig]: {
@@ -128,6 +169,14 @@ export default function stateConfig($stateProvider) {
  */
 export function resolveServiceClassList() {
   return Promise.resolve(SERVICE_CLASS_LIST_FAKE_DATA);
+}
+
+/**
+ * @return {!Promise}
+ * @ngInject
+ */
+export function resolveServiceBrokerList() {
+  return Promise.resolve(SERVICE_BROKER_LIST_FAKE_DATA);
 }
 
 const i18n = {

@@ -15,13 +15,11 @@
 /**
  * @final
  */
-export class ServiceClassCardListHeaderCatalogSelectorController {
+export class ServiceClassCardColumnsController {
   /**
    * @ngInject
    */
   constructor() {
-    /** @export {?} */
-    this.serviceBrokerList;
   }
 
 }
@@ -30,11 +28,8 @@ export class ServiceClassCardListHeaderCatalogSelectorController {
  *
  * @type {!angular.Component}
  */
-export const serviceClassCardListHeaderCatalogSelectorComponent = {
-  templateUrl: 'serviceclasslist/serviceclasscardlistheadercatalogselector.html',
-  controller: ServiceClassCardListHeaderCatalogSelectorController,
-  bindings: {
-    /** {?} */
-    'serviceBrokerList': '<',
-  },
+export const serviceClassCardColumnsComponent = {
+  templateUrl: 'serviceclasslist/serviceclasscardcolumns.html',
+  controller: ServiceClassCardColumnsController,
+  transclude: true,
 };

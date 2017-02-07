@@ -14,10 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<div>
-  <kd-service-class-card-icon></kd-service-class-card-icon>
-  <kd-service-class-card-column></kd-service-class-card-column>
-  <kd-service-class-card-column-multiple-line></kd-service-class-card-column-multiple-line>
-</div>
-
+<kd-service-class-card-icon></kd-service-class-card-icon>
+<kd-service-class-card-columns>
+  <kd-service-class-card-column>{{$ctrl.serviceClass.name}}</kd-service-class-card-column>
+  <kd-service-class-card-column>{{$ctrl.serviceBroker.name}}</kd-service-class-card-column>
+  <kd-service-class-card-column>{{$ctrl.serviceBroker.name}}</kd-service-class-card-column>
+  <kd-service-class-card-column-multi-line>{{$ctrl.serviceBroker.description}}</kd-service-class-card-column-multi-line>
+</kd-service-class-card-columns>
 

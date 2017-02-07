@@ -18,9 +18,11 @@ import componentsModule from 'common/components/components_module';
 import {serviceClassCardComponent} from './serviceclasscard_component';
 import {serviceClassCardColumnComponent} from './serviceclasscardcolumn_component';
 import {serviceClassCardColumnMultiLineComponent} from './serviceclasscardcolumnmultiline_component';
+import {serviceClassCardColumnsComponent} from './serviceclasscardcolumns_component';
 import {serviceClassCardIconComponent} from './serviceclasscardicon_component';
 import {serviceClassCardListComponent} from './serviceclasscardlist_component';
 import {serviceClassCardListColumnHeaderComponent} from './serviceclasscardlistcolumnheader_component';
+import {serviceClassCardListColumnHeadersComponent} from './serviceclasscardlistcolumnheaders_component';
 import {serviceClassCardListHeaderComponent} from './serviceclasscardlistheader_component';
 import {serviceClassCardListHeaderCatalogSelectorComponent} from './serviceclasscardlistheadercatalogselector_component';
 import stateConfig from './serviceclasslist_stateconfig';
@@ -44,10 +46,12 @@ export default angular
     .component('kdServiceClassCard', serviceClassCardComponent)
     .component('kdServiceClassCardColumn', serviceClassCardColumnComponent)
     .component('kdServiceClassCardColumnMultiLine', serviceClassCardColumnMultiLineComponent)
+    .component('kdServiceClassCardColumns', serviceClassCardColumnsComponent)
     .component('kdServiceClassCardIcon', serviceClassCardIconComponent)
     .component('kdServiceClassCardList', serviceClassCardListComponent)
     .component('kdServiceClassCardListColumnHeader', serviceClassCardListColumnHeaderComponent)
-    .component('kdServiceClassCardListHeaderComponent', serviceClassCardListHeaderComponent)
+    .component('kdServiceClassCardListColumnHeaders', serviceClassCardListColumnHeadersComponent)
+    .component('kdServiceClassCardListHeader', serviceClassCardListHeaderComponent)
     .component(
         'kdServiceClassCardListHeaderCatalogSelector',
         serviceClassCardListHeaderCatalogSelectorComponent);
