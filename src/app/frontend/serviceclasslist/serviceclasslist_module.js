@@ -15,13 +15,20 @@
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
 
+import {serviceClassCardComponent} from './serviceclasscard_component';
+import {serviceClassCardColumnComponent} from './serviceclasscardcolumn_component';
+import {serviceClassCardColumnMultiLineComponent} from './serviceclasscardcolumnmultiline_component';
+import {serviceClassCardIconComponent} from './serviceclasscardicon_component';
+import {serviceClassCardListComponent} from './serviceclasscardlist_component';
+import {serviceClassCardListColumnHeaderComponent} from './serviceclasscardlistcolumnheader_component';
+import {serviceClassCardListHeaderComponent} from './serviceclasscardlistheader_component';
+import {serviceClassCardListHeaderCatalogSelectorComponent} from './serviceclasscardlistheadercatalogselector_component';
 import stateConfig from './serviceclasslist_stateconfig';
 
-
 /**
- * Angular module for the Instances list view.
+ * Angular module for the Catalog list view.
  *
- * The view shows Instances running in the cluster and allows to manage them.
+ * The view shows Service Classes running in the cluster and allows to manage them.
  */
 export default angular
     .module(
@@ -33,4 +40,14 @@ export default angular
           componentsModule.name,
           chromeModule.name,
         ])
-    .config(stateConfig);
+    .config(stateConfig)
+    .component('kdServiceClassCard', serviceClassCardComponent)
+    .component('kdServiceClassCardColumn', serviceClassCardColumnComponent)
+    .component('kdServiceClassCardColumnMultiLine', serviceClassCardColumnMultiLineComponent)
+    .component('kdServiceClassCardIcon', serviceClassCardIconComponent)
+    .component('kdServiceClassCardList', serviceClassCardListComponent)
+    .component('kdServiceClassCardListColumnHeader', serviceClassCardListColumnHeaderComponent)
+    .component('kdServiceClassCardListHeaderComponent', serviceClassCardListHeaderComponent)
+    .component(
+        'kdServiceClassCardListHeaderCatalogSelector',
+        serviceClassCardListHeaderCatalogSelectorComponent);

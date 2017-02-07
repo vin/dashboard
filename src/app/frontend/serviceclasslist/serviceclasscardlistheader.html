@@ -14,10 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-content-card ng-if="!ctrl.shouldShowZeroState()">
-  <kd-content>
-    <kd-service-class-card-list service-class-list="::ctrl.serviceClassList">
-    </kd-service-class-card-list>
-  </kd-content>
-</kd-content-card>
-<kd-zero-state ng-if="ctrl.shouldShowZeroState()"></kd-zero-state>
+<div>Title</div>
+<kd-service-class-list-header-catalog-selector></kd-service-class-list-header-catalog-selector>
+<md-button>+ Add Catalog</md-button>
