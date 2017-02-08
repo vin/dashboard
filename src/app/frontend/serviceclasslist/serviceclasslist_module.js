@@ -24,7 +24,6 @@ import {serviceClassCardListComponent} from './serviceclasscardlist_component';
 import {serviceClassCardListColumnHeaderComponent} from './serviceclasscardlistcolumnheader_component';
 import {serviceClassCardListColumnHeadersComponent} from './serviceclasscardlistcolumnheaders_component';
 import {serviceClassCardListHeaderComponent} from './serviceclasscardlistheader_component';
-import {serviceClassCardListHeaderCatalogSelectorComponent} from './serviceclasscardlistheadercatalogselector_component';
 import stateConfig from './serviceclasslist_stateconfig';
 
 /**
@@ -51,7 +50,4 @@ export default angular
     .component('kdServiceClassCardList', serviceClassCardListComponent)
     .component('kdServiceClassCardListColumnHeader', serviceClassCardListColumnHeaderComponent)
     .component('kdServiceClassCardListColumnHeaders', serviceClassCardListColumnHeadersComponent)
-    .component('kdServiceClassCardListHeader', serviceClassCardListHeaderComponent)
-    .component(
-        'kdServiceClassCardListHeaderCatalogSelector',
-        serviceClassCardListHeaderCatalogSelectorComponent);
+    .component('kdServiceClassCardListHeader', serviceClassCardListHeaderComponent);

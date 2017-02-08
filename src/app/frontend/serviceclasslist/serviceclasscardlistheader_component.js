@@ -22,6 +22,8 @@ export class ServiceClassCardListHeaderController {
   constructor() {
     /** @export {?} */
     this.serviceBrokerList;
+    /** @export {string} */
+    this.currentBroker = 'all';
   }
 
 }

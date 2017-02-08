@@ -28,15 +28,23 @@ kd-service-class-card-list-header {
   height: 100%;
   padding-left: 2 * $baseline-grid;
   box-sizing: border-box;
-  flex-grow: 1;
   font-weight: $regular-font-weight;
   height: 7 * $baseline-grid;
   line-height: 5 * $baseline-grid;
   margin: 0;
 }
 
+.kd-service-class-card-list-header-catalog-selector {
+  flex-grow: 1;
+  padding-left: 4 * $baseline-grid;
+}
 
-.kd-service-class-card-list-header-add-catalog {}
+
+.kd-service-class-card-list-header-add-catalog {
+  md-icon {
+    color: currentColor;
+  }
+}
 
 kd-service-class-card {
 
