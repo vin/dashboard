@@ -1665,6 +1665,12 @@
 			"revisionTime": "2016-03-01T20:40:22Z"
 		},
 		{
+			"checksumSHA1": "qOjZGbPfjA3uaLRHXRAEvDsE26I=",
+			"path": "k8s.io/client-go/kubernetes",
+			"revision": "7ac12361944b3b98074594cf00977861b9b41e4b",
+			"revisionTime": "2017-02-03T22:09:57Z"
+		},
+		{
 			"checksumSHA1": "S5guyXRQmBm+nrsl28u/We8l1v0=",
 			"path": "k8s.io/heapster/metrics/api/v1/types",
 			"revision": "9911c7433dc046e94718f6eec852ab464c34404d",
