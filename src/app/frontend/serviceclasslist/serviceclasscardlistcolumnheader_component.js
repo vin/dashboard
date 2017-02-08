@@ -31,4 +31,5 @@ export class ServiceClassCardListColumnHeaderController {
 export const serviceClassCardListColumnHeaderComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardlistcolumnheader.html',
   controller: ServiceClassCardListColumnHeaderController,
+  transclude: true,
 };
