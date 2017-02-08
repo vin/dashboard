@@ -22,7 +22,8 @@ export class ServiceClassCardController {
   constructor() {
     /** @export {?} */
     this.serviceClass;
-
+    /** @export {?} */
+    this.serviceBroker;
   }
 
 }
@@ -37,5 +38,7 @@ export const serviceClassCardComponent = {
   bindings: {
     /** {?} */
     'serviceClass': '<',
+    /** {?} */
+    'serviceBroker': '<',
   },
 };

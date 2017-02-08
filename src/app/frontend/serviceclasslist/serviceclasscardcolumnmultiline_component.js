@@ -31,4 +31,5 @@ export class ServiceClassCardColumnMultiLineController {
 export const serviceClassCardColumnMultiLineComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardcolumnmultiline.html',
   controller: ServiceClassCardColumnMultiLineController,
+  transclude: true,
 };

@@ -14,3 +14,8 @@
 
 @import '../variables';
 
+.kd-service-class-card-columns,
+kd-service-class-card-columns {
+  display: flex;
+  width: 100%;
+}

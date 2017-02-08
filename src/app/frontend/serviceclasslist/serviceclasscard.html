@@ -16,9 +16,29 @@ limitations under the License.
 
 <kd-service-class-card-icon></kd-service-class-card-icon>
 <kd-service-class-card-columns>
-  <kd-service-class-card-column>{{$ctrl.serviceClass.name}}</kd-service-class-card-column>
-  <kd-service-class-card-column>{{$ctrl.serviceBroker.name}}</kd-service-class-card-column>
-  <kd-service-class-card-column>{{$ctrl.serviceBroker.name}}</kd-service-class-card-column>
-  <kd-service-class-card-column-multi-line>{{$ctrl.serviceBroker.description}}</kd-service-class-card-column-multi-line>
+  <kd-service-class-card-column>
+    <div>
+      <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.name}}">
+      </kd-middle-ellipsis>
+    </div>
+  </kd-service-class-card-column>
+  <kd-service-class-card-column>
+    <div>
+      <kd-middle-ellipsis display-string="{{::$ctrl.serviceBroker.name}}">
+      </kd-middle-ellipsis>
+    </div>
+  </kd-service-class-card-column>
+  <kd-service-class-card-column>
+    <div>
+      <kd-middle-ellipsis display-string="{{::$ctrl.serviceBroker.name}}">
+      </kd-middle-ellipsis>
+    </div>
+  </kd-service-class-card-column>
+  <kd-service-class-card-column-multi-line>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  </kd-service-class-card-column-multi-line>
 </kd-service-class-card-columns>
 

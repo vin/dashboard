@@ -26,6 +26,15 @@ export class ServiceClassCardListController {
     this.serviceBrokerList;
   }
 
+  /**
+   * @param {?} serviceClass
+   * @return {?}
+   * @ngInject
+   */
+  getServiceBrokerForServiceClass(serviceClass) {
+    return this.serviceBrokerList.items.find(
+        (serviceBroker) => serviceBroker.name === serviceClass.BrokerName);
+  }
 }
 
 /**

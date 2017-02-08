@@ -24,4 +24,9 @@ kd-service-class-card-column {
   padding-left: 2 * $baseline-grid;
   padding-top: $baseline-grid / 2;
   flex-grow: 1;
+  width: $baseline-grid * 10;
+}
+
+.kd-service-class-card-column {
+  width: 100%;
 }
