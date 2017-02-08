@@ -20,7 +20,7 @@ limitations under the License.
     <md-select ng-model="$ctrl.currentBroker">
       <md-option ng-value="'all'">All Catalogs</md-option>
       <md-option ng-repeat="serviceBroker in $ctrl.serviceBrokerList.items"
-                 ng-value="serviceBroker.OSBGUID">
+                 ng-value="serviceBroker.metadata.uid">
         {{serviceBroker.name}}
       </md-option>
     </md-select>
