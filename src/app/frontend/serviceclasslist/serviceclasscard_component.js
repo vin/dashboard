@@ -12,20 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {StateParams} from 'common/resource/resourcedetail';
+import {stateName} from 'serviceclassdetail/serviceclassdetail_state';
+
+
+
 /**
  * @final
  */
 export class ServiceClassCardController {
   /**
+   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor() {
+  constructor($state) {
     /** @export {?} */
     this.serviceClass;
     /** @export {?} */
     this.serviceBroker;
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
   }
 
+  /**
+   * @return {string}
+   * @export
+   */
+  getServiceClassDetailHref() {
+    return this.state_.href(
+        stateName,
+        new StateParams(
+            this.serviceClass.metadata.namespace, this.serviceClass.metadata.name));
+  }
 }
 
 /**

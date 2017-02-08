@@ -48,6 +48,7 @@ import secretDetailModule from './secretdetail/module';
 import secretListModule from './secretlist/module';
 import serviceBindingDetailModule from './servicebindingdetail/servicebindingdetail_module';
 import serviceBindingListModule from './servicebindinglist/servicebindinglist_module';
+import serviceClassDetailModule from './serviceclassdetail/serviceclassdetail_module';
 import serviceClassListModule from './serviceclasslist/serviceclasslist_module';
 import serviceDetailModule from './servicedetail/servicedetail_module';
 import serviceInstanceDetailModule from './serviceinstancedetail/serviceinstancedetail_module';
@@ -83,6 +84,7 @@ export default angular
           nodeListModule.name,
           deploymentListModule.name,
           serviceClassListModule.name,
+          serviceClassDetailModule.name,
           serviceInstanceListModule.name,
           serviceInstanceDetailModule.name,
           serviceBindingListModule.name,

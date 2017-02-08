@@ -17,10 +17,10 @@ limitations under the License.
 <kd-service-class-card-icon></kd-service-class-card-icon>
 <kd-service-class-card-columns>
   <kd-service-class-card-column>
-    <div>
+    <a ng-href="{{::$ctrl.getServiceClassDetailHref()}}">
       <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.name}}">
       </kd-middle-ellipsis>
-    </div>
+    </a>
   </kd-service-class-card-column>
   <kd-service-class-card-column>
     <div>
