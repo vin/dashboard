@@ -16,6 +16,11 @@ import filtersModule from 'common/filters/filters_module';
 
 import componentsModule from './../common/components/components_module';
 import stateConfig from './serviceclassdetail_stateconfig';
+import {serviceClassDetailCreateFormComponent} from './serviceclassdetailcreateform_component';
+import {serviceClassDetailCreateFormLabelsInputComponent} from './serviceclassdetailcreateformlabelsinput_component';
+import {serviceClassDetailCreateFormParamsInputComponent} from './serviceclassdetailcreateformparamsinput_component';
+import {serviceClassDetailDescriptionComponent} from './serviceclassdetaildescription_component';
+import {serviceClassDetailHeaderComponent} from './serviceclassdetailheader_component';
 
 
 /**
@@ -33,4 +38,10 @@ export default angular
           filtersModule.name,
           componentsModule.name,
         ])
-    .config(stateConfig);
+    .config(stateConfig)
+    .component('kdServiceClassDetailCreateFormComponent', serviceClassDetailCreateFormComponent)
+    .component('kdServiceClassDetailCreateFormLabelsInputComponent', serviceClassDetailCreateFormLabelsInputComponent)
+    .component('kdServiceClassDetailCreateFormParamsInputComponent', serviceClassDetailCreateFormParamsInputComponent)
+    .component('kdServiceClassDetailDescriptionComponent', serviceClassDetailDescriptionComponent)
+    .component('kdServiceClassDetailHeaderComponent', serviceClassDetailHeaderComponent);
+
