@@ -104,7 +104,7 @@ export default function stateConfig($stateProvider) {
     url: appendDetailParamsToUrl(stateUrl),
     parent: chromeStateName,
     resolve: {
-      'serviceClassDetail': resolveServiceClassDetail,
+      'serviceClass': resolveServiceClassDetail,
     },
     data: {
       [breadcrumbsConfig]: {

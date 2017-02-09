@@ -20,6 +20,8 @@ export class ServiceClassDetailCreateFormController {
    * @ngInject
    */
   constructor() {
+    /** @export {?} */
+    this.serviceClass;
   }
 
 }
@@ -31,4 +33,8 @@ export class ServiceClassDetailCreateFormController {
 export const serviceClassDetailCreateFormComponent = {
   templateUrl: 'serviceclassdetail/serviceclassdetailcreateform.html',
   controller: ServiceClassDetailCreateFormController,
+  bindings: {
+    /** {?} */
+    'serviceClass': '<',
+  },
 };

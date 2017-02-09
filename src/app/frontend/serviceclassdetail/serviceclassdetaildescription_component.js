@@ -20,6 +20,8 @@ export class ServiceClassDetailDescriptionController {
    * @ngInject
    */
   constructor() {
+    /** @export {?} */
+    this.serviceClass;
   }
 
 }
@@ -31,4 +33,8 @@ export class ServiceClassDetailDescriptionController {
 export const serviceClassDetailDescriptionComponent = {
   templateUrl: 'serviceclassdetail/serviceclassdetaildescription.html',
   controller: ServiceClassDetailDescriptionController,
+  bindings: {
+    /** {?} */
+    'serviceClass': '<',
+  },
 };

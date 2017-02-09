@@ -17,11 +17,22 @@
  */
 export class ServiceClassDetailController {
   /**
-   * @param {?} serviceClassDetail
+   * @param {?} serviceClass
    * @ngInject
    */
-  constructor(serviceClassDetail) {
+  constructor(serviceClass) {
     /** @export {?} */
-    this.serviceClassDetail = serviceClassDetail;
+    this.serviceClass = serviceClass;
+
+    /** @private {boolean} */
+    this.isInstantiatingClass_ = false;
+  }
+
+  /**
+   * @return {boolean}
+   * @ngInject
+   */
+  isInstantiatingClass(){
+    return this.isInstantiatingClass_;
   }
 }
