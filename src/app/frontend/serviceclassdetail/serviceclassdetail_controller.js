@@ -30,9 +30,22 @@ export class ServiceClassDetailController {
 
   /**
    * @return {boolean}
-   * @ngInject
    */
   isInstantiatingClass(){
     return this.isInstantiatingClass_;
+  }
+
+  /**
+   *
+   */
+  startInstantiatingClass(){
+    this.isInstantiatingClass_ = true;
+  }
+
+  /**
+   *
+   */
+  stopInstantiatingClass(){
+    this.isInstantiatingClass_ = false;
   }
 }

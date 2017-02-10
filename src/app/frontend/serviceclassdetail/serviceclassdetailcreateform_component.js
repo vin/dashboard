@@ -22,6 +22,8 @@ export class ServiceClassDetailCreateFormController {
   constructor() {
     /** @export {?} */
     this.serviceClass;
+    /** @export {Function} */
+    this.onCancel;
   }
 
 }
@@ -36,5 +38,7 @@ export const serviceClassDetailCreateFormComponent = {
   bindings: {
     /** {?} */
     'serviceClass': '<',
+    /** {?} */
+    'onCancel': '&',
   },
 };

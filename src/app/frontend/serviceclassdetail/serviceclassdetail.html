@@ -16,13 +16,18 @@ limitations under the License.
 
 <kd-content-card>
   <kd-content>
+    <div>TODO Image</div>
     <kd-service-class-detail-header service-class="ctrl.serviceClass">
     </kd-service-class-detail-header>
-    <kd-service-class-detail-description service-class="ctrl.serviceClass"
-                                         ng-if="!ctrl.isInstantiatingClass()">
-    </kd-service-class-detail-description>
-    <kd-service-class-detail-create-form service-class="ctrl.serviceClass"
-                                         ng-if="ctrl.isInstantiatingClass()">
-    </kd-service-class-detail-create-form>
+    <md-button ng-click="ctrl.startInstantiatingClass()">Create Instance</md-button>
+    <div>
+      <kd-service-class-detail-description service-class="ctrl.serviceClass"
+                                           ng-if="!ctrl.isInstantiatingClass()">
+      </kd-service-class-detail-description>
+      <kd-service-class-detail-create-form service-class="ctrl.serviceClass"
+                                           ng-if="ctrl.isInstantiatingClass()"
+                                           on-cancel="ctrl.stopInstantiatingClass()">
+      </kd-service-class-detail-create-form>
+    </div>
   </kd-content>
 </kd-content-card>
