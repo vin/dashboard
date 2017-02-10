@@ -16,19 +16,11 @@ package client
 
 import (
 	"log"
+	"runtime/debug"
 
+	"k8s.io/client-go/1.5/dynamic"
 	"k8s.io/client-go/1.5/pkg/api/unversioned"
 	"k8s.io/client-go/1.5/tools/clientcmd"
-)
-
-// Dashboard UI default values for client configs.
-const (
-	// High enough QPS to fit all expected use cases. QPS=0 is not set here, because
-	// client code is overriding it.
-	defaultQPS = 1e6
-	// High enough Burst to fit all expected use cases. Burst=0 is not set here, because
-	// client code is overriding it.
-	defaultBurst = 1e6
 )
 
 // CreateDynamicClient creates new client-go dynamic client, for accessing third party resources.
@@ -37,17 +29,21 @@ const (
 // kubeConfig location of kubeconfig file
 func CreateDynamicClient(apiserverHost string, kubeConfig string, groupName string, apiVersion string) (*dynamic.Client, error) {
 
-	cfg, err :1 clientcmd.BuildConfigFromFlags("", kubeConfig)
+	cfg, err := clientcmd.BuildConfigFromFlags(apiserverHost, kubeConfig)
 	if err != nil {
+		debug.PrintStack()
+		log.Printf("%v", kubeConfig)
+		log.Printf("%v", err)
 		return nil, err
 	}
-	cfg.ContentConfig.GroupVersion = &unversioned.GroupVersion{groupName, apiVersion)}
+	cfg.ContentConfig.GroupVersion = &unversioned.GroupVersion{groupName, apiVersion}
 	cfg.APIPath = "apis"
 
 	log.Printf("Creating dynamic client for %s", cfg.Host)
 	client, err := dynamic.NewClient(cfg)
 
 	if err != nil {
+		debug.PrintStack()
 		return nil, err
 	}
 	return client, nil

@@ -63,6 +63,7 @@ import (
 	"golang.org/x/net/xsrftoken"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilnet "k8s.io/apimachinery/pkg/util/net"
+	"k8s.io/client-go/1.5/dynamic"
 	clientK8s "k8s.io/client-go/kubernetes"
 	restclient "k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
@@ -176,6 +177,7 @@ func FormatResponseLog(resp *restful.Response, req *restful.Request) string {
 
 // CreateHTTPAPIHandler creates a new HTTP handler that handles all requests to the API of the backend.
 func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.HeapsterClient,
+	catalogClient *dynamic.Client,
 	clientConfig clientcmd.ClientConfig) (http.Handler, error) {
 
 	verber := common.NewResourceVerber(client.Core().RESTClient(),

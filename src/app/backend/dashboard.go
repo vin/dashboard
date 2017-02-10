@@ -74,7 +74,12 @@ func main() {
 		log.Printf("Could not create heapster client: %s. Continuing.", err)
 	}
 
-	apiHandler, err := handler.CreateHTTPAPIHandler(apiserverClient, heapsterRESTClient, config)
+	catalogClient, err := client.CreateDynamicClient(*argApiserverHost, *argKubeConfigFile, "catalog.k8s.io", "v1alpha1")
+	if err != nil {
+		handleFatalInitError(err)
+	}
+
+	apiHandler, err := handler.CreateHTTPAPIHandler(apiserverClient, heapsterRESTClient, catalogClient, config)
 	if err != nil {
 		handleFatalInitError(err)
 	}
