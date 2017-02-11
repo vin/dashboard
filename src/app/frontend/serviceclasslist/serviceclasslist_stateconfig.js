@@ -127,9 +127,10 @@ const SERVICE_BROKER_LIST_FAKE_DATA = {
   'apiVersion': 'catalog.k8s.io/v1alpha1',
 };
 
-import {stateName as chromeStateName} from 'chrome/chrome_state';
+import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 
+import {ActionBarController} from './actionbar_controller';
 import {ServiceClassListController} from './serviceclasslist_controller';
 import {stateName, stateUrl} from './serviceclasslist_state';
 
@@ -157,6 +158,11 @@ export default function stateConfig($stateProvider) {
         controller: ServiceClassListController,
         controllerAs: 'ctrl',
         templateUrl: 'serviceclasslist/serviceclasslist.html',
+      },
+      [actionbarViewName]: {
+        controller: ActionBarController,
+        controllerAs: '$ctrl',
+        templateUrl: 'serviceclasslist/actionbar.html',
       },
     },
   });

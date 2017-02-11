@@ -14,32 +14,30 @@
 
 @import '../variables';
 
-kd-service-class-card-list-header {
-  align-items: center;
-  border-bottom: 1px solid $border;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+
+.kd-service-class-list-add-catalog-dialog-title {
+  font-size: $title-font-size-base;
+  font-weight: 400;
 }
 
-.kd-service-class-card-list-header-title {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  padding-left: 2 * $baseline-grid;
-  box-sizing: border-box;
-  font-weight: $regular-font-weight;
-  height: 7 * $baseline-grid;
-  line-height: 5 * $baseline-grid;
-  margin: 0;
+.kd-service-class-list-add-catalog-dialog-subheading {
+  font-size: $subhead-font-size-base;
+  font-weight: 400;
 }
 
-.kd-service-class-card-list-header-catalog-selector {
-  flex-grow: 1;
-  padding-left: 4 * $baseline-grid;
+.kd-service-class-list-add-catalog-dialog {
+  padding: 2 * $baseline-grid;
+  font-family: $font-family-medium;
 }
 
+.kd-service-class-list-add-catalog-dialog-url-input {
+  display: block;
+}
 
-kd-service-class-card {
+.kd-service-class-list-add-catalog-dialog-login-input {
+  display: block;
+}
 
+.kd-service-class-list-add-catalog-dialog-password-input {
+  display: block;
 }

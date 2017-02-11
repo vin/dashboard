@@ -14,15 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<div class="kd-service-class-card-list-header-title md-title">Catalog</div>
-<div class="kd-service-class-card-list-header-catalog-selector">
-  <md-input-container>
-    <md-select ng-model="$ctrl.currentBroker">
-      <md-option ng-value="'all'">All Catalogs</md-option>
-      <md-option ng-repeat="serviceBroker in $ctrl.serviceBrokerList.items"
-                 ng-value="serviceBroker.metadata.uid">
-        {{serviceBroker.name}}
-      </md-option>
-    </md-select>
-  </md-input-container>
-</div>
+<md-button class="kd-service-class-card-list-header-add-catalog" ng-click="$ctrl.showAddCatalogDialog()">
+  <md-icon>add</md-icon>
+  Add Catalog
+</md-button>

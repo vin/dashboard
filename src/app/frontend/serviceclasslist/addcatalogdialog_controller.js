@@ -12,34 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@import '../variables';
+export class AddCatalogDialogController {
+  /**
+   * @param {!md.$dialog} $mdDialog
+   * @ngInject
+   */
+  constructor($mdDialog){
+    /** @private {!md.$dialog} */
+    this.mdDialog_ = $mdDialog;
+  }
 
-kd-service-class-card-list-header {
-  align-items: center;
-  border-bottom: 1px solid $border;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.kd-service-class-card-list-header-title {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  padding-left: 2 * $baseline-grid;
-  box-sizing: border-box;
-  font-weight: $regular-font-weight;
-  height: 7 * $baseline-grid;
-  line-height: 5 * $baseline-grid;
-  margin: 0;
-}
-
-.kd-service-class-card-list-header-catalog-selector {
-  flex-grow: 1;
-  padding-left: 4 * $baseline-grid;
-}
-
-
-kd-service-class-card {
-
+  hide(){
+    this.mdDialog_.hide();
+  }
 }
