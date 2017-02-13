@@ -18,3 +18,20 @@ limitations under the License.
   <md-icon>add</md-icon>
   Add Catalog
 </md-button>
+<md-button ng-href="{{::$ctrl.getServiceClassListHref('list')}}"
+           class="kd-service-class-card-list-header-nav-button"
+           ng-disabled="$ctrl.isCurrentViewMode('list')">
+  <md-icon ng-class="{ 'kd-service-class-card-list-header-nav-button-icon-selected': $ctrl.isCurrentViewMode('list') }"
+           class="kd-service-class-card-list-header-nav-button-icon">
+    view_list
+  </md-icon>
+</md-button>
+<md-button ng-href="{{::$ctrl.getServiceClassListHref('tile')}}"
+           class="kd-service-class-card-list-header-nav-button"
+           ng-disabled="$ctrl.isCurrentViewMode('tile')">
+  <md-icon ng-class="{ 'kd-service-class-card-list-header-nav-button-icon-selected': $ctrl.isCurrentViewMode('tile') }"
+           class="kd-service-class-card-list-header-nav-button-icon">
+    view_module
+  </md-icon>
+</md-button>
+

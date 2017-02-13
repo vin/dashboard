@@ -148,6 +148,12 @@ export default function stateConfig($stateProvider) {
       'serviceClassList': resolveServiceClassList,
       'serviceBrokerList': resolveServiceBrokerList,
     },
+    params: {
+      viewMode: {
+        type: 'string',
+        value: 'list',
+      },
+    },
     data: {
       [breadcrumbsConfig]: {
         'label': i18n.MSG_BREADCRUMBS_INSTANCE_LABEL,

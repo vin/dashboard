@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import {AddCatalogDialogController} from './addcatalogdialog_controller';
-
+import {stateName} from './serviceclasslist_state';
 
 /**
  * @final
@@ -21,11 +21,17 @@ import {AddCatalogDialogController} from './addcatalogdialog_controller';
 export class ActionBarController {
   /**
    * @param {!md.$dialog} $mdDialog
+   * @param {!ui.router.$state} $state
+   * @param {?} $stateParams
    * @ngInject
    */
-  constructor($mdDialog) {
+  constructor($mdDialog, $state, $stateParams) {
     /** @private {!md.$dialog} */
     this.mdDialog_ = $mdDialog;
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
+    /** @private {?} */
+    this.stateParams_ = $stateParams;
   }
 
   showAddCatalogDialog(){
@@ -36,5 +42,13 @@ export class ActionBarController {
       parent: angular.element(document.body),
       targetEvent: event,
     });
+  }
+
+  getServiceClassListHref(viewMode) {
+    return this.state_.href(stateName, {viewMode});
+  }
+
+  isCurrentViewMode(viewMode){
+    return viewMode === this.stateParams_.viewMode;
   }
 }

@@ -19,3 +19,16 @@
     color: currentColor;
   }
 }
+
+.kd-service-class-card-list-header-nav-button {
+  min-width: 2 * $baseline-grid;
+
+}
+
+.kd-service-class-card-list-header-nav-button[disabled] {
+
+}
+
+.md-button[disabled] .kd-service-class-card-list-header-nav-button-icon-selected.kd-service-class-card-list-header-nav-button-icon {
+  color: yellow;
+}

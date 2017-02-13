@@ -16,4 +16,4 @@
 export const stateName = 'serviceclasslist';
 
 /** Absolute URL of the state. */
-export const stateUrl = '/serviceclasslist';
+export const stateUrl = '/serviceclasslist?viewMode';
