@@ -1,0 +1,41 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<kd-content-card>
+  <kd-content>
+    <div class="kd-service-class-detail-upper">
+      <div class="kd-service-class-detail-upper-left">
+        <div class="kd-service-class-detail-icon">TODO Image</div>
+      </div>
+      <div class="kd-service-class-detail-upper-right">
+        <kd-service-class-detail-header service-class="ctrl.serviceClass"
+                                        class="kd-service-class-detail-header-container">
+        </kd-service-class-detail-header>
+        <md-button class="kd-service-class-detail-create-instance md-raised md-primary"
+                   ng-click="ctrl.startInstantiatingClass()">Create Instance</md-button>
+      </div>
+    </div>
+    <div class="kd-service-class-detail-lower">
+      <kd-service-class-detail-description service-class="ctrl.serviceClass"
+                                           ng-if="!ctrl.isInstantiatingClass()">
+      </kd-service-class-detail-description>
+      <kd-service-class-detail-create-form service-class="ctrl.serviceClass"
+                                           ng-if="ctrl.isInstantiatingClass()"
+                                           on-cancel="ctrl.stopInstantiatingClass()">
+      </kd-service-class-detail-create-form>
+    </div>
+  </kd-content>
+</kd-content-card>

@@ -12,51 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {StateParams} from 'common/resource/resourcedetail';
-import {stateName} from 'serviceclassdetail/serviceclassdetail_state';
-
-
-
 /**
  * @final
  */
-export class ServiceClassCardController {
+export class ServiceClassDetailCreateFormController {
   /**
-   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor($state) {
+  constructor() {
     /** @export {?} */
     this.serviceClass;
-    /** @export {?} */
-    this.serviceBroker;
-    /** @private {!ui.router.$state} */
-    this.state_ = $state;
+    /** @export {Function} */
+    this.onCancel;
   }
 
-  /**
-   * @return {string}
-   * @export
-   */
-  getServiceClassDetailHref() {
-    return this.state_.href(
-        stateName,
-        new StateParams(
-            this.serviceClass.metadata.namespace, this.serviceClass.metadata.name));
-  }
 }
 
 /**
  *
  * @type {!angular.Component}
  */
-export const serviceClassCardComponent = {
-  templateUrl: 'serviceclasslist/serviceclasscard.html',
-  controller: ServiceClassCardController,
+export const serviceClassDetailCreateFormComponent = {
+  templateUrl: 'serviceclassdetail/serviceclassdetailcreateform.html',
+  controller: ServiceClassDetailCreateFormController,
   bindings: {
     /** {?} */
     'serviceClass': '<',
     /** {?} */
-    'serviceBroker': '<',
+    'onCancel': '&',
   },
 };
