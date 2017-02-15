@@ -12,24 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export class CreateServiceBindingDialogController {
-  /**
-   * @param {?} serviceInstance
-   * @param {!angular.$scope} $scope
-   * @param {!md.$dialog} $mdDialog
-   * @ngInject
-   */
-  constructor(serviceInstance, $scope, $mdDialog){
-    this.serviceInstance = serviceInstance;
-    this.scope = $scope;
-    this.scope.binding = {
-      name: '',
-    };
-    /** @private {!md.$dialog} */
-    this.mdDialog_ = $mdDialog;
-  }
+@import '../variables';
 
-  closeDialog(){
-    this.mdDialog_.hide();
-  }
+.kd-service-binding-list-create-service-binding-dialog {
+  padding: 2 * $baseline-grid;
+}
+
+
+.kd-service-binding-list-create-service-binding-dialog-title {
+  font-size: $title-font-size-base;
+  font-weight: 400;
 }

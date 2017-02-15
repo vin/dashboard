@@ -35,10 +35,9 @@ export class ServiceBindingCardListController {
   }
 
   showAddBindingDialog(event){
-    console.log(CreateServiceBindingDialogController);
     this.mdDialog.show({
       controller: CreateServiceBindingDialogController,
-      controllerAs: 'ctrl',
+      controllerAs: '$ctrl',
       templateUrl: 'servicebindinglist/createservicebindingdialog.html',
       parent: angular.element(document.body),
       targetEvent: event,

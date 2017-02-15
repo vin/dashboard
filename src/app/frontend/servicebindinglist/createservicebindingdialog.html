@@ -14,13 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <md-dialog>
-  <md-dialog-content>
-    <h1>Bind {{ctrl.serviceInstance.name}} Instance</h1>
+  <md-dialog-content class="kd-service-binding-list-create-service-binding-dialog">
+    <h1 class="md-title kd-service-binding-list-create-service-binding-dialog-title">
+      Create Binding
+    </h1>
     <form>
       <md-input-container>
         <label>Binding Name</label>
         <input ng-model="binding.name">
       </md-input-container>
+      <div>
+        <md-button class="md-primary md-raised">Create</md-button>
+        <md-button class="md-raised" ng-click="$ctrl.closeDialog()">Cancel</md-button>
+      </div>
     </form>
   </md-dialog-content>
 </md-dialog>
