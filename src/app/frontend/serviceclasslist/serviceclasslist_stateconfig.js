@@ -142,7 +142,7 @@ import {stateName, stateUrl} from './serviceclasslist_state';
  */
 export default function stateConfig($stateProvider) {
   $stateProvider.state(stateName, {
-    url: stateUrl,
+    url: `${stateUrl}?viewMode`,
     parent: chromeStateName,
     resolve: {
       'serviceClassList': resolveServiceClassList,
@@ -151,7 +151,7 @@ export default function stateConfig($stateProvider) {
     params: {
       viewMode: {
         type: 'string',
-        value: 'list',
+        value: 'list', //defaultValue
       },
     },
     data: {
