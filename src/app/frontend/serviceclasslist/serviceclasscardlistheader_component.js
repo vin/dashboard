@@ -20,10 +20,6 @@ export class ServiceClassCardListHeaderController {
    * @ngInject
    */
   constructor() {
-    /** @export {?} */
-    this.serviceBrokerList;
-    /** @export {string} */
-    this.currentBroker = 'all';
   }
 
 }
@@ -35,8 +31,8 @@ export class ServiceClassCardListHeaderController {
 export const serviceClassCardListHeaderComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardlistheader.html',
   controller: ServiceClassCardListHeaderController,
-  bindings: {
-    /** {?} */
-    'serviceBrokerList': '<',
+  transclude: {
+    'searchInput': 'kdServiceClassCardListHeaderSearchInput',
+    'catalogSelector': 'kdServiceClassCardListHeaderCatalogSelector',
   },
 };

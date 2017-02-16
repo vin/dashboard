@@ -162,7 +162,7 @@ export default function stateConfig($stateProvider) {
     views: {
       '': {
         controller: ServiceClassListController,
-        controllerAs: 'ctrl',
+        controllerAs: '$ctrl',
         templateUrl: 'serviceclasslist/serviceclasslist.html',
       },
       [actionbarViewName]: {

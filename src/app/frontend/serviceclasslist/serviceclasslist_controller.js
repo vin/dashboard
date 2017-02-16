@@ -26,5 +26,31 @@ export class ServiceClassListController {
     this.serviceClassList = serviceClassList;
     /** @export {!backendApi.ServiceBrokerList} */
     this.serviceBrokerList = serviceBrokerList;
+    /** @export {string} */
+    this.searchTerm = '';
+    /** @export {string} */
+    this.currentBroker = 'all';
+    /** @private {string} */
+    this.previousSearchTerm_ = '';
+    /** @private {string} */
+    this.previousBroker_ = '';
+    /** @private {?} */
+    this.searchedServiceClassList_ = null;
+  }
+
+  /**
+   * @return {Array}
+   */
+  getSearchedServiceClassList() {
+    if (this.searchedServiceClassList_ === null || this.currentBroker !== this.previousBroker_ ||
+        this.searchTerm !== this.previousSearchTerm_) {
+      let searchTerm = this.searchTerm.toLowerCase();
+      this.searchedServiceClassList_ = this.serviceClassList.items.filter(
+          (serviceClass) => serviceClass.name.toLowerCase().indexOf(searchTerm) !== -1 &&
+              (this.currentBroker === 'all' || serviceClass.BrokerName === this.currentBroker));
+      this.previousBroker_ = this.currentBroker;
+      this.previousSearchTerm_ = this.searchTerm;
+    }
+    return this.searchedServiceClassList_;
   }
 }

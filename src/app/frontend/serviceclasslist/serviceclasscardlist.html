@@ -15,14 +15,19 @@ limitations under the License.
 -->
 
 <div>
-  <kd-service-class-card-list-header service-broker-list="$ctrl.serviceBrokerList"></kd-service-class-card-list-header>
+  <kd-service-class-card-list-header>
+    <kd-service-class-card-list-header-search-input ng-transclude="searchInput">
+    </kd-service-class-card-list-header-search-input>
+    <kd-service-class-card-list-header-catalog-selector ng-transclude="catalogSelector">
+    </kd-service-class-card-list-header-catalog-selector>
+  </kd-service-class-card-list-header>
   <kd-service-class-card-list-column-headers>
     <kd-service-class-card-list-column-header>Name</kd-service-class-card-list-column-header>
     <kd-service-class-card-list-column-header>From</kd-service-class-card-list-column-header>
     <kd-service-class-card-list-column-header>Catalog</kd-service-class-card-list-column-header>
     <kd-service-class-card-list-column-header style="flex-grow:4;">Description</kd-service-class-card-list-column-header>
   </kd-service-class-card-list-column-headers>
-  <kd-service-class-card ng-repeat="serviceClass in $ctrl.serviceClassList.items" service-class="serviceClass"
+  <kd-service-class-card ng-repeat="serviceClass in $ctrl.serviceClassList" service-class="serviceClass"
                          service-broker="$ctrl.getServiceBrokerForServiceClass(serviceClass)">
   </kd-service-class-card>
 </div>

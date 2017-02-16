@@ -16,8 +16,28 @@ limitations under the License.
 
 <kd-content-card ng-if="!ctrl.shouldShowZeroState()">
   <kd-content>
-    <kd-service-class-card-list service-class-list="::ctrl.serviceClassList"
-                                service-broker-list="ctrl.serviceBrokerList">
+    <kd-service-class-card-list service-class-list="$ctrl.getSearchedServiceClassList()"
+                                service-broker-list="$ctrl.serviceBrokerList">
+      <kd-service-class-card-list-search-input>
+        <md-input-container>
+          <label>
+            <md-icon>search</md-icon>
+            Search Solutions
+          </label>
+          <input ng-model="$ctrl.searchTerm">
+        </md-input-container>
+      </kd-service-class-card-list-search-input>
+      <kd-service-class-card-list-catalog-selector>
+        <md-input-container>
+          <md-select ng-model="$ctrl.currentBroker">
+            <md-option ng-value="'all'">All Catalogs</md-option>
+            <md-option ng-repeat="serviceBroker in $ctrl.serviceBrokerList.items"
+                       ng-value="serviceBroker.name">
+              {{serviceBroker.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </kd-service-class-card-list-catalog-selector>
     </kd-service-class-card-list>
   </kd-content>
 </kd-content-card>
