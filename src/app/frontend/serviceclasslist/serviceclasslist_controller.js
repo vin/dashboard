@@ -19,9 +19,10 @@ export class ServiceClassListController {
   /**
    * @param {!backendApi.ServiceClassList} serviceClassList
    * @param {!backendApi.ServiceBrokerList} serviceBrokerList
+   * @param {Object} $stateParams
    * @ngInject
    */
-  constructor(serviceClassList, serviceBrokerList) {
+  constructor(serviceClassList, serviceBrokerList, $stateParams) {
     /** @export {!backendApi.ServiceClassList} */
     this.serviceClassList = serviceClassList;
     /** @export {!backendApi.ServiceBrokerList} */
@@ -36,6 +37,8 @@ export class ServiceClassListController {
     this.previousBroker_ = '';
     /** @private {?} */
     this.searchedServiceClassList_ = null;
+    /** @private {string} */
+    this.viewMode_ = $stateParams.viewMode;
   }
 
   /**
@@ -52,5 +55,19 @@ export class ServiceClassListController {
       this.previousSearchTerm_ = this.searchTerm;
     }
     return this.searchedServiceClassList_;
+  }
+
+  /**
+   * @return {boolean}
+   */
+  shouldShowListView(){
+    return this.viewMode_ === 'list';
+  }
+
+  /**
+   * @return {boolean}
+   */
+  shouldShowTileView(){
+    return this.viewMode_ === 'tile';
   }
 }
