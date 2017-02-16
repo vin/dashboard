@@ -30,8 +30,8 @@ limitations under the License.
     </kd-service-class-card-list>
   </kd-content>
 </kd-content-card>
-<div ng-if="!$ctrl.shouldShowZeroState() && $ctrl.shouldShowTileView()">
-  <div>
+<div class="kd-service-class-list-tile-view" ng-if="!$ctrl.shouldShowZeroState() && $ctrl.shouldShowTileView()">
+  <div class="kd-service-class-list-tile-view-input">
     <kd-service-class-list-search-input search-term-model="$ctrl.searchTerm">
     </kd-service-class-list-search-input>
     <kd-service-class-list-catalog-selector selected-broker-model="$ctrl.selectedBroker"

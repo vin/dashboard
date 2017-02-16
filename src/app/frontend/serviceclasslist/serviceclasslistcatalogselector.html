@@ -15,6 +15,9 @@ limitations under the License.
 -->
 
 <md-input-container>
+  <label>
+    Catalog
+  </label>
   <md-select ng-model="$ctrl.selectedBrokerModel">
     <md-option ng-value="'all'">All Catalogs</md-option>
     <md-option ng-repeat="serviceBroker in $ctrl.serviceBrokerList.items"

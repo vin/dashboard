@@ -15,31 +15,23 @@
 @import '../variables';
 
 kd-service-class-card-list-header {
-  align-items: center;
   border-bottom: 1px solid $border;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
-.kd-service-class-card-list-header-title {
-  align-items: center;
+.kd-service-class-card-list-header-inputs {
   display: flex;
-  height: 100%;
-  padding-left: 2 * $baseline-grid;
-  box-sizing: border-box;
-  font-weight: $regular-font-weight;
-  height: 7 * $baseline-grid;
-  line-height: 5 * $baseline-grid;
-  margin: 0;
+  width: 100%;
+  padding:  $baseline-grid * 4 $baseline-grid * 3;
+  padding-bottom: $baseline-grid * 2;
 }
 
-.kd-service-class-card-list-header-catalog-selector {
+
+.kd-service-class-card-list-header-search-input {
   flex-grow: 1;
-  padding-left: 4 * $baseline-grid;
+  max-width: 50%;
+  margin-right: $baseline-grid * 4;
 }
 
-
-kd-service-class-card {
-
+.kd-service-class-card-list-solutions {
+  padding-left: $baseline-grid * 2;
 }

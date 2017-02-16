@@ -20,6 +20,8 @@ export class ServiceClassCardListHeaderController {
    * @ngInject
    */
   constructor() {
+    /** @export {number} */
+    this.numSolutions;
   }
 
 }
@@ -34,5 +36,9 @@ export const serviceClassCardListHeaderComponent = {
   transclude: {
     'searchInput': 'kdServiceClassCardListHeaderSearchInput',
     'catalogSelector': 'kdServiceClassCardListHeaderCatalogSelector',
+  },
+  bindings: {
+    /** {number} */
+    'numSolutions': '<',
   },
 };

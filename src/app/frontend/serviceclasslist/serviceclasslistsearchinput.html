@@ -14,11 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<md-input-container>
-  <label>
-    <md-icon>search</md-icon>
-    Search Solutions
-  </label>
-  <input ng-model="$ctrl.searchTermModel">
-</md-input-container>
+<div class="kd-service-class-list-search-input">
+  <md-icon class="kd-service-class-list-search-input-icon">search</md-icon>
+  <!--<md-input-container md-no-float class="kd-service-class-list-search-input-container">-->
+    <!--<input ng-model="$ctrl.searchTermModel" placeholder="Search Solutions">-->
+  <!--</md-input-container>-->
+  <md-input-container md-no-float class="kd-service-class-list-search-input-container">
+    <input ng-model="$ctrl.searchTermModel" placeholder="Search Solutions">
+  </md-input-container>
+</div>
 

@@ -14,5 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<div ng-transclude="searchInput"></div>
-<div ng-transclude="catalogSelector"></div>
+<div class="kd-service-class-card-list-header-inputs">
+  <div class="kd-service-class-card-list-header-search-input" ng-transclude="searchInput"></div>
+  <div class="kd-service-class-card-list-header-catalog-selector" ng-transclude="catalogSelector"></div>
+</div>
+<h1 class="md-title kd-service-class-card-list-solutions">
+  {{$ctrl.numSolutions}} {{$ctrl.numSolutions === 1 ? 'Solution' : 'Solutions'}}
+</h1>
+

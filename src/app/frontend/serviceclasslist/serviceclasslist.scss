@@ -14,4 +14,25 @@
 
 @import '../variables';
 
+.kd-service-class-list-tile-view {
+  margin: $baseline-grid * 2;
+  margin-top: $baseline-grid * 4;
+}
 
+kd-service-class-list-search-input {
+  box-shadow: $whiteframe-shadow-1dp;
+  background-color: $content-background;
+  border-radius: $baseline-grid / 4;
+  display: block;
+}
+
+.kd-service-class-list-tile-view-input {
+  display: flex;
+
+  kd-service-class-list-search-input {
+    flex-grow: 1;
+    max-width: 50%;
+    margin-right: $baseline-grid * 4;
+    height: $baseline-grid * 7;
+  }
+}
