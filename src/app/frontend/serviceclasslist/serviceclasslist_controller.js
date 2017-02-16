@@ -30,11 +30,11 @@ export class ServiceClassListController {
     /** @export {string} */
     this.searchTerm = '';
     /** @export {string} */
-    this.currentBroker = 'all';
+    this.selectedBroker = 'all';
     /** @private {string} */
     this.previousSearchTerm_ = '';
     /** @private {string} */
-    this.previousBroker_ = '';
+    this.previousSelectedBroker_ = '';
     /** @private {?} */
     this.searchedServiceClassList_ = null;
     /** @private {string} */
@@ -45,13 +45,13 @@ export class ServiceClassListController {
    * @return {Array}
    */
   getSearchedServiceClassList() {
-    if (this.searchedServiceClassList_ === null || this.currentBroker !== this.previousBroker_ ||
+    if (this.searchedServiceClassList_ === null || this.selectedBroker !== this.previousSelectedBroker_ ||
         this.searchTerm !== this.previousSearchTerm_) {
       let searchTerm = this.searchTerm.toLowerCase();
       this.searchedServiceClassList_ = this.serviceClassList.items.filter(
           (serviceClass) => serviceClass.name.toLowerCase().indexOf(searchTerm) !== -1 &&
-              (this.currentBroker === 'all' || serviceClass.BrokerName === this.currentBroker));
-      this.previousBroker_ = this.currentBroker;
+              (this.selectedBroker === 'all' || serviceClass.BrokerName === this.selectedBroker));
+      this.previousSelectedBroker_ = this.selectedBroker;
       this.previousSearchTerm_ = this.searchTerm;
     }
     return this.searchedServiceClassList_;
