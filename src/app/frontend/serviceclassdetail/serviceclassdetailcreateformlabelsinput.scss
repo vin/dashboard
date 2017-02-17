@@ -14,3 +14,42 @@
 
 @import '../variables';
 
+.kd-service-class-detail-create-form-labels-input {
+  max-width: $baseline-grid * 60;
+}
+
+
+.kd-service-class-detail-create-form-labels-input-title {
+  margin-top: $baseline-grid;
+  margin-bottom: $baseline-grid;
+}
+
+.kd-service-class-detail-create-form-labels-input-row {
+  display: flex;
+
+  md-input-container {
+    margin-top: $baseline-grid;
+    margin-bottom: $baseline-grid;
+    flex-grow: 1;
+  }
+}
+
+.kd-service-class-detail-create-form-labels-input-row-delete,
+.kd-service-class-detail-create-form-labels-input-row-placeholder {
+  min-height: $baseline-grid * 4.5;
+  min-width: $baseline-grid * 4.5;
+  width: $baseline-grid * 4.5;
+  height: $baseline-grid * 4.5;
+  margin: $baseline-grid;
+  padding-top: $baseline-grid * .75;
+}
+
+.kd-service-class-detail-create-form-labels-input-row-delete-icon {
+  color: $foreground-2;
+}
+
+
+.kd-service-class-detail-create-form-labels-input-add-button-container {
+  display: flex;
+  flex-direction: row-reverse;
+}

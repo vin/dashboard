@@ -16,11 +16,11 @@ limitations under the License.
 
 
 <form>
-  <md-input-container>
+  <md-input-container class="kd-service-class-detail-create-form-name">
     <label>Name</label>
-    <input ng-model="$ctrl.name">
+    <input ng-model="$ctrl.formData.name">
   </md-input-container>
-  <kd-service-class-detail-create-form-labels-input>
+  <kd-service-class-detail-create-form-labels-input labels-model="$ctrl.formData.labels">
   </kd-service-class-detail-create-form-labels-input>
   <kd-service-class-detail-create-form-params-input>
   </kd-service-class-detail-create-form-params-input>

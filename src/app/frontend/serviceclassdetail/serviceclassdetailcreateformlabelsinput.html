@@ -13,3 +13,36 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
+
+
+<div class="kd-service-class-detail-create-form-labels-input">
+  <h2 class="kd-service-class-detail-create-form-labels-input-title md-title">
+    Labels
+  </h2>
+  <div ng-repeat="label in $ctrl.labelsModel"
+       class="kd-service-class-detail-create-form-labels-input-row">
+    <md-input-container md-no-float>
+      <input ng-model="label.key" placeholder="Key">
+    </md-input-container>
+    <md-input-container md-no-float>
+      <input ng-model="label.value" placeholder="Value">
+    </md-input-container>
+    <md-button ng-if="$ctrl.labelsModel.length > 1"
+               ng-click="$ctrl.deleteLabel(label)"
+               class="kd-service-class-detail-create-form-labels-input-row-delete">
+      <md_icon class="kd-service-class-detail-create-form-labels-input-row-delete-icon">
+        delete
+      </md_icon>
+    </md-button>
+    <div ng-if="$ctrl.labelsModel.length <= 1"
+         class="kd-service-class-detail-create-form-labels-input-row-placeholder">
+    </div>
+  </div>
+  <div class="kd-service-class-detail-create-form-labels-input-add-button-container">
+    <md-button ng-click="$ctrl.addLabel()"
+               class="md-raised md-primary">
+      <md-icon>add</md-icon>
+      Add Label
+    </md-button>
+  </div>
+</div>

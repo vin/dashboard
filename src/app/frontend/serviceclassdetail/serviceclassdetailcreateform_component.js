@@ -24,6 +24,14 @@ export class ServiceClassDetailCreateFormController {
     this.serviceClass;
     /** @export {Function} */
     this.onCancel;
+    /** @export {?} */
+    this.formData = {
+      name: '',
+      labels: [{
+        key: '',
+        value: '',
+      }],
+    };
   }
 
 }

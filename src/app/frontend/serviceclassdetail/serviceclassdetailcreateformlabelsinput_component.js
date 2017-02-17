@@ -20,8 +20,21 @@ export class ServiceClassDetailCreateFormLabelsInputController {
    * @ngInject
    */
   constructor() {
+    /** @export {?} */
+    this.labelsModel;
   }
 
+  addLabel() {
+    this.labelsModel.push({key: '', value: ''});
+  }
+
+  /**
+   * @param {?} labelObject
+   */
+  deleteLabel(labelObject){
+    let labelObjectIndex = this.labelsModel.indexOf(labelObject);
+    this.labelsModel.splice(labelObjectIndex, 1);
+  }
 }
 
 /**
@@ -31,4 +44,7 @@ export class ServiceClassDetailCreateFormLabelsInputController {
 export const serviceClassDetailCreateFormLabelsInputComponent = {
   templateUrl: 'serviceclassdetail/serviceclassdetailcreateformlabelsinput.html',
   controller: ServiceClassDetailCreateFormLabelsInputController,
+  bindings: {
+    'labelsModel': '=',
+  },
 };
