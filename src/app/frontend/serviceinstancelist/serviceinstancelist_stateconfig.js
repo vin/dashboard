@@ -52,9 +52,10 @@ const SERVICE_INSTANCE_LIST_FAKE_DATA = {
   'apiVersion': 'catalog.k8s.io/v1alpha1',
 };
 
-import {stateName as chromeStateName} from 'chrome/chrome_state';
+import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 
+import {ActionBarController} from './actionbar_controller';
 import {ServiceInstanceListController} from './serviceinstancelist_controller';
 import {stateName, stateUrl} from './serviceinstancelist_state';
 
@@ -66,10 +67,16 @@ import {stateName, stateUrl} from './serviceinstancelist_state';
  */
 export default function stateConfig($stateProvider) {
   $stateProvider.state(stateName, {
-    url: stateUrl,
+    url: `${stateUrl}?viewMode`,
     parent: chromeStateName,
     resolve: {
       'serviceInstanceList': resolveServiceInstanceList,
+    },
+    params: {
+      viewMode: {
+        type: 'string',
+        value: 'list', //defaultValue
+      },
     },
     data: {
       [breadcrumbsConfig]: {
@@ -81,6 +88,11 @@ export default function stateConfig($stateProvider) {
         controller: ServiceInstanceListController,
         controllerAs: 'ctrl',
         templateUrl: 'serviceinstancelist/serviceinstancelist.html',
+      },
+      [actionbarViewName]: {
+        controller: ActionBarController,
+        controllerAs: '$ctrl',
+        templateUrl: 'serviceinstancelist/actionbar.html',
       },
     },
   });
