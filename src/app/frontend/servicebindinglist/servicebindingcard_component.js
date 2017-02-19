@@ -26,6 +26,8 @@ export class ServiceBindingCardController {
   constructor($state) {
     /** @export {?} */
     this.serviceBinding;
+    /** @export {?} */
+    this.serviceInstance;
 
     /** @private {!ui.router.$state} */
     this.state_ = $state;
@@ -46,9 +48,10 @@ export class ServiceBindingCardController {
    * @export
    */
   getServiceBindingDetailHref() {
-    return this.state_.href(
-        stateName,
-        new StateParams(this.serviceBinding.metadata.namespace, this.serviceBinding.metadata.name));
+    let stateParams = new StateParams(
+        this.serviceInstance.metadata.namespace, this.serviceInstance.metadata.name);
+    stateParams.bindingName = this.serviceBinding.name;
+    return this.state_.href(stateName, stateParams);
   }
 }
 
@@ -63,5 +66,7 @@ export const serviceBindingCardComponent = {
   bindings: {
     /** {?} */
     'serviceBinding': '<',
+    /** {?} */
+    'serviceInstance': '<',
   },
 };

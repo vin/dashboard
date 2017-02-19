@@ -52,7 +52,9 @@ import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_servi
 import {appendDetailParamsToUrl} from 'common/resource/resourcedetail';
 
 import {ServiceBindingDetailController} from './servicebindingdetail_controller';
-import {baseStateURL, stateName} from './servicebindingdetail_state';
+import {stateUrl as baseStateUrl} from 'serviceinstancelist/serviceinstancelist_state';
+import {stateName as serviceInstanceDetailStateName} from 'serviceinstancedetail/serviceinstancedetail_state';
+import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
 
 /**
  * Configures states for the service binding details view.
@@ -62,14 +64,15 @@ import {baseStateURL, stateName} from './servicebindingdetail_state';
  */
 export default function stateConfig($stateProvider) {
   $stateProvider.state(stateName, {
-    url: appendDetailParamsToUrl(baseStateURL),
+    url: appendBindingParamsToUrl(appendDetailParamsToUrl(baseStateUrl)),
     parent: chromeStateName,
     resolve: {
       'serviceBinding': resolveServiceBinding,
     },
     data: {
       [breadcrumbsConfig]: {
-        'label': '{{$stateParams.objectName}}',
+        'label': '{{$stateParams.bindingName}}',
+        'parent': serviceInstanceDetailStateName,
       },
     },
     views: {
@@ -82,10 +85,19 @@ export default function stateConfig($stateProvider) {
   });
 }
 
+
+/**
+ * @param {string} baseUrl
+ * @return {string}
+ */
+function appendBindingParamsToUrl(baseUrl) {
+  return `${baseUrl}/binding/{bindingName:[^/]+}`;
+}
+
 /**
  * @return {?}
  * @ngInject
  */
 export function resolveServiceBinding($stateParams) {
-  return Promise.resolve(getServiceBindingListFakeData($stateParams.objectName));
+  return Promise.resolve(getServiceBindingListFakeData($stateParams.bindingName));
 }
