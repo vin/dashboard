@@ -17,10 +17,13 @@ limitations under the License.
 <kd-service-instance-list-filter ng-if="!ctrl.shouldShowZeroState()"
                                  filter-term-model="ctrl.filterTerm">
 </kd-service-instance-list-filter>
-<kd-content-card ng-if="!ctrl.shouldShowZeroState()">
+<kd-content-card ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowListView()">
   <kd-content>
     <kd-service-instance-card-list service-instance-list="ctrl.getFilteredServiceInstanceList()">
     </kd-service-instance-card-list>
   </kd-content>
 </kd-content-card>
+<kd-service-instance-tiles ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowTileView()"
+                           service-instance-list="ctrl.getFilteredServiceInstanceList()">
+</kd-service-instance-tiles>
 <kd-zero-state ng-if="ctrl.shouldShowZeroState()"></kd-zero-state>

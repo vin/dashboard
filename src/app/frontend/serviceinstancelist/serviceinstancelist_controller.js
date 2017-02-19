@@ -18,9 +18,10 @@
 export class ServiceInstanceListController {
   /**
    * @param {!backendApi.ServiceInstanceList} serviceInstanceList
+   * @param {Object} $stateParams
    * @ngInject
    */
-  constructor(serviceInstanceList) {
+  constructor(serviceInstanceList, $stateParams) {
     /** @export {!backendApi.ServiceInstanceList} */
     this.serviceInstanceList = serviceInstanceList;
     /** @export {string} */
@@ -29,6 +30,8 @@ export class ServiceInstanceListController {
     this.previousFilterTerm_ = '';
     /** @private {?} */
     this.filteredServiceInstanceList_ = null;
+    /** @private {string} */
+    this.viewMode_ = $stateParams.viewMode;
   }
 
   /**
@@ -53,5 +56,19 @@ export class ServiceInstanceListController {
       this.previousFilterTerm_ = this.filterTerm;
     }
     return this.filteredServiceInstanceList_;
+  }
+
+  /**
+   * @return {boolean}
+   */
+  shouldShowListView(){
+    return this.viewMode_ === 'list';
+  }
+
+  /**
+   * @return {boolean}
+   */
+  shouldShowTileView(){
+    return this.viewMode_ === 'tile';
   }
 }

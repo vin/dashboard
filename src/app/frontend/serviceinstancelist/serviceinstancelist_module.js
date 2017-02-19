@@ -18,6 +18,8 @@ import filtersModule from 'common/filters/filters_module';
 import {serviceInstanceCardComponent} from './serviceinstancecard_component';
 import {serviceInstanceCardListComponent} from './serviceinstancecardlist_component';
 import {serviceInstanceListFilterComponent} from './serviceinstancelistfilter_component';
+import {serviceInstanceTileComponent} from './serviceinstancetile_component';
+import {serviceInstanceTilesComponent} from './serviceinstancetiles_component';
 import stateConfig from './serviceinstancelist_stateconfig';
 
 
@@ -40,4 +42,6 @@ export default angular
     .config(stateConfig)
     .component('kdServiceInstanceCardList', serviceInstanceCardListComponent)
     .component('kdServiceInstanceCard', serviceInstanceCardComponent)
-    .component('kdServiceInstanceListFilter', serviceInstanceListFilterComponent);
+    .component('kdServiceInstanceListFilter', serviceInstanceListFilterComponent)
+    .component('kdServiceInstanceTile', serviceInstanceTileComponent)
+    .component('kdServiceInstanceTiles', serviceInstanceTilesComponent);
