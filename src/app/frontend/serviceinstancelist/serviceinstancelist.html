@@ -14,13 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+<kd-service-instance-list-filter ng-if="!ctrl.shouldShowZeroState()"
+                                 filter-term-model="ctrl.filterTerm">
+</kd-service-instance-list-filter>
 <kd-content-card ng-if="!ctrl.shouldShowZeroState()">
   <kd-content>
-    <kd-service-instance-card-list service-instance-list="::ctrl.serviceInstanceList">
-      <kd-service-instance-card-list-filter>
-        <kd-service-instance-list-filter filter-term-model="ctrl.filterTerm">
-        </kd-service-instance-list-filter>
-      </kd-service-instance-card-list-filter>
+    <kd-service-instance-card-list service-instance-list="ctrl.getFilteredServiceInstanceList()">
     </kd-service-instance-card-list>
   </kd-content>
 </kd-content-card>

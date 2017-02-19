@@ -31,7 +31,7 @@ export class ServiceInstanceListFilterController {
  * @type {!angular.Component}
  */
 export const serviceInstanceListFilterComponent = {
-  templateUrl: 'serviceinstancelist/serviceinstancecardlist.html',
+  templateUrl: 'serviceinstancelist/serviceinstancelistfilter.html',
   controller: ServiceInstanceListFilterController,
   bindings: {
     /** {?} */

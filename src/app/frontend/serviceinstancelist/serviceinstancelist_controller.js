@@ -42,13 +42,14 @@ export class ServiceInstanceListController {
   /**
    * @return {!backendApi.ServiceInstanceList}
    */
-  getFilteredServiceInstanceList(){
-    if (this.filteredServiceInstanceList_ === null || this.filterTerm !== this.previousFilterTerm_) {
+  getFilteredServiceInstanceList() {
+    if (this.filteredServiceInstanceList_ === null ||
+        this.filterTerm !== this.previousFilterTerm_) {
       let filterTerm = this.filterTerm.toLowerCase();
       this.filteredServiceInstanceList_ = angular.copy(this.serviceInstanceList);
-
+      this.filteredServiceInstanceList_.serviceInstances =
           this.filteredServiceInstanceList_.serviceInstances.filter(
-          (serviceInstance) => serviceInstance.name.toLowerCase().indexOf(filterTerm) !== -1 );
+              (serviceInstance) => serviceInstance.name.toLowerCase().indexOf(filterTerm) !== -1);
       this.previousFilterTerm_ = this.filterTerm;
     }
     return this.filteredServiceInstanceList_;

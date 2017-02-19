@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-content-card ng-if="!ctrl.shouldShowZeroState()">
-  <kd-content>
-    <kd-service-instance-card-list service-instance-list="::ctrl.serviceInstanceList">
-    </kd-service-instance-card-list>
-  </kd-content>
-</kd-content-card>
-<kd-zero-state ng-if="ctrl.shouldShowZeroState()"></kd-zero-state>
+
+<div class="kd-service-instance-list-filter">
+  <md-icon class="kd-service-instance-list-filter-icon">filter_list</md-icon>
+  <md-input-container md-no-float class="kd-service-instance-list-filter-container">
+    <input ng-model="$ctrl.filterTermModel" placeholder="Filter Instances">
+  </md-input-container>
+</div>
