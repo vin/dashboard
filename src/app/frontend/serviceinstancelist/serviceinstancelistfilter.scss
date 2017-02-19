@@ -1,0 +1,53 @@
+// Copyright 2015 Google Inc. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@import '../variables';
+
+
+kd-service-instance-list-filter {
+  box-shadow: $whiteframe-shadow-1dp;
+  background-color: $content-background;
+  border-radius: $baseline-grid / 4;
+  display: block;
+  margin: $baseline-grid * 3;
+  max-width: 50%;
+}
+
+.kd-service-instance-list-filter {
+  padding: $baseline-grid;
+  display: flex;
+}
+
+.kd-service-instance-list-filter-icon {
+  height: $baseline-grid;
+  margin-top: $baseline-grid;
+  margin-bottom: $baseline-grid;
+}
+
+.kd-service-instance-list-filter-container {
+  flex-grow: 1;
+  height: $baseline-grid * 4;
+  margin-top: $baseline-grid * 0;
+  margin-bottom: $baseline-grid * 0;
+
+  input {
+    border-width: $baseline-grid * 0;
+    padding-top: $baseline-grid / 2;
+  }
+}
+
+.kd-service-instance-list-filter-container.md-input-focused .md-input {
+  border-width: $baseline-grid * 0;
+  padding-top: $baseline-grid / 2;
+}

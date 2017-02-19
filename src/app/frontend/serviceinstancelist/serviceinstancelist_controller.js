@@ -23,6 +23,12 @@ export class ServiceInstanceListController {
   constructor(serviceInstanceList) {
     /** @export {!backendApi.ServiceInstanceList} */
     this.serviceInstanceList = serviceInstanceList;
+    /** @export {string} */
+    this.filterTerm = '';
+    /** @private {string} */
+    this.previousFilterTerm_ = '';
+    /** @private {?} */
+    this.filteredServiceInstanceList_ = null;
   }
 
   /**
@@ -31,5 +37,21 @@ export class ServiceInstanceListController {
    */
   shouldShowZeroState() {
     return this.serviceInstanceList.listMeta.totalItems === 0;
+  }
+
+  /**
+   * @return {!backendApi.ServiceInstanceList}
+   */
+  getFilteredServiceInstanceList() {
+    if (this.filteredServiceInstanceList_ === null ||
+        this.filterTerm !== this.previousFilterTerm_) {
+      let filterTerm = this.filterTerm.toLowerCase();
+      this.filteredServiceInstanceList_ = angular.copy(this.serviceInstanceList);
+      this.filteredServiceInstanceList_.serviceInstances =
+          this.filteredServiceInstanceList_.serviceInstances.filter(
+              (serviceInstance) => serviceInstance.name.toLowerCase().indexOf(filterTerm) !== -1);
+      this.previousFilterTerm_ = this.filterTerm;
+    }
+    return this.filteredServiceInstanceList_;
   }
 }
