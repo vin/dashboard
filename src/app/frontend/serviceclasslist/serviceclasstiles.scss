@@ -14,16 +14,6 @@
 
 @import '../variables';
 
-
-.kd-service-class-tiles {
-  flex-wrap: wrap;
-  display: flex;
-}
-
-kd-service-class-tile {
-  margin: $baseline-grid
-}
-
 .kd-service-class-tiles-solution {
   padding-left: $baseline-grid;
 }

@@ -16,9 +16,10 @@ limitations under the License.
 <h1 class="md-title kd-service-class-tiles-solution">
   {{$ctrl.serviceClassList.length}} {{$ctrl.serviceClassList.length === 1 ? 'Solution' : 'Solutions'}}
 </h1>
-<div class="kd-service-class-tiles">
-
-  <kd-service-class-tile ng-repeat="serviceClass in $ctrl.serviceClassList" service-class="serviceClass"
-                         service-broker="$ctrl.getServiceBrokerForServiceClass(serviceClass)">
-  </kd-service-class-tile>
-</div>
+<kd-tiles>
+  <kd-tile ng-repeat="serviceClass in $ctrl.serviceClassList">
+    <kd-service-class-tile  service-class="serviceClass"
+                           service-broker="$ctrl.getServiceBrokerForServiceClass(serviceClass)">
+    </kd-service-class-tile>
+  </kd-tile>
+</kd-tiles>

@@ -14,19 +14,6 @@
 
 @import '../variables';
 
-.kd-service-class-tile {
-  margin: 0px;
-}
-
-.kd-service-class-tile-content {
-  padding: $baseline-grid * 2;
-  width: $baseline-grid * 28;
-  height: $baseline-grid * 26;
-  display: block;
-  overflow: hidden;
-}
-
-
 .kd-service-class-tile-icon {
   width: $baseline-grid * 6;
   height: $baseline-grid * 6;
