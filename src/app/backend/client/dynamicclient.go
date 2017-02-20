@@ -18,9 +18,9 @@ import (
 	"log"
 	"runtime/debug"
 
-	"k8s.io/client-go/1.5/dynamic"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/tools/clientcmd"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/tools/clientcmd"
 )
 
 // CreateDynamicClient creates new client-go dynamic client, for accessing third party resources.
@@ -36,7 +36,7 @@ func CreateDynamicClient(apiserverHost string, kubeConfig string, groupName stri
 		log.Printf("%v", err)
 		return nil, err
 	}
-	cfg.ContentConfig.GroupVersion = &unversioned.GroupVersion{groupName, apiVersion}
+	cfg.ContentConfig.GroupVersion = &schema.GroupVersion{groupName, apiVersion}
 	cfg.APIPath = "apis"
 
 	log.Printf("Creating dynamic client for %s", cfg.Host)

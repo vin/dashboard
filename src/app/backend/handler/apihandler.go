@@ -62,9 +62,11 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/resource/workload"
 	"github.com/kubernetes/dashboard/src/app/backend/validation"
 	"golang.org/x/net/xsrftoken"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilnet "k8s.io/apimachinery/pkg/util/net"
-	"k8s.io/client-go/1.5/dynamic"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/pkg/api/v1"
 	clientK8s "k8s.io/client-go/kubernetes"
 	restclient "k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
@@ -618,7 +620,7 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 	apiV1Ws.Route(
 		apiV1Ws.GET("/serviceclass/").
 			To(apiHandler.handleGetServiceClasses).
-			Writes(runtime.UnstructuredList{}))
+			Writes(unstructured.UnstructuredList{}))
 
 	return wsContainer, nil
 }

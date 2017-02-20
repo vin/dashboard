@@ -1,10 +1,9 @@
 package servicecatalog
 
 import (
-	"k8s.io/client-go/1.5/dynamic"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/pkg/apis/extensions/v1beta1"
 )
 
 type resourceType int
@@ -58,46 +57,46 @@ const (
 
 var thirdPartyResourceTypes = map[string]v1beta1.ThirdPartyResource{
 	"service-broker.catalog.k8s.io": {
-		ObjectMeta:  v1.ObjectMeta{Name: "service-broker.catalog.k8s.io"},
+		ObjectMeta:  metav1.ObjectMeta{Name: "service-broker.catalog.k8s.io"},
 		Description: "A Service Broker representation. Adds a service broker and fetches its catalog",
 		Versions:    []v1beta1.APIVersion{{Name: "v1alpha1"}},
 	},
 	"service-class.catalog.k8s.io": {
-		ObjectMeta:  v1.ObjectMeta{Name: "service-class.catalog.k8s.io"},
+		ObjectMeta:  metav1.ObjectMeta{Name: "service-class.catalog.k8s.io"},
 		Description: "A Service Type representation. Something that a customer can instantiate",
 		Versions:    []v1beta1.APIVersion{{Name: "v1alpha1"}},
 	},
 	"service-instance.catalog.k8s.io": {
-		ObjectMeta:  v1.ObjectMeta{Name: "service-instance.catalog.k8s.io"},
+		ObjectMeta:  metav1.ObjectMeta{Name: "service-instance.catalog.k8s.io"},
 		Description: "A Service Instance representation, creates a Service Instance",
 		Versions:    []v1beta1.APIVersion{{Name: "v1alpha1"}},
 	},
 	"service-binding.catalog.k8s.io": {
-		ObjectMeta:  v1.ObjectMeta{Name: "service-binding.catalog.k8s.io"},
+		ObjectMeta:  metav1.ObjectMeta{Name: "service-binding.catalog.k8s.io"},
 		Description: "A Service Binding representation, creates a Service Binding",
 		Versions:    []v1beta1.APIVersion{{Name: "v1alpha1"}},
 	},
 }
 
-var serviceInstanceResource = unversioned.APIResource{
+var serviceInstanceResource = metav1.APIResource{
 	Name:       "serviceinstances",
 	Kind:       ServiceInstanceKind,
 	Namespaced: true,
 }
 
-var serviceBindingResource = unversioned.APIResource{
+var serviceBindingResource = metav1.APIResource{
 	Name:       "servicebindings",
 	Kind:       ServiceBindingKind,
 	Namespaced: true,
 }
 
-var serviceBrokerResource = unversioned.APIResource{
+var serviceBrokerResource = metav1.APIResource{
 	Name:       "servicebrokers",
 	Kind:       ServiceBrokerKind,
 	Namespaced: true,
 }
 
-var serviceClassResource = unversioned.APIResource{
+var serviceClassResource = metav1.APIResource{
 	Name:       "serviceclasses",
 	Kind:       ServiceClassKind,
 	Namespaced: true,
