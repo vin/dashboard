@@ -628,42 +628,42 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/servicebinding/").
-			To(apiHandler.handleGetServiceBindings).
+			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBinding)).
 			Writes(unstructured.UnstructuredList{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/servicebinding/{name}").
-			To(apiHandler.handleGetServiceBindingDetail).
+			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBinding)).
 			Writes(unstructured.Unstructured{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/servicebroker/").
-			To(apiHandler.handleGetServiceBrokers).
+			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBroker)).
 			Writes(unstructured.UnstructuredList{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/servicebroker/{name}").
-			To(apiHandler.handleGetServiceBrokerDetail).
+			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBroker)).
 			Writes(unstructured.Unstructured{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/serviceclass/").
-			To(apiHandler.handleGetServiceClasses).
+			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceClass)).
 			Writes(unstructured.UnstructuredList{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/serviceclass/{name}").
-			To(apiHandler.handleGetServiceClassDetail).
+			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceClass)).
 			Writes(unstructured.Unstructured{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/serviceinstance/").
-			To(apiHandler.handleGetServiceInstances).
+			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceInstance)).
 			Writes(unstructured.UnstructuredList{}))
 
 	apiV1alpha1Ws.Route(
 		apiV1alpha1Ws.GET("/serviceinstance/{name}").
-			To(apiHandler.handleGetServiceInstanceDetail).
+			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceInstance)).
 			Writes(unstructured.Unstructured{}))
 
 	return wsContainer, nil
@@ -681,78 +681,32 @@ func (apiHandler *APIHandler) handleGetCsrfToken(request *restful.Request,
 	response.WriteHeaderAndEntity(http.StatusOK, CsrfToken{Token: token})
 }
 
-func (apiHandler *APIHandler) getServiceCatalogItemList(
-	t servicecatalog.ResourceType, request *restful.Request, response *restful.Response) {
+func (apiHandler *APIHandler) getServiceCatalogItemList(t servicecatalog.ResourceType) func (request *restful.Request, response *restful.Response) {
+	return func(request *restful.Request, response *restful.Response) {
 
-	// TODO(vin): handle namespace
-	l := apiHandler.getResourceClient(t, "default")
-	result, err := l.List(&v1.ListOptions{})
-	if err != nil {
-		handleInternalError(response, err)
-		return
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		result, err := l.List(&v1.ListOptions{})
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeaderAndEntity(http.StatusOK, result)
 	}
-	response.WriteHeaderAndEntity(http.StatusOK, result)
 }
 
-func (apiHandler *APIHandler) getServiceCatalogItemDetail(
-	t servicecatalog.ResourceType, request *restful.Request, response *restful.Response) {
-	name := request.PathParameter("name")
-	// TODO(vin): handle namespace
-	l := apiHandler.getResourceClient(t, "default")
-	result, err := l.Get(name)
-	if err != nil {
-		handleInternalError(response, err)
-		return
+func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.ResourceType) func (request *restful.Request, response *restful.Response) {
+	return func(request *restful.Request, response *restful.Response) {
+		name := request.PathParameter("name")
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		result, err := l.Get(name)
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeaderAndEntity(http.StatusOK, result)
 	}
-	response.WriteHeaderAndEntity(http.StatusOK, result)
-}
-
-// Handles get serviceclass list API call.
-func (apiHandler *APIHandler) handleGetServiceBindings(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBinding, request, response)
-}
-
-// Handles get serviceclass details API call.
-func (apiHandler *APIHandler) handleGetServiceBindingDetail(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBinding, request, response)
-}
-
-// Handles get serviceclass list API call.
-func (apiHandler *APIHandler) handleGetServiceBrokers(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBroker, request, response)
-}
-
-// Handles get serviceclass details API call.
-func (apiHandler *APIHandler) handleGetServiceBrokerDetail(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBroker, request, response)
-}
-
-// Handles get serviceclass list API call.
-func (apiHandler *APIHandler) handleGetServiceClasses(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemList(servicecatalog.ServiceClass, request, response)
-}
-
-// Handles get serviceclass details API call.
-func (apiHandler *APIHandler) handleGetServiceClassDetail(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceClass, request, response)
-}
-
-// Handles get serviceclass list API call.
-func (apiHandler *APIHandler) handleGetServiceInstances(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemList(servicecatalog.ServiceInstance, request, response)
-}
-
-// Handles get serviceclass details API call.
-func (apiHandler *APIHandler) handleGetServiceInstanceDetail(
-	request *restful.Request, response *restful.Response) {
-	apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceInstance, request, response)
 }
 
 // Handles get pet set list API call.
