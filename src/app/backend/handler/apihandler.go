@@ -54,6 +54,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/resource/replicationcontroller/replicationcontrollerlist"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/secret"
 	resourceService "github.com/kubernetes/dashboard/src/app/backend/resource/service"
+	"github.com/kubernetes/dashboard/src/app/backend/resource/servicecatalog"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/servicesanddiscovery"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/statefulset/statefulsetdetail"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/statefulset/statefulsetlist"
@@ -81,6 +82,7 @@ const (
 // client configuration.
 type APIHandler struct {
 	client         *clientK8s.Clientset
+	catalogClient  *dynamic.Client
 	heapsterClient client.HeapsterClient
 	clientConfig   clientcmd.ClientConfig
 	verber         common.ResourceVerber
@@ -201,7 +203,7 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 		csrfKey = string(bytes)
 	}
 
-	apiHandler := APIHandler{client, heapsterClient, clientConfig, verber, csrfKey}
+	apiHandler := APIHandler{client, catalogClient, heapsterClient, clientConfig, verber, csrfKey}
 	wsContainer := restful.NewContainer()
 	wsContainer.EnableContentEncoding(true)
 
@@ -614,6 +616,10 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 			Writes(thirdpartyresource.ThirdPartyResourceDetail{}))
 
 	return wsContainer, nil
+}
+
+func (apiHandler *APIHandler) getResourceClient(t servicecatalog.ResourceType, namespace string) *dynamic.ResourceClient {
+	return servicecatalog.GetResourceClient(apiHandler.catalogClient, t, namespace);
 }
 
 func (apiHandler *APIHandler) handleGetCsrfToken(request *restful.Request,

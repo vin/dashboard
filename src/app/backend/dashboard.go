@@ -24,6 +24,7 @@ import (
 
 	"github.com/kubernetes/dashboard/src/app/backend/client"
 	"github.com/kubernetes/dashboard/src/app/backend/handler"
+	"github.com/kubernetes/dashboard/src/app/backend/resource/servicecatalog"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/pflag"
 )
@@ -74,7 +75,7 @@ func main() {
 		log.Printf("Could not create heapster client: %s. Continuing.", err)
 	}
 
-	catalogClient, err := client.CreateDynamicClient(*argApiserverHost, *argKubeConfigFile, "catalog.k8s.io", "v1alpha1")
+	catalogClient, err := client.CreateDynamicClient(*argApiserverHost, *argKubeConfigFile, servicecatalog.GroupName, servicecatalog.APIVersion)
 	if err != nil {
 		handleFatalInitError(err)
 	}
