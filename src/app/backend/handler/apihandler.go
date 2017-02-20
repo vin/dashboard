@@ -615,6 +615,11 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 			To(apiHandler.handleGetThirdPartyResourceDetail).
 			Writes(thirdpartyresource.ThirdPartyResourceDetail{}))
 
+	apiV1Ws.Route(
+		apiV1Ws.GET("/serviceclass/").
+			To(apiHandler.handleGetServiceClasses).
+			Writes(runtime.UnstructuredList{}))
+
 	return wsContainer, nil
 }
 
@@ -628,6 +633,22 @@ func (apiHandler *APIHandler) handleGetCsrfToken(request *restful.Request,
 	token := xsrftoken.Generate(apiHandler.csrfKey, "none", action)
 
 	response.WriteHeaderAndEntity(http.StatusOK, CsrfToken{Token: token})
+}
+
+// Handles get serviceclass list API call.
+func (apiHandler *APIHandler) handleGetServiceClasses(
+	request *restful.Request, response *restful.Response) {
+
+	dataSelect := parseDataSelectPathParameter(request)
+	dataSelect.MetricQuery = dataselect.StandardMetrics // download standard metrics - cpu, and memory - by default
+	// TODO(vin): handle namespace
+	l := apiHandler.getResourceClient(servicecatalog.ServiceClass, "")
+	result, err := l.List(&v1.ListOptions{})
+	if err != nil {
+		handleInternalError(response, err)
+		return
+	}
+	response.WriteHeaderAndEntity(http.StatusOK, result)
 }
 
 // Handles get pet set list API call.
