@@ -617,10 +617,24 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 			To(apiHandler.handleGetThirdPartyResourceDetail).
 			Writes(thirdpartyresource.ThirdPartyResourceDetail{}))
 
-	apiV1Ws.Route(
-		apiV1Ws.GET("/serviceclass/").
+	apiV1alpha1Ws := new(restful.WebService)
+	apiV1alpha1Ws.Filter(wsLogger)
+	apiV1alpha1Ws.Filter(wsMetrics)
+	apiV1alpha1Ws.Filter(xsrfValidation(csrfKey))
+	apiV1alpha1Ws.Path("/api/v1alpha1").
+		Consumes(restful.MIME_JSON).
+		Produces(restful.MIME_JSON)
+	wsContainer.Add(apiV1alpha1Ws)
+
+	apiV1alpha1Ws.Route(
+		apiV1alpha1Ws.GET("/serviceclass/").
 			To(apiHandler.handleGetServiceClasses).
 			Writes(unstructured.UnstructuredList{}))
+
+	apiV1alpha1Ws.Route(
+		apiV1alpha1Ws.GET("/serviceclass/{name}").
+			To(apiHandler.handleGetServiceClassDetail).
+			Writes(unstructured.Unstructured{}))
 
 	return wsContainer, nil
 }
@@ -641,11 +655,24 @@ func (apiHandler *APIHandler) handleGetCsrfToken(request *restful.Request,
 func (apiHandler *APIHandler) handleGetServiceClasses(
 	request *restful.Request, response *restful.Response) {
 
-	dataSelect := parseDataSelectPathParameter(request)
-	dataSelect.MetricQuery = dataselect.StandardMetrics // download standard metrics - cpu, and memory - by default
 	// TODO(vin): handle namespace
-	l := apiHandler.getResourceClient(servicecatalog.ServiceClass, "")
+	l := apiHandler.getResourceClient(servicecatalog.ServiceClass, "default")
 	result, err := l.List(&v1.ListOptions{})
+	if err != nil {
+		handleInternalError(response, err)
+		return
+	}
+	response.WriteHeaderAndEntity(http.StatusOK, result)
+}
+
+// Handles get serviceclass list API call.
+func (apiHandler *APIHandler) handleGetServiceClassDetail(
+	request *restful.Request, response *restful.Response) {
+	name := request.PathParameter("name")
+
+	// TODO(vin): handle namespace
+	l := apiHandler.getResourceClient(servicecatalog.ServiceClass, "default")
+	result, err := l.Get(name)
 	if err != nil {
 		handleInternalError(response, err)
 		return
