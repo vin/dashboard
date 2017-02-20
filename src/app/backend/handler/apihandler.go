@@ -681,7 +681,7 @@ func (apiHandler *APIHandler) handleGetCsrfToken(request *restful.Request,
 	response.WriteHeaderAndEntity(http.StatusOK, CsrfToken{Token: token})
 }
 
-func (apiHandler *APIHandler) getServiceCatalogItemList(t servicecatalog.ResourceType) func (request *restful.Request, response *restful.Response) {
+func (apiHandler *APIHandler) getServiceCatalogItemList(t servicecatalog.ResourceType) restful.RouteFunction {
 	return func(request *restful.Request, response *restful.Response) {
 
 		// TODO(vin): handle namespace
@@ -695,7 +695,7 @@ func (apiHandler *APIHandler) getServiceCatalogItemList(t servicecatalog.Resourc
 	}
 }
 
-func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.ResourceType) func (request *restful.Request, response *restful.Response) {
+func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.ResourceType) restful.RouteFunction {
 	return func(request *restful.Request, response *restful.Response) {
 		name := request.PathParameter("name")
 		// TODO(vin): handle namespace
