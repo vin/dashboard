@@ -18,7 +18,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/resource/common"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/dataselect"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/metric"
-	"k8s.io/kubernetes/pkg/api"
+	api "k8s.io/client-go/pkg/api/v1"
 )
 
 // Gets restart count of given pod (total number of its containers restarts).
@@ -46,8 +46,14 @@ func getPodStatus(pod api.Pod, warnings []common.Event) PodStatus {
 
 // getPodStatus returns one of three pod statuses (pending, success, failed)
 func getPodStatusStatus(pod api.Pod, warnings []common.Event) string {
+	// For terminated pods that failed
 	if pod.Status.Phase == api.PodFailed {
 		return "failed"
+	}
+
+	// For successfully terminated pods
+	if pod.Status.Phase == api.PodSucceeded {
+		return "success"
 	}
 
 	ready := false

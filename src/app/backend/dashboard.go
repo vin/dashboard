@@ -18,14 +18,15 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 
 	"github.com/kubernetes/dashboard/src/app/backend/client"
 	"github.com/kubernetes/dashboard/src/app/backend/handler"
+	"github.com/kubernetes/dashboard/src/app/backend/resource/servicecatalog"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/pflag"
-	"net"
 )
 
 var (
@@ -74,7 +75,12 @@ func main() {
 		log.Printf("Could not create heapster client: %s. Continuing.", err)
 	}
 
-	apiHandler, err := handler.CreateHTTPAPIHandler(apiserverClient, heapsterRESTClient, config)
+	catalogClient, err := client.CreateDynamicClient(*argApiserverHost, *argKubeConfigFile, servicecatalog.GroupName, servicecatalog.APIVersion)
+	if err != nil {
+		handleFatalInitError(err)
+	}
+
+	apiHandler, err := handler.CreateHTTPAPIHandler(apiserverClient, heapsterRESTClient, catalogClient, config)
 	if err != nil {
 		handleFatalInitError(err)
 	}
