@@ -12,41 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * @param {string} name
- * @return {?}
- */
-function getServiceBindingListFakeData(name) {
-  let serviceBindingListFakeData = {
-    'database': {
-      'Status': {'Conditions': [{'Message': '', 'Reason': '', 'Status': 'True', 'Type': 'Ready'}]},
-      'apiVersion': 'catalog.k8s.io/v1alpha1',
-      'creationTimestamp': null,
-      'kind': 'ServiceBinding',
-      'metadata': {
-        'name': 'database',
-        'namespace': 'default',
-        'selfLink': '/apis/catalog.k8s.io/v1alpha1/namespaces/default/servicebindings/database',
-        'uid': 'e9446fba-e415-11e6-bf38-42010a8a0138',
-        'resourceVersion': '17221',
-        'creationTimestamp': '2017-01-26T22:22:24Z',
-      },
-      'name': 'database',
-      'spec': {
-        'AppLabelSelector': {},
-        'ConfigMapName': '',
-        'OSBGUID': '09290646-2857-43a0-8b7e-7e8ce1bd2fef',
-        'Parameters': null,
-        'SecretName': '',
-        'instanceRef': {'name': 'backend', 'namespace': 'default'},
-        'serviceName': 'booksbe',
-      },
-    },
-  };
-  return serviceBindingListFakeData[name];
-}
-
-
 import {stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 import {appendDetailParamsToUrl} from 'common/resource/resourcedetail';
@@ -67,6 +32,7 @@ export default function stateConfig($stateProvider) {
     url: appendBindingParamsToUrl(appendDetailParamsToUrl(baseStateUrl)),
     parent: chromeStateName,
     resolve: {
+      'serviceBindingResource': getServiceBindingResource,
       'serviceBinding': resolveServiceBinding,
     },
     data: {
@@ -95,9 +61,20 @@ function appendBindingParamsToUrl(baseUrl) {
 }
 
 /**
- * @return {?}
+ * @param {!Object} $stateParams
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
  * @ngInject
  */
-export function resolveServiceBinding($stateParams) {
-  return Promise.resolve(getServiceBindingListFakeData($stateParams.bindingName));
+export function getServiceBindingResource($stateParams, $resource) {
+  return $resource(`api/v1alpha1/servicebinding/${$stateParams.bindingName}`);
+}
+
+/**
+ * @param {!angular.Resource} serviceBindingResource
+ * @return {!angular.$q.Promise}
+ * @ngInject
+ */
+export function resolveServiceBinding(serviceBindingResource) {
+  return serviceBindingResource.get().$promise;
 }
