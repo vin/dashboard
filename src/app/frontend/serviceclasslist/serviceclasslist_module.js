@@ -58,4 +58,24 @@ export default angular
     .component('kdServiceClassListCatalogSelector', serviceClassListCatalogSelectorComponent)
     .component('kdServiceClassListSearchInput', serviceClassListSearchInputComponent)
     .component('kdServiceClassTile', serviceClassTileComponent)
-    .component('kdServiceClassTiles', serviceClassTilesComponent);
+    .component('kdServiceClassTiles', serviceClassTilesComponent)
+    .factory('kdServiceBrokerListResource', serviceBrokerListResource)
+    .factory('kdServiceClassListResource', serviceClassListResource);
+
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function serviceBrokerListResource($resource) {
+  return $resource('api/v1alpha1/servicebroker');
+}
+
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function serviceClassListResource($resource) {
+  return $resource('api/v1alpha1/serviceclass');
+}
