@@ -44,4 +44,15 @@ export default angular
     .component('kdServiceInstanceCard', serviceInstanceCardComponent)
     .component('kdServiceInstanceListFilter', serviceInstanceListFilterComponent)
     .component('kdServiceInstanceTile', serviceInstanceTileComponent)
-    .component('kdServiceInstanceTiles', serviceInstanceTilesComponent);
+    .component('kdServiceInstanceTiles', serviceInstanceTilesComponent)
+    .factory('kdServiceInstanceListResource', serviceInstanceListResource);
+
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function serviceInstanceListResource($resource) {
+  return $resource('api/v1alpha1/serviceinstance');
+}
+
