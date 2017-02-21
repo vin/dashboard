@@ -17,23 +17,35 @@ limitations under the License.
   <md-dialog-content class="kd-service-class-list-add-catalog-dialog">
     <h1 class="md-title kd-service-class-list-add-catalog-dialog-title">Add Catalog</h1>
     <form>
+      <md-input-container class="kd-service-class-list-add-catalog-dialog-name-input">
+        <label>Name</label>
+        <input required ng-model="$ctrl.formData.name">
+      </md-input-container>
       <md-input-container class="kd-service-class-list-add-catalog-dialog-url-input">
         <label>Catalog URL</label>
-        <input ng-model="$ctrl.url">
-      </md-input-container>
-      <h2 class="kd-service-class-list-add-catalog-dialog-subheading">
-        Authenticate
-      </h2>
-      <md-input-container class="kd-service-class-list-add-catalog-dialog-login-input">
-        <label>Login</label>
-        <input ng-model="$ctrl.login">
-      </md-input-container>
-      <md-input-container class="kd-service-class-list-add-catalog-dialog-password-input">
-        <label>Password</label>
-        <input ng-model="$ctrl.password" type="password">
+        <input ng-model="$ctrl.formData.url">
       </md-input-container>
       <div>
-        <md-button class="md-raised md-primary">Add Catalog</md-button>
+        <md-checkbox ng-model="$ctrl.formData.loginRequired"
+                     class="kd-service-class-list-add-catalog-dialog-login-required-input">
+          Login Required
+        </md-checkbox>
+      </div>
+      <div ng-if="$ctrl.formData.loginRequired">
+        <h2 class="kd-service-class-list-add-catalog-dialog-subheading">
+          Authenticate
+        </h2>
+        <md-input-container class="kd-service-class-list-add-catalog-dialog-login-input">
+          <label>Login</label>
+          <input required ng-model="$ctrl.formData.login">
+        </md-input-container>
+        <md-input-container class="kd-service-class-list-add-catalog-dialog-password-input">
+          <label>Password</label>
+          <input required ng-model="$ctrl.formData.password" type="password">
+        </md-input-container>
+      </div>
+      <div>
+        <md-button class="md-raised md-primary" ng-click="$ctrl.createCatalog()">Add Catalog</md-button>
         <md-button class="md-raised" ng-click="$ctrl.hide()">Cancel</md-button>
       </div>
     </form>

@@ -29,14 +29,9 @@
   padding: 2 * $baseline-grid;
 }
 
-.kd-service-class-list-add-catalog-dialog-url-input {
-  display: block;
-}
-
-.kd-service-class-list-add-catalog-dialog-login-input {
-  display: block;
-}
-
+.kd-service-class-list-add-catalog-dialog-url-input,
+.kd-service-class-list-add-catalog-dialog-name-input,
+.kd-service-class-list-add-catalog-dialog-login-input,
 .kd-service-class-list-add-catalog-dialog-password-input {
   display: block;
 }

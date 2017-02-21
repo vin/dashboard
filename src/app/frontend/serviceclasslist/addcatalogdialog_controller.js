@@ -14,15 +14,67 @@
 
 export class AddCatalogDialogController {
   /**
+   * @param {!angular.$resource} $resource
+   * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
    * @param {!md.$dialog} $mdDialog
+   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor($mdDialog){
+  constructor($resource, kdCsrfTokenService, $mdDialog, $state) {
+    /** @private {!angular.$resource} */
+    this.resource_ = $resource;
+    /** @private {!angular.$q.Promise} */
+    this.tokenPromise_ = kdCsrfTokenService.getTokenForAction('servicebroker');
     /** @private {!md.$dialog} */
     this.mdDialog_ = $mdDialog;
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
+    /** @export {?} */
+    this.formData = {
+      name: '',
+      url: '',
+      loginRequired: false,
+      login: '',
+      password: '',
+    };
   }
 
-  hide(){
+  getPostData(){
+    if( this.formData.loginRequired ){
+      return {
+        name: this.formData.name,
+        url: this.formData.url,
+        login: this.formData.login,
+        password: this.formData.password,
+      };
+    } else {
+      return {
+        name: this.formData.name,
+        url: this.formData.url,
+      };
+    }
+  }
+
+  createCatalog() {
+    this.tokenPromise_
+        .then((token) => {
+          /** @type {!angular.Resource} */
+          let resource = this.resource_(
+              'api/v1alpha1/servicebroker', {},
+              {save: {method: 'POST', headers: {'X-CSRF-TOKEN': token}}});
+          return resource.save(this.getPostData()).$promise;
+        })
+        .then(() => {
+          this.state_.reload();
+          this.hide();
+        })
+        .catch(() => {
+          //TODO rossholland: better error handling
+          this.hide();
+        });
+  }
+
+  hide() {
     this.mdDialog_.hide();
   }
 }
