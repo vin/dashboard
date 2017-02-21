@@ -12,14 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {stateName as serviceInstanceListStateName} from 'serviceinstancelist/serviceinstancelist_state';
+
 /**
  * @final
  */
 export class ServiceClassDetailCreateFormController {
   /**
+   * @param {!angular.$resource} $resource
+   * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
+   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor() {
+  constructor($resource, kdCsrfTokenService, $state) {
     /** @export {?} */
     this.serviceClass;
     /** @export {Function} */
@@ -27,13 +32,47 @@ export class ServiceClassDetailCreateFormController {
     /** @export {?} */
     this.formData = {
       name: '',
+      plan: '',
       labels: [{
         key: '',
         value: '',
       }],
     };
+    /** @private {!angular.$resource} */
+    this.resource_ = $resource;
+    /** @private {!angular.$q.Promise} */
+    this.tokenPromise_ = kdCsrfTokenService.getTokenForAction('serviceinstance');
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
   }
 
+  $onInit() {
+    this.formData.plan = this.serviceClass.Plans[0].Name;
+  }
+
+  getPostData(){
+    return {
+      name: this.formData.name,
+      plan: this.formData.plan,
+    };
+  }
+
+  createInstance() {
+    this.tokenPromise_
+        .then((token) => {
+          /** @type {!angular.Resource} */
+          let resource = this.resource_(
+              'api/v1alpha1/serviceinstance', {},
+              {save: {method: 'POST', headers: {'X-CSRF-TOKEN': token}}});
+          return resource.save(this.getPostData()).$promise;
+        })
+        .then(() => {
+          this.state_.go(serviceInstanceListStateName);
+        })
+        .catch(() => {
+          console.error('Createing the service instance did not work');
+        });
+  }
 }
 
 /**

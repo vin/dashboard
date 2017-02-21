@@ -16,16 +16,27 @@ limitations under the License.
 
 
 <form>
-  <md-input-container class="kd-service-class-detail-create-form-name">
-    <label>Name</label>
-    <input ng-model="$ctrl.formData.name">
-  </md-input-container>
-  <kd-service-class-detail-create-form-labels-input labels-model="$ctrl.formData.labels">
-  </kd-service-class-detail-create-form-labels-input>
+  <div>
+    <md-input-container class="kd-service-class-detail-create-form-name">
+      <label>Name</label>
+      <input ng-model="$ctrl.formData.name">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="kd-service-class-detail-create-form-plan">
+      <md-select ng-model="$ctrl.formData.plan">
+        <md-option ng-repeat="plan in $ctrl.serviceClass.Plans" ng-value="plan.Name">
+          {{plan.Name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+  <!--<kd-service-class-detail-create-form-labels-input labels-model="$ctrl.formData.labels">-->
+  <!--</kd-service-class-detail-create-form-labels-input>-->
   <kd-service-class-detail-create-form-params-input>
   </kd-service-class-detail-create-form-params-input>
   <div>
-    <md-button class="md-raised md-primary">
+    <md-button class="md-raised md-primary" ng-click="$ctrl.createInstance()">
       Create
     </md-button>
     <md-button class="md-raised" ng-click="$ctrl.onCancel();">Cancel</md-button>

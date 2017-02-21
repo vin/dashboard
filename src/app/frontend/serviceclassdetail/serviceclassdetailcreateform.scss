@@ -16,5 +16,9 @@
 
 
 .kd-service-class-detail-create-form-name {
-  margin-bottom: $baseline-grid;
+  margin-bottom: 0 * $baseline-grid;
+}
+
+.kd-service-class-detail-create-form-plan {
+  margin-top: 0 * $baseline-grid;
 }
