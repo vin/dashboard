@@ -626,45 +626,24 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 		Produces(restful.MIME_JSON)
 	wsContainer.Add(apiV1alpha1Ws)
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebinding/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBinding)).
-			Writes(unstructured.UnstructuredList{}))
+	var catalogResourceTypeUrlPaths = map[servicecatalog.ResourceType]string {
+		servicecatalog.ServiceBinding: "servicebinding",
+		servicecatalog.ServiceBroker: "servicebroker",
+		servicecatalog.ServiceClass: "serviceclass",
+		servicecatalog.ServiceInstance: "serviceinstance",
+	}
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebinding/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBinding)).
-			Writes(unstructured.Unstructured{}))
+	for rt, path := range catalogResourceTypeUrlPaths {
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.GET("/" + path + "/").
+				To(apiHandler.getServiceCatalogItemList(rt)).
+				Writes(unstructured.UnstructuredList{}))
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebroker/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBroker)).
-			Writes(unstructured.UnstructuredList{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebroker/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBroker)).
-			Writes(unstructured.Unstructured{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceclass/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceClass)).
-			Writes(unstructured.UnstructuredList{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceclass/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceClass)).
-			Writes(unstructured.Unstructured{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceinstance/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceInstance)).
-			Writes(unstructured.UnstructuredList{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceinstance/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceInstance)).
-			Writes(unstructured.Unstructured{}))
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.GET("/" + path + "/{name}").
+				To(apiHandler.getServiceCatalogItemDetail(rt)).
+				Writes(unstructured.Unstructured{}))
+	}
 
 	return wsContainer, nil
 }
