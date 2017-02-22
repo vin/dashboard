@@ -15,18 +15,18 @@
 @import '../variables';
 
 .kd-service-class-tile-icon {
-  width: $baseline-grid * 6;
-  height: $baseline-grid * 6;
   background: $foreground-4;
+  height: $baseline-grid * 6;
+  width: $baseline-grid * 6;
 }
 
 .kd-service-class-tile-name {
-  margin-top: $baseline-grid;
   margin-bottom: 0;
+  margin-top: $baseline-grid;
 }
 
 .kd-service-class-tile-link {
-  color: currentColor
+  color: currentColor;
 }
 
 .kd-service-class-tile-provider {
@@ -34,14 +34,14 @@
 }
 
 .kd-service-class-tile-description {
-  height: $baseline-grid * 8;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-top: $baseline-grid * 2;
-  margin-bottom: $baseline-grid * 2;
+  -webkit-line-clamp: 3;
   color: $foreground-2;
+  display: -webkit-box;
+  height: $baseline-grid * 8;
+  margin-bottom: $baseline-grid * 2;
+  margin-top: $baseline-grid * 2;
+  overflow: hidden;
 }
 
 .kd-service-class-tile-catalog {
@@ -51,6 +51,3 @@
 .kd-service-class-tile-catalog-label {
   font-weight: $bold-font-weight;
 }
-
-
-

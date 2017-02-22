@@ -20,16 +20,16 @@ kd-service-class-card-list-header {
 
 .kd-service-class-card-list-header-inputs {
   display: flex;
-  width: 100%;
   padding:  $baseline-grid * 4 $baseline-grid * 3;
   padding-bottom: $baseline-grid * 2;
+  width: 100%;
 }
 
 
 .kd-service-class-card-list-header-search-input {
   flex-grow: 1;
-  max-width: 50%;
   margin-right: $baseline-grid * 4;
+  max-width: 50%;
 }
 
 .kd-service-class-card-list-solutions {

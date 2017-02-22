@@ -19,11 +19,11 @@ kd-service-class-card-column {
   border-top: 1px solid $border;
   display: flex;
   flex-basis: auto;
+  flex-grow: 1;
   min-height: $baseline-grid * 4;
   min-width: $baseline-grid * 10;
   padding-left: 2 * $baseline-grid;
   padding-top: $baseline-grid / 2;
-  flex-grow: 1;
   width: $baseline-grid * 10;
 }
 

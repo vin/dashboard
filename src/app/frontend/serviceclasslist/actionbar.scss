@@ -25,10 +25,12 @@
 
 }
 
-.kd-service-class-card-list-header-nav-button[disabled] {
-
-}
-
-.md-button[disabled] .kd-service-class-card-list-header-nav-button-icon-selected.kd-service-class-card-list-header-nav-button-icon {
-  color: yellow;
+.md-button {
+  &[disabled] {
+    .kd-service-class-card-list-header-nav-button-icon-selected {
+      &.kd-service-class-card-list-header-nav-button-icon {
+        color: $action-bar-nav-selected-color;
+      }
+    }
+  }
 }

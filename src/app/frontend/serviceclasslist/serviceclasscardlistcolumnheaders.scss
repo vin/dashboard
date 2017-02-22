@@ -17,11 +17,11 @@
 
 
 .kd-service-class-card-list-column-headers {
-  display: flex;
-  width: 100%;
   color: $foreground-2;
+  display: flex;
   min-height: 3 * $baseline-grid;
   padding: $baseline-grid;
   padding-bottom: $baseline-grid / 2;
   padding-top: $baseline-grid / 2;
+  width: 100%;
 }

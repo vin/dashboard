@@ -15,18 +15,18 @@
 @import '../variables';
 
 .kd-service-instance-tile-icon {
-  width: $baseline-grid * 6;
-  height: $baseline-grid * 6;
   background: $foreground-4;
+  height: $baseline-grid * 6;
+  width: $baseline-grid * 6;
 }
 
 .kd-service-instance-tile-name {
-  margin-top: $baseline-grid;
   margin-bottom: 0;
+  margin-top: $baseline-grid;
 }
 
 .kd-service-instance-tile-link {
-  color: currentColor
+  color: currentColor;
 }
 
 .kd-service-instance-tile-class {
@@ -35,8 +35,8 @@
 
 .kd-service-instance-tile-status {
   display: flex;
-  margin-top: $baseline-grid;
   margin-bottom: $baseline-grid;
+  margin-top: $baseline-grid;
 }
 
 .kd-service-instance-tile-status-label {
@@ -44,6 +44,6 @@
 }
 
 kd-service-instance-tile-labels {
-  margin-top: $baseline-grid;
   margin-bottom: $baseline-grid;
+  margin-top: $baseline-grid;
 }

@@ -17,10 +17,10 @@
 kd-service-class-card-list-column-header {
   flex-basis: auto;
   flex-grow: 1;
+  justify-content: center;
   min-width: $baseline-grid * 10;
   overflow: hidden;
   padding-left: 2 * $baseline-grid;
-  justify-content: center;
 
   &:first-child {
     padding-left: $baseline-grid;

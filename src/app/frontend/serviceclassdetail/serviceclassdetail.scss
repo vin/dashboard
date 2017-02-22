@@ -22,8 +22,8 @@ $kd-service-class-detail-icon-width: $baseline-grid * 10;
 }
 
 .kd-service-class-detail-upper-left {
-  width: $kd-service-class-detail-icon-width;
   height: $baseline-grid * 10;
+  width: $kd-service-class-detail-icon-width;
 }
 
 .kd-service-class-detail-upper-right {
@@ -40,10 +40,7 @@ $kd-service-class-detail-icon-width: $baseline-grid * 10;
   width: $kd-service-class-detail-icon-width;
 }
 
-.kd-service-class-detail-header-container {
-}
-
 .kd-service-class-detail-create-instance {
-  margin: 0px;
+  margin: 0 * $baseline-grid;
   margin-top: $baseline-grid * 2;
 }

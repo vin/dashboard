@@ -16,10 +16,10 @@
 
 
 .kd-tiles {
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
 }
 
 kd-tile {
-  margin: $baseline-grid
+  margin: $baseline-grid;
 }

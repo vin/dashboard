@@ -20,9 +20,9 @@
 }
 
 kd-service-class-list-search-input {
-  box-shadow: $whiteframe-shadow-1dp;
   background-color: $content-background;
   border-radius: $baseline-grid / 4;
+  box-shadow: $whiteframe-shadow-1dp;
   display: block;
 }
 
@@ -31,8 +31,8 @@ kd-service-class-list-search-input {
 
   kd-service-class-list-search-input {
     flex-grow: 1;
-    max-width: 50%;
-    margin-right: $baseline-grid * 4;
     height: $baseline-grid * 7;
+    margin-right: $baseline-grid * 4;
+    max-width: 50%;
   }
 }

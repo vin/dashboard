@@ -25,10 +25,13 @@
 
 }
 
-.kd-service-instance-list-actionbar-nav-button[disabled] {
-
+.md-button {
+  &[disabled] {
+    .kd-service-instance-list-actionbar-nav-button-icon-selected {
+      &.kd-service-instance-list-actionbar-nav-button-icon {
+        color: $action-bar-nav-selected-color;
+      }
+    }
+  }
 }
 
-.md-button[disabled] .kd-service-instance-list-actionbar-nav-button-icon-selected.kd-service-instance-list-actionbar-nav-button-icon {
-  color: yellow;
-}

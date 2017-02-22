@@ -15,29 +15,31 @@
 @import '../variables';
 
 .kd-service-class-list-search-input {
-  padding: $baseline-grid;
   display: flex;
+  padding: $baseline-grid;
 }
 
 .kd-service-class-list-search-input-icon {
   height: $baseline-grid;
-  margin-top: $baseline-grid;
   margin-bottom: $baseline-grid;
+  margin-top: $baseline-grid;
 }
 
 .kd-service-class-list-search-input-container {
   flex-grow: 1;
   height: $baseline-grid * 4;
-  margin-top: $baseline-grid * 0;
   margin-bottom: $baseline-grid * 0;
+  margin-top: $baseline-grid * 0;
 
   input {
     border-width: $baseline-grid * 0;
     padding-top: $baseline-grid / 2;
   }
-}
 
-.kd-service-class-list-search-input-container.md-input-focused .md-input {
-  border-width: $baseline-grid * 0;
-  padding-top: $baseline-grid / 2;
+  &.md-input-focused {
+    .md-input {
+      border-width: $baseline-grid * 0;
+      padding-top: $baseline-grid / 2;
+    }
+  }
 }
