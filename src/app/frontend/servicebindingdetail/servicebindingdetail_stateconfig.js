@@ -15,11 +15,11 @@
 import {stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 import {appendDetailParamsToUrl} from 'common/resource/resourcedetail';
+import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
+import {stateName as serviceInstanceDetailStateName} from 'serviceinstancedetail/serviceinstancedetail_state';
+import {stateUrl as baseStateUrl} from 'serviceinstancelist/serviceinstancelist_state';
 
 import {ServiceBindingDetailController} from './servicebindingdetail_controller';
-import {stateUrl as baseStateUrl} from 'serviceinstancelist/serviceinstancelist_state';
-import {stateName as serviceInstanceDetailStateName} from 'serviceinstancedetail/serviceinstancedetail_state';
-import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
 
 /**
  * Configures states for the service binding details view.

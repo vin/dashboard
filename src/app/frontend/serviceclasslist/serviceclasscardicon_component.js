@@ -19,9 +19,7 @@ export class ServiceClassCardIconController {
   /**
    * @ngInject
    */
-  constructor() {
-  }
-
+  constructor() {}
 }
 
 /**
@@ -32,4 +30,3 @@ export const serviceClassCardIconComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardicon.html',
   controller: ServiceClassCardIconController,
 };
-

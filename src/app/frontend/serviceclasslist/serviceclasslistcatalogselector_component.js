@@ -25,7 +25,6 @@ export class ServiceClassListCatalogSelectorController {
     /** @export {?} */
     this.serviceBrokerList;
   }
-
 }
 
 /**

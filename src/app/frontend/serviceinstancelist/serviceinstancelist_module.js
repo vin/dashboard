@@ -15,12 +15,13 @@
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
 import filtersModule from 'common/filters/filters_module';
+
 import {serviceInstanceCardComponent} from './serviceinstancecard_component';
 import {serviceInstanceCardListComponent} from './serviceinstancecardlist_component';
+import stateConfig from './serviceinstancelist_stateconfig';
 import {serviceInstanceListFilterComponent} from './serviceinstancelistfilter_component';
 import {serviceInstanceTileComponent} from './serviceinstancetile_component';
 import {serviceInstanceTilesComponent} from './serviceinstancetiles_component';
-import stateConfig from './serviceinstancelist_stateconfig';
 
 
 /**
@@ -55,4 +56,3 @@ export default angular
 function serviceInstanceListResource($resource) {
   return $resource('api/v1alpha1/serviceinstance');
 }
-

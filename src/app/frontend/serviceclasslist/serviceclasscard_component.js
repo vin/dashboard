@@ -16,7 +16,6 @@ import {StateParams} from 'common/resource/resourcedetail';
 import {stateName} from 'serviceclassdetail/serviceclassdetail_state';
 
 
-
 /**
  * @final
  */
@@ -41,8 +40,7 @@ export class ServiceClassCardController {
   getServiceClassDetailHref() {
     return this.state_.href(
         stateName,
-        new StateParams(
-            this.serviceClass.metadata.namespace, this.serviceClass.metadata.name));
+        new StateParams(this.serviceClass.metadata.namespace, this.serviceClass.metadata.name));
   }
 }
 

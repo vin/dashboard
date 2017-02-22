@@ -24,11 +24,11 @@ import {serviceClassCardListComponent} from './serviceclasscardlist_component';
 import {serviceClassCardListColumnHeaderComponent} from './serviceclasscardlistcolumnheader_component';
 import {serviceClassCardListColumnHeadersComponent} from './serviceclasscardlistcolumnheaders_component';
 import {serviceClassCardListHeaderComponent} from './serviceclasscardlistheader_component';
+import stateConfig from './serviceclasslist_stateconfig';
 import {serviceClassListCatalogSelectorComponent} from './serviceclasslistcatalogselector_component';
 import {serviceClassListSearchInputComponent} from './serviceclasslistsearchinput_component';
 import {serviceClassTileComponent} from './serviceclasstile_component';
 import {serviceClassTilesComponent} from './serviceclasstiles_component';
-import stateConfig from './serviceclasslist_stateconfig';
 
 /**
  * Angular module for the Catalog list view.

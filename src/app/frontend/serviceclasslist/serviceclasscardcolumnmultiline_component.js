@@ -19,9 +19,7 @@ export class ServiceClassCardColumnMultiLineController {
   /**
    * @ngInject
    */
-  constructor() {
-  }
-
+  constructor() {}
 }
 
 /**

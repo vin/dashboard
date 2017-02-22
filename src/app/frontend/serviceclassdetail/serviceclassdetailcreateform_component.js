@@ -50,7 +50,7 @@ export class ServiceClassDetailCreateFormController {
     this.formData.plan = this.serviceClass.Plans[0].Name;
   }
 
-  getPostData(){
+  getPostData() {
     return {
       name: this.formData.name,
       plan: this.formData.plan,
@@ -68,9 +68,6 @@ export class ServiceClassDetailCreateFormController {
         })
         .then(() => {
           this.state_.go(serviceInstanceListStateName);
-        })
-        .catch(() => {
-          console.error('Createing the service instance did not work');
         });
   }
 }

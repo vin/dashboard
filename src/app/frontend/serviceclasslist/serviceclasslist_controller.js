@@ -45,7 +45,8 @@ export class ServiceClassListController {
    * @return {Array}
    */
   getSearchedServiceClassList() {
-    if (this.searchedServiceClassList_ === null || this.selectedBroker !== this.previousSelectedBroker_ ||
+    if (this.searchedServiceClassList_ === null ||
+        this.selectedBroker !== this.previousSelectedBroker_ ||
         this.searchTerm !== this.previousSearchTerm_) {
       let searchTerm = this.searchTerm.toLowerCase();
       this.searchedServiceClassList_ = this.serviceClassList.items.filter(
@@ -60,14 +61,14 @@ export class ServiceClassListController {
   /**
    * @return {boolean}
    */
-  shouldShowListView(){
+  shouldShowListView() {
     return this.viewMode_ === 'list';
   }
 
   /**
    * @return {boolean}
    */
-  shouldShowTileView(){
+  shouldShowTileView() {
     return this.viewMode_ === 'tile';
   }
 }

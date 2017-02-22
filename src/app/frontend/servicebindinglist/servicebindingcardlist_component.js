@@ -34,7 +34,7 @@ export class ServiceBindingCardListController {
     this.mdDialog = $mdDialog;
   }
 
-  showAddBindingDialog(event){
+  showAddBindingDialog(event) {
     this.mdDialog.show({
       controller: CreateServiceBindingDialogController,
       controllerAs: '$ctrl',

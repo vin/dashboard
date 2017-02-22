@@ -19,7 +19,7 @@ export class CreateServiceBindingDialogController {
    * @param {!md.$dialog} $mdDialog
    * @ngInject
    */
-  constructor(serviceInstance, $scope, $mdDialog){
+  constructor(serviceInstance, $scope, $mdDialog) {
     this.serviceInstance = serviceInstance;
     this.scope = $scope;
     this.scope.binding = {
@@ -29,7 +29,7 @@ export class CreateServiceBindingDialogController {
     this.mdDialog_ = $mdDialog;
   }
 
-  closeDialog(){
+  closeDialog() {
     this.mdDialog_.hide();
   }
 }

@@ -35,7 +35,7 @@ export default function stateConfig($stateProvider) {
     params: {
       viewMode: {
         type: 'string',
-        value: 'list', //defaultValue
+        value: 'list',  // defaultValue
       },
     },
     data: {

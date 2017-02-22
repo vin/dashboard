@@ -23,7 +23,6 @@ export class ServiceClassDetailHeaderController {
     /** @export {?} */
     this.serviceClass;
   }
-
 }
 
 /**

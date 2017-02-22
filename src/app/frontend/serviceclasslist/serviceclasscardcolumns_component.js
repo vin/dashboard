@@ -19,9 +19,7 @@ export class ServiceClassCardColumnsController {
   /**
    * @ngInject
    */
-  constructor() {
-  }
-
+  constructor() {}
 }
 
 /**

@@ -19,9 +19,7 @@ export class ServiceClassDetailCreateFormParamsInputController {
   /**
    * @ngInject
    */
-  constructor() {
-  }
-
+  constructor() {}
 }
 
 /**

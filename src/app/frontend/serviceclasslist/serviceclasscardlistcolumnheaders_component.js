@@ -19,9 +19,7 @@ export class ServiceClassCardListColumnHeadersController {
   /**
    * @ngInject
    */
-  constructor() {
-  }
-
+  constructor() {}
 }
 
 /**

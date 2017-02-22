@@ -40,8 +40,11 @@ export default angular
         ])
     .config(stateConfig)
     .component('kdServiceClassDetailCreateForm', serviceClassDetailCreateFormComponent)
-    .component('kdServiceClassDetailCreateFormLabelsInput', serviceClassDetailCreateFormLabelsInputComponent)
-    .component('kdServiceClassDetailCreateFormParamsInput', serviceClassDetailCreateFormParamsInputComponent)
+    .component(
+        'kdServiceClassDetailCreateFormLabelsInput',
+        serviceClassDetailCreateFormLabelsInputComponent)
+    .component(
+        'kdServiceClassDetailCreateFormParamsInput',
+        serviceClassDetailCreateFormParamsInputComponent)
     .component('kdServiceClassDetailDescription', serviceClassDetailDescriptionComponent)
     .component('kdServiceClassDetailHeader', serviceClassDetailHeaderComponent);
-

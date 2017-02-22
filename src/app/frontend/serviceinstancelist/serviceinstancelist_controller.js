@@ -61,14 +61,14 @@ export class ServiceInstanceListController {
   /**
    * @return {boolean}
    */
-  shouldShowListView(){
+  shouldShowListView() {
     return this.viewMode_ === 'list';
   }
 
   /**
    * @return {boolean}
    */
-  shouldShowTileView(){
+  shouldShowTileView() {
     return this.viewMode_ === 'tile';
   }
 }

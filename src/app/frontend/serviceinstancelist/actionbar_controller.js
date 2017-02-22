@@ -34,7 +34,7 @@ export class ActionBarController {
     return this.state_.href(stateName, {viewMode});
   }
 
-  isCurrentViewMode(viewMode){
+  isCurrentViewMode(viewMode) {
     return viewMode === this.stateParams_.viewMode;
   }
 
@@ -42,11 +42,14 @@ export class ActionBarController {
    * @param {string} viewMode
    * @return {string}
    */
-  getIconForViewMode(viewMode){
-    switch (viewMode){
-      case 'list': return 'view_list';
-      case 'tile': return 'view_module';
-      case 'graph': return 'share';
+  getIconForViewMode(viewMode) {
+    switch (viewMode) {
+      case 'list':
+        return 'view_list';
+      case 'tile':
+        return 'view_module';
+      case 'graph':
+        return 'share';
     }
   }
 }

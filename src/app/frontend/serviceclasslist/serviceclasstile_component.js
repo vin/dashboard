@@ -40,8 +40,7 @@ export class ServiceClassTileController {
   getServiceClassDetailHref() {
     return this.state_.href(
         stateName,
-        new StateParams(
-            this.serviceClass.metadata.namespace, this.serviceClass.metadata.name));
+        new StateParams(this.serviceClass.metadata.namespace, this.serviceClass.metadata.name));
   }
 }
 

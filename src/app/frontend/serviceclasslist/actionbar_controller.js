@@ -34,7 +34,7 @@ export class ActionBarController {
     this.stateParams_ = $stateParams;
   }
 
-  showAddCatalogDialog(){
+  showAddCatalogDialog() {
     this.mdDialog_.show({
       controller: AddCatalogDialogController,
       controllerAs: '$ctrl',
@@ -48,7 +48,7 @@ export class ActionBarController {
     return this.state_.href(stateName, {viewMode});
   }
 
-  isCurrentViewMode(viewMode){
+  isCurrentViewMode(viewMode) {
     return viewMode === this.stateParams_.viewMode;
   }
 }

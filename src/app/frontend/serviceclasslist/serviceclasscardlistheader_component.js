@@ -23,7 +23,6 @@ export class ServiceClassCardListHeaderController {
     /** @export {number} */
     this.numSolutions;
   }
-
 }
 
 /**

@@ -31,21 +31,21 @@ export class ServiceClassDetailController {
   /**
    * @return {boolean}
    */
-  isInstantiatingClass(){
+  isInstantiatingClass() {
     return this.isInstantiatingClass_;
   }
 
   /**
    *
    */
-  startInstantiatingClass(){
+  startInstantiatingClass() {
     this.isInstantiatingClass_ = true;
   }
 
   /**
    *
    */
-  stopInstantiatingClass(){
+  stopInstantiatingClass() {
     this.isInstantiatingClass_ = false;
   }
 }

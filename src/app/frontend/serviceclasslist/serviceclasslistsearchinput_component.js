@@ -23,7 +23,6 @@ export class ServiceClassListSearchInputController {
     /** @export {string} */
     this.searchTermModel;
   }
-
 }
 
 /**

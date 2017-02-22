@@ -31,7 +31,7 @@ export class ServiceClassDetailCreateFormLabelsInputController {
   /**
    * @param {?} labelObject
    */
-  deleteLabel(labelObject){
+  deleteLabel(labelObject) {
     let labelObjectIndex = this.labelsModel.indexOf(labelObject);
     this.labelsModel.splice(labelObjectIndex, 1);
   }
