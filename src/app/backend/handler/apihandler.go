@@ -641,6 +641,10 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 				Writes(unstructured.UnstructuredList{}))
 
 		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.PUT("/" + path + "/").
+			To(apiHandler.createServiceCatalogItem(rt)))
+
+		apiV1alpha1Ws.Route(
 			apiV1alpha1Ws.GET("/" + path + "/{name}").
 				To(apiHandler.getServiceCatalogItemDetail(rt)).
 				Writes(unstructured.Unstructured{}))
@@ -691,6 +695,25 @@ func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.Resou
 			return
 		}
 		response.WriteHeaderAndEntity(http.StatusOK, result)
+	}
+}
+
+func (apiHandler *APIHandler) createServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
+	return func(request *restful.Request, response *restful.Response) {
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		putSpec := &unstructured.Unstructured{}
+		if err := request.ReadEntity(putSpec); err != nil {
+			handleInternalError(response, err)
+			return
+		}
+
+		result, err := l.Create(putSpec)
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeaderAndEntity(http.StatusCreated, result)
 	}
 }
 
