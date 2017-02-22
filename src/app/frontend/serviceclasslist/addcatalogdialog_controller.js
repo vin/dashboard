@@ -39,8 +39,8 @@ export class AddCatalogDialogController {
     };
   }
 
-  getPostData(){
-    if( this.formData.loginRequired ){
+  getPutData() {
+    if (this.formData.loginRequired) {
       return {
         name: this.formData.name,
         url: this.formData.url,
@@ -49,8 +49,15 @@ export class AddCatalogDialogController {
       };
     } else {
       return {
+        apiVersion: 'catalog.k8s.io/v1alpha1',
+        kind: 'ServiceBroker',
+        metadata: {
+          name: this.formData.name,
+        },
         name: this.formData.name,
-        url: this.formData.url,
+        spec: {
+          URL: this.formData.url,
+        },
       };
     }
   }
@@ -61,15 +68,15 @@ export class AddCatalogDialogController {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
               'api/v1alpha1/servicebroker', {},
-              {save: {method: 'POST', headers: {'X-CSRF-TOKEN': token}}});
-          return resource.save(this.getPostData()).$promise;
+              {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
+          return resource.save(this.getPutData()).$promise;
         })
         .then(() => {
           this.state_.reload();
           this.hide();
         })
         .catch(() => {
-          //TODO rossholland: better error handling
+          // TODO rossholland: better error handling
           this.hide();
         });
   }
