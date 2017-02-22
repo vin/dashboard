@@ -62,6 +62,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/resource/workload"
 	"github.com/kubernetes/dashboard/src/app/backend/validation"
 	"golang.org/x/net/xsrftoken"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilnet "k8s.io/apimachinery/pkg/util/net"
@@ -626,45 +627,33 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 		Produces(restful.MIME_JSON)
 	wsContainer.Add(apiV1alpha1Ws)
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebinding/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBinding)).
-			Writes(unstructured.UnstructuredList{}))
+	var catalogResourceTypeUrlPaths = map[servicecatalog.ResourceType]string {
+		servicecatalog.ServiceBinding: "servicebinding",
+		servicecatalog.ServiceBroker: "servicebroker",
+		servicecatalog.ServiceClass: "serviceclass",
+		servicecatalog.ServiceInstance: "serviceinstance",
+	}
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebinding/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBinding)).
-			Writes(unstructured.Unstructured{}))
+	for rt, path := range catalogResourceTypeUrlPaths {
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.GET("/" + path + "/").
+				To(apiHandler.getServiceCatalogItemList(rt)).
+				Writes(unstructured.UnstructuredList{}))
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebroker/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceBroker)).
-			Writes(unstructured.UnstructuredList{}))
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.PUT("/" + path + "/").
+			To(apiHandler.createServiceCatalogItem(rt)))
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/servicebroker/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceBroker)).
-			Writes(unstructured.Unstructured{}))
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.GET("/" + path + "/{name}").
+				To(apiHandler.getServiceCatalogItemDetail(rt)).
+				Writes(unstructured.Unstructured{}))
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceclass/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceClass)).
-			Writes(unstructured.UnstructuredList{}))
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.DELETE("/" + path + "/{name}").
+			To(apiHandler.deleteServiceCatalogItem(rt)))
 
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceclass/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceClass)).
-			Writes(unstructured.Unstructured{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceinstance/").
-			To(apiHandler.getServiceCatalogItemList(servicecatalog.ServiceInstance)).
-			Writes(unstructured.UnstructuredList{}))
-
-	apiV1alpha1Ws.Route(
-		apiV1alpha1Ws.GET("/serviceinstance/{name}").
-			To(apiHandler.getServiceCatalogItemDetail(servicecatalog.ServiceInstance)).
-			Writes(unstructured.Unstructured{}))
+	}
 
 	return wsContainer, nil
 }
@@ -706,6 +695,39 @@ func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.Resou
 			return
 		}
 		response.WriteHeaderAndEntity(http.StatusOK, result)
+	}
+}
+
+func (apiHandler *APIHandler) createServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
+	return func(request *restful.Request, response *restful.Response) {
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		putSpec := &unstructured.Unstructured{}
+		if err := request.ReadEntity(putSpec); err != nil {
+			handleInternalError(response, err)
+			return
+		}
+
+		result, err := l.Create(putSpec)
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeaderAndEntity(http.StatusCreated, result)
+	}
+}
+
+func (apiHandler *APIHandler) deleteServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
+	return func(request *restful.Request, response *restful.Response) {
+		name := request.PathParameter("name")
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		err := l.Delete(name, &metav1.DeleteOptions{})
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeader(http.StatusOK)
 	}
 }
 
