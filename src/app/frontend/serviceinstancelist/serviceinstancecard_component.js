@@ -33,7 +33,7 @@ export class ServiceInstanceCardController {
   }
 
   isSuccess() {
-    return !!this.serviceInstance.Status.Conditions.find(
+    return this.serviceInstance.Status && !!this.serviceInstance.Status.Conditions.find(
         ({Type, Status}) => Type === 'Ready' && Status === 'True');
   }
 

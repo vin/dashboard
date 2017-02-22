@@ -33,6 +33,7 @@ export class ServiceClassDetailCreateFormController {
     this.formData = {
       name: '',
       plan: '',
+      parameters: '',
       labels: [{
         key: '',
         value: '',
@@ -50,11 +51,24 @@ export class ServiceClassDetailCreateFormController {
     this.formData.plan = this.serviceClass.Plans[0].Name;
   }
 
-  getPostData() {
-    return {
-      name: this.formData.name,
-      plan: this.formData.plan,
+  getPutData() {
+    let putData = {
+      "kind": "ServiceInstance",
+      "metadata": {
+        "name": this.formData.name,
+      },
+      "name": this.formData.name,
+      "spec": {
+        "serviceClassName": this.serviceClass.name,
+        "planName": this.formData.plan,
+      },
+      "space_guid": "default",
     };
+
+    if(this.formData.parameters.trim()){
+      putData.parameters = JSON.parse(this.formData.parameters);
+    }
+    return putData;
   }
 
   createInstance() {
@@ -63,8 +77,8 @@ export class ServiceClassDetailCreateFormController {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
               'api/v1alpha1/serviceinstance', {},
-              {save: {method: 'POST', headers: {'X-CSRF-TOKEN': token}}});
-          return resource.save(this.getPostData()).$promise;
+              {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
+          return resource.save(this.getPutData()).$promise;
         })
         .then(() => {
           this.state_.go(serviceInstanceListStateName);

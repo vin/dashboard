@@ -31,10 +31,16 @@ limitations under the License.
       </md-select>
     </md-input-container>
   </div>
+  <div>
+    <md-input-container class="kd-service-class-detail-create-form-params">
+      <label>Parameters</label>
+      <textarea rows=5 ng-model="$ctrl.formData.parameters"></textarea>
+    </md-input-container>
+  </div>
   <!--<kd-service-class-detail-create-form-labels-input labels-model="$ctrl.formData.labels">-->
   <!--</kd-service-class-detail-create-form-labels-input>-->
-  <kd-service-class-detail-create-form-params-input>
-  </kd-service-class-detail-create-form-params-input>
+  <!--<kd-service-class-detail-create-form-params-input>-->
+  <!--</kd-service-class-detail-create-form-params-input>-->
   <div>
     <md-button class="md-raised md-primary" ng-click="$ctrl.createInstance()">
       Create
