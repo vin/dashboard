@@ -642,7 +642,8 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 
 		apiV1alpha1Ws.Route(
 			apiV1alpha1Ws.PUT("/" + path + "/").
-			To(apiHandler.createServiceCatalogItem(rt)))
+				To(apiHandler.createServiceCatalogItem(rt)).
+				Writes(unstructured.UnstructuredList{}))
 
 		apiV1alpha1Ws.Route(
 			apiV1alpha1Ws.GET("/" + path + "/{name}").
@@ -650,8 +651,13 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 				Writes(unstructured.Unstructured{}))
 
 		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.POST("/" + path + "/{name}").
+				To(apiHandler.updateServiceCatalogItem(rt)).
+				Writes(unstructured.Unstructured{}))
+
+		apiV1alpha1Ws.Route(
 			apiV1alpha1Ws.DELETE("/" + path + "/{name}").
-			To(apiHandler.deleteServiceCatalogItem(rt)))
+				To(apiHandler.deleteServiceCatalogItem(rt)))
 
 	}
 
@@ -709,6 +715,25 @@ func (apiHandler *APIHandler) createServiceCatalogItem(t servicecatalog.Resource
 		}
 
 		result, err := l.Create(putSpec)
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeaderAndEntity(http.StatusCreated, result)
+	}
+}
+
+func (apiHandler *APIHandler) updateServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
+	return func(request *restful.Request, response *restful.Response) {
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		putSpec := &unstructured.Unstructured{}
+		if err := request.ReadEntity(putSpec); err != nil {
+			handleInternalError(response, err)
+			return
+		}
+
+		result, err := l.Update(putSpec)
 		if err != nil {
 			handleInternalError(response, err)
 			return
