@@ -62,6 +62,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/resource/workload"
 	"github.com/kubernetes/dashboard/src/app/backend/validation"
 	"golang.org/x/net/xsrftoken"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilnet "k8s.io/apimachinery/pkg/util/net"
@@ -643,6 +644,11 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 			apiV1alpha1Ws.GET("/" + path + "/{name}").
 				To(apiHandler.getServiceCatalogItemDetail(rt)).
 				Writes(unstructured.Unstructured{}))
+
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.DELETE("/" + path + "/{name}").
+			To(apiHandler.deleteServiceCatalogItem(rt)))
+
 	}
 
 	return wsContainer, nil
@@ -685,6 +691,20 @@ func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.Resou
 			return
 		}
 		response.WriteHeaderAndEntity(http.StatusOK, result)
+	}
+}
+
+func (apiHandler *APIHandler) deleteServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
+	return func(request *restful.Request, response *restful.Response) {
+		name := request.PathParameter("name")
+		// TODO(vin): handle namespace
+		l := apiHandler.getResourceClient(t, "default")
+		err := l.Delete(name, &metav1.DeleteOptions{})
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeader(http.StatusOK)
 	}
 }
 
