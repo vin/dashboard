@@ -34,6 +34,7 @@ import jobListModule from './joblist/joblist_module';
 import logsModule from './logs/logs_module';
 import namespaceDetailModule from './namespacedetail/namespacedetail_module';
 import namespaceListModule from './namespacelist/namespacelist_module';
+import networkFunctionListModule from './networkfunctionlist/networkfunctionlist_module';
 import nodeListModule from './nodelist/nodelist_module';
 import persistentVolumeClaimDetailModule from './persistentvolumeclaimdetail/persistentvolumeclaimdetail_module';
 import persistentVolumeClaimListModule from './persistentvolumeclaimlist/persistentvolumeclaimlist_module';
@@ -59,6 +60,7 @@ import statefulSetListModule from './statefulsetlist/statefulsetlist_module';
 import {TitleController} from './title_controller';
 import workloadsModule from './workloads/workloads_module';
 
+
 export default angular
     .module(
         'kubernetesDashboard',
@@ -81,6 +83,7 @@ export default angular
           replicaSetListModule.name,
           namespaceDetailModule.name,
           namespaceListModule.name,
+          networkFunctionListModule.name,
           nodeListModule.name,
           deploymentListModule.name,
           serviceClassListModule.name,
