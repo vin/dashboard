@@ -23,8 +23,14 @@ kd-service-class-card-list-column-header {
   padding-left: 2 * $baseline-grid;
 
   &:first-child {
-    padding-left: $baseline-grid;
+    padding-left: 0;
   }
+}
+
+.kd-service-class-card-list-column-header-icon {
+  flex-grow: 0;
+  min-width: $baseline-grid * 4;
+  width: $baseline-grid * 4;
 }
 
 

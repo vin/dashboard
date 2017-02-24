@@ -14,8 +14,13 @@
 
 @import '../variables';
 
-.kd-service-class-card-columns,
-kd-service-class-card-columns {
+.kd-service-class-card-columns {
+  align-items: center;
+  border-top: 1px solid $border;
+  box-sizing: border-box;
   display: flex;
+  height: $baseline-grid * 6;
+  padding-left: 2 * $baseline-grid;
+  padding-right: 2 * $baseline-grid;
   width: 100%;
 }

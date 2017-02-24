@@ -16,15 +16,23 @@
 
 
 kd-service-class-card-column {
-  border-top: 1px solid $border;
   display: flex;
   flex-basis: auto;
   flex-grow: 1;
-  min-height: $baseline-grid * 4;
   min-width: $baseline-grid * 10;
   padding-left: 2 * $baseline-grid;
-  padding-top: $baseline-grid / 2;
   width: $baseline-grid * 10;
+
+  &:first-child {
+    padding-left: 0;
+  }
+}
+
+.kd-service-class-card-column-icon {
+  flex-grow: 0;
+  height: $baseline-grid * 4;
+  min-width: $baseline-grid * 4;
+  width: $baseline-grid * 4;
 }
 
 .kd-service-class-card-column {

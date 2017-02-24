@@ -15,15 +15,11 @@
 @import '../variables';
 
 kd-service-class-card-column-multi-line {
-  border-top: 1px solid $border;
   display: flex;
   flex-basis: auto;
   flex-grow: 4;
-  min-height: $baseline-grid * 4;
   min-width: $baseline-grid * 10;
-  padding-bottom: $baseline-grid / 2;
   padding-left: 2 * $baseline-grid;
-  padding-top: $baseline-grid / 2;
   width: $baseline-grid * 10;
  }
 

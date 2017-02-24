@@ -17,11 +17,10 @@
 
 
 .kd-service-class-card-list-column-headers {
+  box-sizing: border-box;
   color: $foreground-2;
   display: flex;
   min-height: 3 * $baseline-grid;
-  padding: $baseline-grid;
-  padding-bottom: $baseline-grid / 2;
-  padding-top: $baseline-grid / 2;
+  padding: ($baseline-grid / 2) ($baseline-grid * 2);
   width: 100%;
 }
