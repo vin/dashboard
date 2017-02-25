@@ -71,7 +71,8 @@ export class ServiceGraphController {
     let link = svg.selectAll(".link")
         .data(links)
         .enter().append("line")
-        .attr("class", "link");
+        .attr("class", "link")
+        .attr("marker-end", "url(#arrowhead)");
 
     let node = svg.selectAll(".node")
         .data(nodes, node => node.name)
