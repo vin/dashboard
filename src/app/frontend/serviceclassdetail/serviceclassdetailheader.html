@@ -17,10 +17,11 @@ limitations under the License.
 
 <div>
   <div>
-    <div class="md-title kd-service-class-detail-header-title">{{$ctrl.serviceClass.name}}</div>
+    <div class="md-title kd-service-class-detail-header-title">
+      {{$ctrl.serviceClass.DisplayName || $ctrl.serviceClass.name}}
+    </div>
     <div>
-      <div>Version: TODO</div>
-      <div>From: TODO</div>
+      <div>From: {{$ctrl.serviceClass.ProviderDisplayName || '-'}}</div>
       <div>Catalog: {{$ctrl.serviceClass.BrokerName}}</div>
     </div>
   </div>
