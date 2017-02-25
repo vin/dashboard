@@ -17,19 +17,65 @@ export class CreateServiceBindingDialogController {
    * @param {?} serviceInstance
    * @param {!angular.$scope} $scope
    * @param {!md.$dialog} $mdDialog
+   * @param {!angular.$resource} $resource
+   * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
+   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor(serviceInstance, $scope, $mdDialog) {
+  constructor(serviceInstance, $scope, $mdDialog, $resource, kdCsrfTokenService, $state) {
     this.serviceInstance = serviceInstance;
     this.scope = $scope;
-    this.scope.binding = {
-      name: '',
+    this.scope.formData = {
+      bindingName: '',
+      labelSelector: '',
     };
     /** @private {!md.$dialog} */
     this.mdDialog_ = $mdDialog;
+    /** @private {!angular.$resource} */
+    this.resource_ = $resource;
+    /** @private {!angular.$q.Promise} */
+    this.tokenPromise_ = kdCsrfTokenService.getTokenForAction('servicebinding');
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
   }
 
-  closeDialog() {
+  getPutData() {
+    return {
+      apiVersion: 'catalog.k8s.io/v1alpha1',
+      kind: 'ServiceBinding',
+      metadata: {
+        name: this.formData.bindingName,
+      },
+      name: this.formData.bindingName,
+      spec: {
+        instanceRef: {
+          name: this.serviceInstance.name,
+          namespace: 'default',
+        },
+        serviceName: this.serviceInstance.name,
+        // TODO rossholland do something with the label selector
+      },
+      to: this.serviceInstance.name,
+    };
+  }
+
+
+  createBinding() {
+    this.tokenPromise_
+        .then((token) => {
+          /** @type {!angular.Resource} */
+          let resource = this.resource_(
+              'api/v1alpha1/servicebinding', {},
+              {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
+          return resource.save(this.getPutData()).$promise;
+        })
+        .then(() => {
+          this.state_.reload();
+          this.hide();
+        });
+  }
+
+  hide() {
     this.mdDialog_.hide();
   }
 }

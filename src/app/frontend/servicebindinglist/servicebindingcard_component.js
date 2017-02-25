@@ -34,7 +34,7 @@ export class ServiceBindingCardController {
   }
 
   isSuccess() {
-    return this.serviceBinding &&
+    return this.serviceBinding && this.serviceBinding.Status &&
         !!this.serviceBinding.Status.Conditions.find(
             ({Type, Status}) => Type === 'Ready' && Status === 'True');
   }
