@@ -27,6 +27,8 @@ export class ServiceInstanceTileController {
   constructor($state) {
     /** @export {?} */
     this.serviceInstance;
+    /** @export {?} */
+    this.serviceClass;
     /** @private {!ui.router.$state} */
     this.state_ = $state;
   }
@@ -62,5 +64,7 @@ export const serviceInstanceTileComponent = {
   bindings: {
     /** {?} */
     'serviceInstance': '<',
+    /** {?} */
+    'serviceClass': '<',
   },
 };
