@@ -636,22 +636,30 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 
 	for rt, path := range catalogResourceTypeUrlPaths {
 		apiV1alpha1Ws.Route(
-			apiV1alpha1Ws.GET("/" + path + "/").
+			apiV1alpha1Ws.GET("/" + path + "/{namespace}").
 				To(apiHandler.getServiceCatalogItemList(rt)).
 				Writes(unstructured.UnstructuredList{}))
 
 		apiV1alpha1Ws.Route(
-			apiV1alpha1Ws.PUT("/" + path + "/").
-			To(apiHandler.createServiceCatalogItem(rt)))
+			apiV1alpha1Ws.PUT("/" + path + "/{namespace}").
+				To(apiHandler.createServiceCatalogItem(rt)).
+				Reads(unstructured.Unstructured{}).
+				Writes(unstructured.Unstructured{}))
 
 		apiV1alpha1Ws.Route(
-			apiV1alpha1Ws.GET("/" + path + "/{name}").
+			apiV1alpha1Ws.GET("/" + path + "/{namespace}/{name}").
 				To(apiHandler.getServiceCatalogItemDetail(rt)).
 				Writes(unstructured.Unstructured{}))
 
 		apiV1alpha1Ws.Route(
-			apiV1alpha1Ws.DELETE("/" + path + "/{name}").
-			To(apiHandler.deleteServiceCatalogItem(rt)))
+			apiV1alpha1Ws.POST("/" + path + "/{namespace}/{name}").
+				To(apiHandler.updateServiceCatalogItem(rt)).
+				Reads(unstructured.Unstructured{}).
+				Writes(unstructured.Unstructured{}))
+
+		apiV1alpha1Ws.Route(
+			apiV1alpha1Ws.DELETE("/" + path + "/{namespace}/{name}").
+				To(apiHandler.deleteServiceCatalogItem(rt)))
 
 	}
 
@@ -672,9 +680,8 @@ func (apiHandler *APIHandler) handleGetCsrfToken(request *restful.Request,
 
 func (apiHandler *APIHandler) getServiceCatalogItemList(t servicecatalog.ResourceType) restful.RouteFunction {
 	return func(request *restful.Request, response *restful.Response) {
-
-		// TODO(vin): handle namespace
-		l := apiHandler.getResourceClient(t, "default")
+		namespace := request.PathParameter("namespace")
+		l := apiHandler.getResourceClient(t, namespace)
 		result, err := l.List(&v1.ListOptions{})
 		if err != nil {
 			handleInternalError(response, err)
@@ -687,8 +694,8 @@ func (apiHandler *APIHandler) getServiceCatalogItemList(t servicecatalog.Resourc
 func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.ResourceType) restful.RouteFunction {
 	return func(request *restful.Request, response *restful.Response) {
 		name := request.PathParameter("name")
-		// TODO(vin): handle namespace
-		l := apiHandler.getResourceClient(t, "default")
+		namespace := request.PathParameter("namespace")
+		l := apiHandler.getResourceClient(t, namespace)
 		result, err := l.Get(name)
 		if err != nil {
 			handleInternalError(response, err)
@@ -700,8 +707,8 @@ func (apiHandler *APIHandler) getServiceCatalogItemDetail(t servicecatalog.Resou
 
 func (apiHandler *APIHandler) createServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
 	return func(request *restful.Request, response *restful.Response) {
-		// TODO(vin): handle namespace
-		l := apiHandler.getResourceClient(t, "default")
+		namespace := request.PathParameter("namespace")
+		l := apiHandler.getResourceClient(t, namespace)
 		putSpec := &unstructured.Unstructured{}
 		if err := request.ReadEntity(putSpec); err != nil {
 			handleInternalError(response, err)
@@ -717,11 +724,30 @@ func (apiHandler *APIHandler) createServiceCatalogItem(t servicecatalog.Resource
 	}
 }
 
+func (apiHandler *APIHandler) updateServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
+	return func(request *restful.Request, response *restful.Response) {
+		namespace := request.PathParameter("namespace")
+		l := apiHandler.getResourceClient(t, namespace)
+		putSpec := &unstructured.Unstructured{}
+		if err := request.ReadEntity(putSpec); err != nil {
+			handleInternalError(response, err)
+			return
+		}
+
+		result, err := l.Update(putSpec)
+		if err != nil {
+			handleInternalError(response, err)
+			return
+		}
+		response.WriteHeaderAndEntity(http.StatusCreated, result)
+	}
+}
+
 func (apiHandler *APIHandler) deleteServiceCatalogItem(t servicecatalog.ResourceType) restful.RouteFunction {
 	return func(request *restful.Request, response *restful.Response) {
 		name := request.PathParameter("name")
-		// TODO(vin): handle namespace
-		l := apiHandler.getResourceClient(t, "default")
+		namespace := request.PathParameter("namespace")
+		l := apiHandler.getResourceClient(t, namespace)
 		err := l.Delete(name, &metav1.DeleteOptions{})
 		if err != nil {
 			handleInternalError(response, err)
