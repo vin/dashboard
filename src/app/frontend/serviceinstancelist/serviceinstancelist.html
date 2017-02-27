@@ -24,6 +24,7 @@ limitations under the License.
   </kd-content>
 </kd-content-card>
 <kd-service-instance-tiles ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowTileView()"
-                           service-instance-list="ctrl.getFilteredServiceInstanceList()">
+                           service-instance-list="ctrl.getFilteredServiceInstanceList()"
+                           service-class-list="ctrl.serviceClassList">
 </kd-service-instance-tiles>
 <kd-zero-state ng-if="ctrl.shouldShowZeroState()"></kd-zero-state>

@@ -14,17 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-service-class-card-icon></kd-service-class-card-icon>
 <kd-service-class-card-columns>
+  <kd-service-class-card-column class="kd-service-class-card-column-icon">
+    <img class="kd-service-class-card-icon" src="{{$ctrl.serviceClass.ImageURL}}">
+  </kd-service-class-card-column>
   <kd-service-class-card-column>
     <a ng-href="{{::$ctrl.getServiceClassDetailHref()}}">
-      <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.name}}">
+      <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.DisplayName}}">
       </kd-middle-ellipsis>
     </a>
   </kd-service-class-card-column>
   <kd-service-class-card-column>
     <div>
-      <kd-middle-ellipsis display-string="{{::$ctrl.serviceBroker.name}}">
+      <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.ProviderDisplayName || '-'}}">
       </kd-middle-ellipsis>
     </div>
   </kd-service-class-card-column>
@@ -35,10 +37,7 @@ limitations under the License.
     </div>
   </kd-service-class-card-column>
   <kd-service-class-card-column-multi-line>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    {{$ctrl.serviceClass.Description || $ctrl.serviceClass.LongDescription}}
   </kd-service-class-card-column-multi-line>
 </kd-service-class-card-columns>
 

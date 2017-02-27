@@ -19,7 +19,6 @@ import {serviceClassCardComponent} from './serviceclasscard_component';
 import {serviceClassCardColumnComponent} from './serviceclasscardcolumn_component';
 import {serviceClassCardColumnMultiLineComponent} from './serviceclasscardcolumnmultiline_component';
 import {serviceClassCardColumnsComponent} from './serviceclasscardcolumns_component';
-import {serviceClassCardIconComponent} from './serviceclasscardicon_component';
 import {serviceClassCardListComponent} from './serviceclasscardlist_component';
 import {serviceClassCardListColumnHeaderComponent} from './serviceclasscardlistcolumnheader_component';
 import {serviceClassCardListColumnHeadersComponent} from './serviceclasscardlistcolumnheaders_component';
@@ -50,7 +49,6 @@ export default angular
     .component('kdServiceClassCardColumn', serviceClassCardColumnComponent)
     .component('kdServiceClassCardColumnMultiLine', serviceClassCardColumnMultiLineComponent)
     .component('kdServiceClassCardColumns', serviceClassCardColumnsComponent)
-    .component('kdServiceClassCardIcon', serviceClassCardIconComponent)
     .component('kdServiceClassCardList', serviceClassCardListComponent)
     .component('kdServiceClassCardListColumnHeader', serviceClassCardListColumnHeaderComponent)
     .component('kdServiceClassCardListColumnHeaders', serviceClassCardListColumnHeadersComponent)
@@ -68,7 +66,7 @@ export default angular
  * @ngInject
  */
 function serviceBrokerListResource($resource) {
-  return $resource('api/v1alpha1/servicebroker');
+  return $resource('api/v1alpha1/servicebroker/:namespace');
 }
 
 /**
@@ -77,5 +75,5 @@ function serviceBrokerListResource($resource) {
  * @ngInject
  */
 function serviceClassListResource($resource) {
-  return $resource('api/v1alpha1/serviceclass');
+  return $resource('api/v1alpha1/serviceclass/:namespace');
 }

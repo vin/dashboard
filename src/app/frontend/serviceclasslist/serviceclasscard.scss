@@ -15,4 +15,7 @@
 @import '../variables';
 
 
-
+.kd-service-class-card-icon {
+  height: 4 * $baseline-grid;
+  width: 4 * $baseline-grid;
+}

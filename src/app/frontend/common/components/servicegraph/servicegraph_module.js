@@ -12,21 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * @final
- */
-export class ServiceClassCardIconController {
-  /**
-   * @ngInject
-   */
-  constructor() {}
-}
+import {serviceGraphComponent} from './servicegraph_component';
+import {ServiceGraphFetcher} from './servicegraph_fetcher';
 
 /**
- *
- * @type {!angular.Component}
+ * Module containing common servicegraph components.
  */
-export const serviceClassCardIconComponent = {
-  templateUrl: 'serviceclasslist/serviceclasscardicon.html',
-  controller: ServiceClassCardIconController,
-};
+export default angular
+    .module(
+        'kubernetesDashboard.common.components.servicegraph',
+        [
+          'ngMaterial',
+          'ui.router',
+        ])
+    .component('kdServiceGraph', serviceGraphComponent)
+    .service('kdServiceGraphFetcher', ServiceGraphFetcher);

@@ -12,7 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@import '../variables';
+export class ServiceGraphFetcher {
+  /**
+   * @param {!angular.$http} $http
+   * @ngInject
+   */
+  constructor($http) {
+    this.fakedata_ = $http.get('/common/components/servicegraph/fakedata.json');
+  }
 
-
-
+  getData() {
+    return this.fakedata_;
+  }
+}

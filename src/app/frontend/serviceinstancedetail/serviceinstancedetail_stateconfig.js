@@ -60,16 +60,17 @@ export default function stateConfig($stateProvider) {
  * @ngInject
  */
 export function getServiceInstanceDetailResource($stateParams, $resource) {
-  return $resource(`api/v1alpha1/serviceinstance/${$stateParams.objectName}`);
+  return $resource(`api/v1alpha1/serviceinstance/:namespace/${$stateParams.objectName}`);
 }
 
 /**
  * @param {!angular.Resource} serviceInstanceDetailResource
+ * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceInstanceDetail(serviceInstanceDetailResource) {
-  return serviceInstanceDetailResource.get().$promise;
+export function resolveServiceInstanceDetail(serviceInstanceDetailResource, $stateParams) {
+  return serviceInstanceDetailResource.get({namespace: $stateParams.namespace}).$promise;
 }
 
 
@@ -79,7 +80,7 @@ export function resolveServiceInstanceDetail(serviceInstanceDetailResource) {
  * @ngInject
  */
 export function getServiceBindingListResource($resource) {
-  return $resource(`api/v1alpha1/servicebinding`);
+  return $resource(`api/v1alpha1/servicebinding/:namespace`);
 }
 
 /**
@@ -89,13 +90,14 @@ export function getServiceBindingListResource($resource) {
  * @ngInject
  */
 export function resolveServiceBindingList(serviceBindingListResource, $stateParams) {
-  return serviceBindingListResource.get().$promise.then((serviceBindingList) => {
-    serviceBindingList.serviceBindings = serviceBindingList.items.filter(
-        (binding) => binding.spec.instanceRef.name === $stateParams.objectName);
-    delete serviceBindingList.items;
-    serviceBindingList.listMeta = {
-      totalItems: serviceBindingList.serviceBindings.length,
-    };
-    return serviceBindingList;
-  });
+  return serviceBindingListResource.get({namespace: $stateParams.namespace})
+      .$promise.then((serviceBindingList) => {
+        serviceBindingList.serviceBindings = serviceBindingList.items.filter(
+            (binding) => binding.spec.instanceRef.name === $stateParams.objectName);
+        delete serviceBindingList.items;
+        serviceBindingList.listMeta = {
+          totalItems: serviceBindingList.serviceBindings.length,
+        };
+        return serviceBindingList;
+      });
 }

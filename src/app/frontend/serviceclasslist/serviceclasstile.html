@@ -17,19 +17,18 @@ limitations under the License.
 
 <a class="kd-service-class-tile-link" ng-href="{{$ctrl.getServiceClassDetailHref()}}">
   <div class="kd-service-class-tile-icon">
-    TODO Icon
+    <img class="kd-service-class-tile-icon-img" src="{{$ctrl.serviceClass.ImageURL}}">
   </div>
   <h2 class="kd-service-class-tile-name md-title">
-    {{$ctrl.serviceClass.name}}
+    {{::$ctrl.serviceClass.DisplayName}}
   </h2>
   <div class="kd-service-class-tile-provider">
-    TODO provider
+    <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.ProviderDisplayName || '-'}}">
+    </kd-middle-ellipsis>
+
   </div>
   <p class="kd-service-class-tile-description">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-    voluptate velit esse cillum dolore eu fugiat nulla pariatur.}
+    {{$ctrl.serviceClass.Description || $ctrl.serviceClass.LongDescription}}
   </p>
   <div class="kd-service-class-tile-catalog">
     <span class="kd-service-class-tile-catalog-label">Catalog</span> {{$ctrl.serviceBroker.name}}

@@ -22,6 +22,7 @@ import stateConfig from './serviceinstancelist_stateconfig';
 import {serviceInstanceListFilterComponent} from './serviceinstancelistfilter_component';
 import {serviceInstanceTileComponent} from './serviceinstancetile_component';
 import {serviceInstanceTilesComponent} from './serviceinstancetiles_component';
+import serviceClassListModule from 'serviceclasslist/serviceclasslist_module';
 
 
 /**
@@ -39,6 +40,7 @@ export default angular
           filtersModule.name,
           componentsModule.name,
           chromeModule.name,
+          serviceClassListModule.name, //For the serviceClassListResource
         ])
     .config(stateConfig)
     .component('kdServiceInstanceCardList', serviceInstanceCardListComponent)
@@ -54,5 +56,6 @@ export default angular
  * @ngInject
  */
 function serviceInstanceListResource($resource) {
-  return $resource('api/v1alpha1/serviceinstance');
+  return $resource('api/v1alpha1/serviceinstance/:namespace');
 }
+;

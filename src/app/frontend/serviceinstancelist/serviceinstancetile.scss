@@ -15,7 +15,11 @@
 @import '../variables';
 
 .kd-service-instance-tile-icon {
-  background: $foreground-4;
+  height: $baseline-grid * 6;
+  width: $baseline-grid * 6;
+}
+
+.kd-service-instance-tile-icon-img {
   height: $baseline-grid * 6;
   width: $baseline-grid * 6;
 }

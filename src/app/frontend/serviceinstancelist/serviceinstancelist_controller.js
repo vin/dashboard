@@ -18,12 +18,15 @@
 export class ServiceInstanceListController {
   /**
    * @param {!backendApi.ServiceInstanceList} serviceInstanceList
+   * @param {!backendApi.ServiceClassList} serviceClassList
    * @param {Object} $stateParams
    * @ngInject
    */
-  constructor(serviceInstanceList, $stateParams) {
+  constructor(serviceInstanceList, serviceClassList, $stateParams) {
     /** @export {!backendApi.ServiceInstanceList} */
     this.serviceInstanceList = serviceInstanceList;
+    /** @export {!backendApi.ServiceClassList} */
+    this.serviceClassList = serviceClassList;
     /** @export {string} */
     this.filterTerm = '';
     /** @private {string} */

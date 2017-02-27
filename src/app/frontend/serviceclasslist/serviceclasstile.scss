@@ -15,7 +15,10 @@
 @import '../variables';
 
 .kd-service-class-tile-icon {
-  background: $foreground-4;
+  height: $baseline-grid * 6;
+  width: $baseline-grid * 6;
+}
+.kd-service-class-tile-icon-img {
   height: $baseline-grid * 6;
   width: $baseline-grid * 6;
 }
@@ -23,6 +26,10 @@
 .kd-service-class-tile-name {
   margin-bottom: 0;
   margin-top: $baseline-grid;
+  height: $baseline-grid * 3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .kd-service-class-tile-link {

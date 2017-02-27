@@ -18,7 +18,8 @@ limitations under the License.
 </h1>
 <kd-tiles>
   <kd-tile ng-repeat="serviceInstance in $ctrl.serviceInstanceList.serviceInstances">
-    <kd-service-instance-tile  service-instance="serviceInstance">
+    <kd-service-instance-tile  service-instance="serviceInstance"
+                               service-class="$ctrl.getServiceClassForServiceInstance(serviceInstance)">
     </kd-service-instance-tile>
   </kd-tile>
 </kd-tiles>

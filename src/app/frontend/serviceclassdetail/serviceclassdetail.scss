@@ -40,6 +40,11 @@ $kd-service-class-detail-icon-width: $baseline-grid * 10;
   width: $kd-service-class-detail-icon-width;
 }
 
+.kd-service-class-detail-icon-img{
+  height: $baseline-grid * 8;
+  width: $baseline-grid * 8;
+}
+
 .kd-service-class-detail-create-instance {
   margin: 0 * $baseline-grid;
   margin-top: $baseline-grid * 2;

@@ -22,4 +22,9 @@
 .kd-service-binding-list-create-service-binding-dialog-title {
   font-size: $title-font-size-base;
   font-weight: 400;
+  max-width: $baseline-grid * 25;
+}
+
+.kd-service-binding-list-create-service-binding-dialog-input-container {
+  display: block;
 }

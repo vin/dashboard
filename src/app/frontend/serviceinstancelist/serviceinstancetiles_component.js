@@ -22,6 +22,18 @@ export class ServiceInstanceTilesController {
   constructor() {
     /** @export {?} */
     this.serviceInstanceList;
+    /** @export {?} */
+    this.serviceClassList;
+  }
+
+  /**
+   * @param {?} serviceInstance
+   * @return {?} serviceClass
+   */
+  getServiceClassForServiceInstance(serviceInstance){
+    return this.serviceClassList.items.find((serviceClass) =>
+      serviceInstance.spec.serviceClassName === serviceClass.name
+    );
   }
 }
 
@@ -35,5 +47,7 @@ export const serviceInstanceTilesComponent = {
   bindings: {
     /** {?} */
     'serviceInstanceList': '<',
+    /** {?} */
+    'serviceClassList': '<',
   },
 };

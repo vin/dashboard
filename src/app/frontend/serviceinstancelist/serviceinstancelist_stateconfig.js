@@ -16,6 +16,7 @@ import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_sta
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 
 import {ActionBarController} from './actionbar_controller';
+import {resolveServiceClassList} from 'serviceclasslist/serviceclasslist_stateconfig';
 import {ServiceInstanceListController} from './serviceinstancelist_controller';
 import {stateName, stateUrl} from './serviceinstancelist_state';
 
@@ -31,6 +32,7 @@ export default function stateConfig($stateProvider) {
     parent: chromeStateName,
     resolve: {
       'serviceInstanceList': resolveServiceInstanceList,
+      'serviceClassList': resolveServiceClassList,
     },
     params: {
       viewMode: {
@@ -61,17 +63,19 @@ export default function stateConfig($stateProvider) {
 
 /**
  * @param {!angular.Resource} kdServiceInstanceListResource
+ * @param {!./../chrome/chrome_state.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceInstanceList(kdServiceInstanceListResource) {
-  return kdServiceInstanceListResource.get().$promise.then((serviceInstanceList) => {
-    serviceInstanceList.serviceInstances = serviceInstanceList.items;
-    delete serviceInstanceList.items;
-    serviceInstanceList.listMeta = {};
-    serviceInstanceList.listMeta.totalItems = serviceInstanceList.serviceInstances.length;
-    return serviceInstanceList;
-  });
+export function resolveServiceInstanceList(kdServiceInstanceListResource, $stateParams) {
+  return kdServiceInstanceListResource.get({namespace: $stateParams.namespace})
+      .$promise.then((serviceInstanceList) => {
+        serviceInstanceList.serviceInstances = serviceInstanceList.items;
+        delete serviceInstanceList.items;
+        serviceInstanceList.listMeta = {};
+        serviceInstanceList.listMeta.totalItems = serviceInstanceList.serviceInstances.length;
+        return serviceInstanceList;
+      });
 }
 
 const i18n = {
