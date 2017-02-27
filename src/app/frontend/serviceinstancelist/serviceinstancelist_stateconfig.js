@@ -16,6 +16,7 @@ import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_sta
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 
 import {ActionBarController} from './actionbar_controller';
+import {resolveServiceClassList} from 'serviceclasslist/serviceclasslist_stateconfig';
 import {ServiceInstanceListController} from './serviceinstancelist_controller';
 import {stateName, stateUrl} from './serviceinstancelist_state';
 
@@ -31,6 +32,7 @@ export default function stateConfig($stateProvider) {
     parent: chromeStateName,
     resolve: {
       'serviceInstanceList': resolveServiceInstanceList,
+      'serviceClassList': resolveServiceClassList,
     },
     params: {
       viewMode: {
