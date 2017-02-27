@@ -74,6 +74,12 @@ export function resolveServiceInstanceList(kdServiceInstanceListResource, $state
         delete serviceInstanceList.items;
         serviceInstanceList.listMeta = {};
         serviceInstanceList.listMeta.totalItems = serviceInstanceList.serviceInstances.length;
+        serviceInstanceList.serviceInstances.forEach((serviceInstance) => {
+          serviceInstance.typeMeta = {
+            kind: 'serviceinstance',
+          };
+          serviceInstance.objectMeta = serviceInstance.metadata;
+        });
         return serviceInstanceList;
       });
 }

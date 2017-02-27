@@ -652,7 +652,7 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 				Writes(unstructured.Unstructured{}))
 
 		apiV1alpha1Ws.Route(
-			apiV1alpha1Ws.POST("/" + path + "/{namespace}/{name}").
+			apiV1alpha1Ws.PUT("/" + path + "/{namespace}/{name}").
 				To(apiHandler.updateServiceCatalogItem(rt)).
 				Reads(unstructured.Unstructured{}).
 				Writes(unstructured.Unstructured{}))

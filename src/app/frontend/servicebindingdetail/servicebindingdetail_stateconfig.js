@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateName as chromeStateName} from 'chrome/chrome_state';
+import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 import {appendDetailParamsToUrl} from 'common/resource/resourcedetail';
-import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
+import {stateName} from 'servicebindingdetail/servicebindingdetail_state'
+import {ActionBarController} from './actionbar_controller';
 import {stateName as serviceInstanceDetailStateName} from 'serviceinstancedetail/serviceinstancedetail_state';
 import {stateUrl as baseStateUrl} from 'serviceinstancelist/serviceinstancelist_state';
 
@@ -47,6 +48,11 @@ export default function stateConfig($stateProvider) {
         controllerAs: 'ctrl',
         templateUrl: 'servicebindingdetail/servicebindingdetail.html',
       },
+      [actionbarViewName]: {
+        controller: ActionBarController,
+        controllerAs: '$ctrl',
+        templateUrl: 'servicebindingdetail/actionbar.html',
+      },
     },
   });
 }
@@ -77,5 +83,12 @@ export function getServiceBindingResource($stateParams, $resource) {
  * @ngInject
  */
 export function resolveServiceBinding(serviceBindingResource, $stateParams) {
-  return serviceBindingResource.get({namespace: $stateParams.namespace}).$promise;
+  return serviceBindingResource.get({namespace: $stateParams.namespace})
+      .$promise.then((serviceBinding) => {
+        serviceBinding.typeMeta = {
+          kind: 'servicebinding',
+        };
+        serviceBinding.objectMeta = serviceBinding.metadata;
+        return serviceBinding;
+      });
 }

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-resource-card omit-meta="::true">
+<kd-resource-card object-meta="::$ctrl.serviceInstance.objectMeta" type-meta="::$ctrl.serviceInstance.typeMeta">
   <kd-resource-card-status layout="row">
     <md-icon class="material-icons" ng-if="::$ctrl.isPending()">
       timelapse

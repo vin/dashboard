@@ -15,6 +15,8 @@
 import showDeleteDialog from './deleteresource_dialog';
 import showEditDialog from './editresource_dialog';
 
+const V1ALPHAAPIS = ['serviceinstance', 'servicebinding', 'serviceclass', 'servicebroker'];
+
 /**
  * Verber service for performing common verb operations on resources, e.g., deleting or editing
  * them.
@@ -119,10 +121,15 @@ export class VerberService {
  * @return {string}
  */
 function getRawResourceUrl(typeMeta, objectMeta) {
-  let resourceUrl = `api/v1/_raw/${typeMeta.kind}`;
-  if (objectMeta.namespace !== undefined) {
-    resourceUrl += `/namespace/${objectMeta.namespace}`;
+  if (V1ALPHAAPIS.includes(typeMeta.kind)) {
+    let namespace = objectMeta.namespace || 'default';
+    return `api/v1alpha1/${typeMeta.kind}/${namespace}/${objectMeta.name}`;
+  } else {
+    let resourceUrl = `api/v1/_raw/${typeMeta.kind}`;
+    if (objectMeta.namespace !== undefined) {
+      resourceUrl += `/namespace/${objectMeta.namespace}`;
+    }
+    resourceUrl += `/name/${objectMeta.name}`;
+    return resourceUrl;
   }
-  resourceUrl += `/name/${objectMeta.name}`;
-  return resourceUrl;
 }

@@ -12,13 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateName as chromeStateName} from 'chrome/chrome_state';
+import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 import {appendDetailParamsToUrl} from 'common/resource/resourcedetail';
 
 import {stateName as serviceInstanceListStateName, stateUrl} from './../serviceinstancelist/serviceinstancelist_state';
+import {ActionBarController} from './actionbar_controller';
 import {ServiceInstanceDetailController} from './serviceinstancedetail_controller';
 import {stateName} from './serviceinstancedetail_state';
+
+
 
 /**
  * Configures states for the service details view.
@@ -48,6 +51,11 @@ export default function stateConfig($stateProvider) {
         controllerAs: 'ctrl',
         templateUrl: 'serviceinstancedetail/serviceinstancedetail.html',
       },
+      [actionbarViewName]: {
+        controller: ActionBarController,
+        controllerAs: '$ctrl',
+        templateUrl: 'serviceinstancedetail/actionbar.html',
+      },
     },
   });
 }
@@ -70,7 +78,15 @@ export function getServiceInstanceDetailResource($stateParams, $resource) {
  * @ngInject
  */
 export function resolveServiceInstanceDetail(serviceInstanceDetailResource, $stateParams) {
-  return serviceInstanceDetailResource.get({namespace: $stateParams.namespace}).$promise;
+  return serviceInstanceDetailResource.get({namespace: $stateParams.namespace}).$promise.then(
+      (serviceInstance) => {
+        serviceInstance.typeMeta = {
+          kind: 'serviceinstance',
+        };
+        serviceInstance.objectMeta = serviceInstance.metadata;
+        return serviceInstance;
+      }
+  );
 }
 
 
@@ -98,6 +114,12 @@ export function resolveServiceBindingList(serviceBindingListResource, $statePara
         serviceBindingList.listMeta = {
           totalItems: serviceBindingList.serviceBindings.length,
         };
+        serviceBindingList.serviceBindings.forEach((serviceBinding) => {
+          serviceBinding.typeMeta = {
+            kind: 'servicebinding',
+          };
+          serviceBinding.objectMeta = serviceBinding.metadata;
+        });
         return serviceBindingList;
       });
 }
