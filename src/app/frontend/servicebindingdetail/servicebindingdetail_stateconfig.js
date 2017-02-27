@@ -67,14 +67,15 @@ function appendBindingParamsToUrl(baseUrl) {
  * @ngInject
  */
 export function getServiceBindingResource($stateParams, $resource) {
-  return $resource(`api/v1alpha1/servicebinding/${$stateParams.bindingName}`);
+  return $resource(`api/v1alpha1/servicebinding/:namespace/${$stateParams.bindingName}`);
 }
 
 /**
  * @param {!angular.Resource} serviceBindingResource
+ * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceBinding(serviceBindingResource) {
-  return serviceBindingResource.get().$promise;
+export function resolveServiceBinding(serviceBindingResource, $stateParams) {
+  return serviceBindingResource.get({namespace: $stateParams.namespace}).$promise;
 }

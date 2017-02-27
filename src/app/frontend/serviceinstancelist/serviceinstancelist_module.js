@@ -54,5 +54,5 @@ export default angular
  * @ngInject
  */
 function serviceInstanceListResource($resource) {
-  return $resource('api/v1alpha1/serviceinstance');
+  return $resource('api/v1alpha1/serviceinstance/:namespace');
 }

@@ -66,7 +66,7 @@ export default angular
  * @ngInject
  */
 function serviceBrokerListResource($resource) {
-  return $resource('api/v1alpha1/servicebroker');
+  return $resource('api/v1alpha1/servicebroker/:namespace');
 }
 
 /**
@@ -75,5 +75,5 @@ function serviceBrokerListResource($resource) {
  * @ngInject
  */
 function serviceClassListResource($resource) {
-  return $resource('api/v1alpha1/serviceclass');
+  return $resource('api/v1alpha1/serviceclass/:namespace');
 }

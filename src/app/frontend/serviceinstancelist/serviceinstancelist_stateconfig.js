@@ -61,17 +61,19 @@ export default function stateConfig($stateProvider) {
 
 /**
  * @param {!angular.Resource} kdServiceInstanceListResource
+ * @param {!./../chrome/chrome_state.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceInstanceList(kdServiceInstanceListResource) {
-  return kdServiceInstanceListResource.get().$promise.then((serviceInstanceList) => {
-    serviceInstanceList.serviceInstances = serviceInstanceList.items;
-    delete serviceInstanceList.items;
-    serviceInstanceList.listMeta = {};
-    serviceInstanceList.listMeta.totalItems = serviceInstanceList.serviceInstances.length;
-    return serviceInstanceList;
-  });
+export function resolveServiceInstanceList(kdServiceInstanceListResource, $stateParams) {
+  return kdServiceInstanceListResource.get({namespace: $stateParams.namespace})
+      .$promise.then((serviceInstanceList) => {
+        serviceInstanceList.serviceInstances = serviceInstanceList.items;
+        delete serviceInstanceList.items;
+        serviceInstanceList.listMeta = {};
+        serviceInstanceList.listMeta.totalItems = serviceInstanceList.serviceInstances.length;
+        return serviceInstanceList;
+      });
 }
 
 const i18n = {

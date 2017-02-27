@@ -61,20 +61,22 @@ export default function stateConfig($stateProvider) {
 
 /**
  * @param {!angular.Resource} kdServiceClassListResource
+ * @param {!./../chrome/chrome_state.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceClassList(kdServiceClassListResource) {
-  return kdServiceClassListResource.get().$promise;
+export function resolveServiceClassList(kdServiceClassListResource, $stateParams) {
+  return kdServiceClassListResource.get({namespace: $stateParams.namespace}).$promise;
 }
 
 /**
  * @param {!angular.Resource} kdServiceBrokerListResource
+ * @param {!./../chrome/chrome_state.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceBrokerList(kdServiceBrokerListResource) {
-  return kdServiceBrokerListResource.get().$promise;
+export function resolveServiceBrokerList(kdServiceBrokerListResource, $stateParams) {
+  return kdServiceBrokerListResource.get({namespace: $stateParams.namespace}).$promise;
 }
 
 const i18n = {
