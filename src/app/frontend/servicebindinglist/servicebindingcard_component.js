@@ -67,6 +67,27 @@ export class ServiceBindingCardController {
         this.serviceBinding.name);
     return this.state_.href(stateName, stateParams);
   }
+
+  /**
+   * @return {string}
+   * @export
+   */
+  getStringifiedAppLabelSelector(){
+    if(this.serviceBinding.spec && this.serviceBinding.spec.AppLabelSelector && this.serviceBinding.spec.AppLabelSelector.matchExpressions){
+      return this.serviceBinding.spec.AppLabelSelector.matchExpressions.map((matchExpression) => {
+        let {operator, key, values} = matchExpression;
+        if(operator === 'In' || operator === 'NotIn'){
+          return `${key} ${operator.toLowerCase()} (${values.join(', ')})`;
+        } else if(operator === 'DoesNotExist'){
+          return `!${key}`;
+        } else {
+          return key;
+        }
+      }).join(', ');
+    } else {
+      return '';
+    }
+  }
 }
 
 /**
