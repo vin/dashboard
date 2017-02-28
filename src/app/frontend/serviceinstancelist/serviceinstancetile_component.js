@@ -25,7 +25,7 @@ export class ServiceInstanceTileController {
    * @ngInject
    */
   constructor($state) {
-    /** @export {?} */
+    /** @export {backendApi.ServiceInstance} */
     this.serviceInstance;
     /** @export {?} */
     this.serviceClass;

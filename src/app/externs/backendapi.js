@@ -1247,6 +1247,20 @@ backendApi.ServiceClassList;
 /**
  * @typedef {Object}
  */
+backendApi.ServiceInstanceCondition;
+
+/**
+ * @typedef {{
+ *   Conditions: Array.<backendApi.ServiceInstanceCondition>
+ * }}
+ */
+backendApi.ServiceInstanceStatus;
+
+/**
+ * @typedef {{
+ *   Status: backendApi.ServiceInstanceStatus
+ * }}
+ */
 backendApi.ServiceInstance;
 
 /**
