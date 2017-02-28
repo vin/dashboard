@@ -14,10 +14,31 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-resource-card-list >
-  <kd-resource-card-list-header>
-    [[Network Functions|Label which appears above the list of such objects.]]
+<kd-resource-card-list selectable="::false" with-statuses="false">
+  <kd-resource-card-list-header class="kd-network-function-card-list-header">
+    <span class="kd-network-function-card-list-header-title">
+      [[Network Functions|Label which appears above the list of such objects.]]
+    </span>
+    <md-button class="kd-network-function-card-list-header-add-network-function" ng-click="$ctrl.showAddNetworkFunctionDialog($event)">
+      <md-icon>add</md-icon>
+      Add Network Function
+    </md-button>
   </kd-resource-card-list-header>
   <kd-resource-card-header-columns>
+    <kd-resource-card-header-column size="small">
+      Kind
+    </kd-resource-card-header-column>
+    <kd-resource-card-header-column grow="2">
+      Parameters
+    </kd-resource-card-header-column>
   </kd-resource-card-header-columns>
+
+  <div ng-if="$ctrl.getNetworkFunctions().length">
+    <kd-network-function-card network-function="networkFunction"
+                              ng-repeat="networkFunction in $ctrl.getNetworkFunctions()">
+    </kd-network-function-card>
+  </div>
+  <div class="kd-service-network-function-card-list-none" ng-if="!$ctrl.getNetworkFunctions().length">
+    No Network Functions
+  </div>
 </kd-resource-card-list>

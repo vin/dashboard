@@ -1,0 +1,43 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<md-dialog>
+  <md-dialog-content class="kd-service-class-list-add-network-function-dialog">
+    <h1 class="md-title kd-service-class-list-add-network-function-dialog-title">Add Network Function</h1>
+    <form>
+      <div>
+        <md-input-container class="kd-service-class-list-add-network-function-dialog-kind">
+          <md-select ng-model="$ctrl.formData.kind">
+            <md-option ng-value="'quota'">Quota</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div>
+        <md-input-container class="kd-service-class-list-add-network-function-dialog-params">
+          <label>Parameters</label>
+          <textarea ng-model="$ctrl.formData.params"></textarea>
+        </md-input-container>
+      </div>
+      <div>
+        <md-button class="md-raised md-primary" ng-click="$ctrl.createNetworkFunction()">
+          Add Network Function
+        </md-button>
+        <md-button class="md-raised" ng-click="$ctrl.hide()">Cancel</md-button>
+      </div>
+    </form>
+  </md-dialog-content>
+</md-dialog>
+
+

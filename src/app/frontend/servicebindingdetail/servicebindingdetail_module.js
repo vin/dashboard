@@ -15,6 +15,7 @@
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
 import filtersModule from 'common/filters/filters_module';
+import networkFunctionListModule from 'networkfunctionlist/networkfunctionlist_module';
 
 import stateConfig from './servicebindingdetail_stateconfig';
 import {serviceBindingInfoComponent} from './servicebindinginfo_component';
@@ -35,6 +36,7 @@ export default angular
           filtersModule.name,
           componentsModule.name,
           chromeModule.name,
+          networkFunctionListModule.name,
         ])
     .config(stateConfig)
     .component('kdServiceBindingInfo', serviceBindingInfoComponent);

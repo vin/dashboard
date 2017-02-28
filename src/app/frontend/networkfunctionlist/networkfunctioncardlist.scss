@@ -12,28 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * @final
- */
-export class NetworkFunctionCardController {
-  /**
-   * @ngInject
-   */
-  constructor() {
-    /** @export {?} */
-    this.networkFunction;
+@import '../variables';
+
+.kd-service-network-function-card-list-none {
+  border-top: 1px solid $border;
+  text-align: center;
+  padding: $baseline-grid 0;
+  color: $foreground-2;
+}
+
+.kd-network-function-card-list-header {
+  display: flex;
+}
+
+.kd-network-function-card-list-header-title {
+  flex-grow: 1;
+}
+
+.kd-network-function-card-list-header-add-network-function {
+  md-icon {
+    color: currentColor;
   }
 }
 
-/**
- * Definition object for the component that displays a network function card.
- *
- * @type {!angular.Component}
- */
-export const networkFunctionCardComponent = {
-  templateUrl: 'networkfunctionlist/networkfunctioncard.html',
-  controller: NetworkFunctionCardController,
-  bindings: {
-    'networkFunction': '<',
-  },
-};

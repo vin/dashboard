@@ -12,14 +12,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {AddNetworkFunctionDialogController} from './addnetworkfunctiondialog_controller';
+
+
 /**
  * @final
  */
 export class NetworkFunctionCardListController {
   /**
+   * @param {!md.$dialog} $mdDialog
    * @ngInject
    */
-  constructor() {}
+  constructor($mdDialog) {
+    /** @private {!md.$dialog} */
+    this.mdDialog_ = $mdDialog;
+    /** @export {?} */
+    this.serviceBinding;
+  }
+
+  showAddNetworkFunctionDialog(event) {
+    this.mdDialog_.show({
+      controller: AddNetworkFunctionDialogController,
+      controllerAs: '$ctrl',
+      templateUrl: 'networkfunctionlist/addnetworkfunctiondialog.html',
+      parent: angular.element(document.body),
+      targetEvent: event,
+      locals: {
+        'serviceBinding': this.serviceBinding,
+      },
+    });
+  }
+
+  getNetworkfunctions(){
+    if(this.serviceBinding.istio_config){
+      return this.serviceBinding.istio_config.rules;
+    } else {
+      return [];
+    }
+  }
 }
 
 /**
@@ -30,4 +60,8 @@ export class NetworkFunctionCardListController {
 export const networkFunctionCardListComponent = {
   templateUrl: 'networkfunctionlist/networkfunctioncardlist.html',
   controller: NetworkFunctionCardListController,
+  bindings: {
+    /** {?} */
+    'serviceBinding': '<',
+  },
 };
