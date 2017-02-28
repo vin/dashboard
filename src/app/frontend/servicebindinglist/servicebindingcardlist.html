@@ -42,10 +42,14 @@ limitations under the License.
     <kd-resource-card-header-column size="small" grow="nogrow">
     </kd-resource-card-header-column>
   </kd-resource-card-header-columns>
-  <kd-service-binding-card ng-if="::true" service-binding="serviceBinding" service-instance="$ctrl.serviceInstance"
+  <kd-service-binding-card ng-if="$ctrl.serviceBindingList.listMeta.totalItems" service-binding="serviceBinding"
+                   service-instance="$ctrl.serviceInstance"
                    dir-paginate="serviceBinding in $ctrl.serviceBindingList.serviceBindings | itemsPerPage: default"
                    total-items="::$ctrl.serviceBindingList.listMeta.totalItems" pagination-id="servicebindings">
   </kd-service-binding-card>
+  <div class="kd-service-binding-card-list-none" ng-if="!$ctrl.serviceBindingList.listMeta.totalItems">
+    No Bindings
+  </div>
   <!--<kd-service-instance-card ng-if="::!$ctrl.serviceBindingListResource" pagination-id="servicesbindings"-->
                    <!--dir-paginate="serviceBinding in $ctrl.serviceBindingList.items | itemsPerPage: default"-->
                    <!--service="serviceBinding">-->
