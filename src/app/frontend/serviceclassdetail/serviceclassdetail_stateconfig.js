@@ -58,15 +58,16 @@ export default function stateConfig($stateProvider) {
  * @ngInject
  */
 export function getServiceClassDetailResource($stateParams, $resource) {
-  return $resource(`api/v1alpha1/serviceclass/${$stateParams.objectName}`);
+  return $resource(`api/v1alpha1/serviceclass/:namespace/${$stateParams.objectName}`);
 }
 
 
 /**
  * @param {!angular.Resource} serviceClassDetailResource
+ * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceClassDetail(serviceClassDetailResource) {
-  return serviceClassDetailResource.get().$promise;
+export function resolveServiceClassDetail(serviceClassDetailResource, $stateParams) {
+  return serviceClassDetailResource.get({namespace: $stateParams.namespace}).$promise;
 }
