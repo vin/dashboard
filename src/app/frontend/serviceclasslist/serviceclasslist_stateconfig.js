@@ -41,7 +41,7 @@ export default function stateConfig($stateProvider) {
     },
     data: {
       [breadcrumbsConfig]: {
-        'label': i18n.MSG_BREADCRUMBS_INSTANCE_LABEL,
+        'label': i18n.MSG_BREADCRUMBS_CATALOG_LABEL,
       },
     },
     views: {
@@ -81,5 +81,5 @@ export function resolveServiceBrokerList(kdServiceBrokerListResource, $statePara
 
 const i18n = {
   /** @type {string} @desc Label 'Catalog' that appears as a breadcrumbs on the action bar. */
-  MSG_BREADCRUMBS_INSTANCE_LABEL: goog.getMsg('Catalog'),
+  MSG_BREADCRUMBS_CATALOG_LABEL: goog.getMsg('Catalog'),
 };
