@@ -58,7 +58,7 @@ export default function stateConfig($stateProvider) {
  * @ngInject
  */
 export function getServiceClassDetailResource($stateParams, $resource) {
-  return $resource(`api/v1alpha1/serviceclass/${$stateParams.namespace}/${$stateParams.objectName}`);
+  return $resource(`api/v1alpha1/serviceclass/${$stateParams.objectNamespace}/${$stateParams.objectName}`);
 }
 
 

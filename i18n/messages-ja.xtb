@@ -15,6 +15,7 @@
   <translation id="7747923130541982538" key="MSG_ADMIN_RESOURCE_QUOTAS_LABEL" desc="Label that appears above the list of resources.">リソースクォータ</translation>
   <translation id="1024358167652076581" key="MSG_ALL_NAMESPACES" desc="Text for dropdown item that indicates that no namespace was selected">すべてのネームスペース</translation>
   <translation id="4466763630197200161" key="MSG_BREADCRUMBS_ADMIN_LABEL" desc="Label 'Admin' that appears as a breadcrumbs on the action bar.">管理者</translation>
+  <translation id="4946081638692887427" key="MSG_BREADCRUMBS_CATALOG_LABEL" desc="Label 'Catalog' that appears as a breadcrumbs on the action bar.">Catalog</translation>
   <translation id="954605561178153927" key="MSG_BREADCRUMBS_CONFIG_LABEL" desc="Label 'Config' that appears as a breadcrumbs on the action bar.">コンフィグ</translation>
   <translation id="3212328899649855136" key="MSG_BREADCRUMBS_CONFIG_MAPS_LABEL" desc="Label 'Config Maps' that appears as a breadcrumbs on the action bar.">コンフィグマップ</translation>
   <translation id="3217932097841975938" key="MSG_BREADCRUMBS_DAEMON_SETS_LABEL" desc="Label 'Daemon Sets' that appears as a breadcrumbs on the action bar.">デーモンセット</translation>
@@ -23,6 +24,7 @@
   <translation id="3098067826555563293" key="MSG_BREADCRUMBS_DEPLOY_FILE_LABEL" desc="Breadcrum label for the YAML upload form">アップロード</translation>
   <translation id="2248903848244811172" key="MSG_BREADCRUMBS_HORIZONTAL_POD_AUTOSCALERS_LABEL" desc="Label 'Horizontal Pod Autoscalers' that appears as a breadcrumbs on the action bar.">水平ポッドオートスケーラー</translation>
   <translation id="5747298115200147575" key="MSG_BREADCRUMBS_INGRESSS_LABEL" desc="Label 'Ingress' that appears as a breadcrumbs on the action bar.">イングレス</translation>
+  <translation id="6038532131188007717" key="MSG_BREADCRUMBS_INSTANCE_LABEL" desc="Label 'Instances' that appears as a breadcrumbs on the action bar.">Instances</translation>
   <translation id="2741276106482217695" key="MSG_BREADCRUMBS_INTERNALERROR_LABEL" desc="Label for internal error page for breadcrumbs on the action bar.">内部エラー</translation>
   <translation id="2024511088483477440" key="MSG_BREADCRUMBS_JOBS_LABEL" desc="Label 'Jobs' that appears as a breadcrumbs on the action bar.">ジョブ</translation>
   <translation id="1050029015813261838" key="MSG_BREADCRUMBS_LOGS_LABEL" desc="Breadcrum label for the logs view.">ログ</translation>
@@ -53,6 +55,9 @@
   <translation id="7499906935876891155" key="MSG_CHROME_NAV_NAV_18" desc="Secrets item in the nav.">シークレット</translation>
   <translation id="8736839163304985332" key="MSG_CHROME_NAV_NAV_19" desc="Config Maps item in the nav.">コンフィグマップ</translation>
   <translation id="1743316598408730775" key="MSG_CHROME_NAV_NAV_2" desc="Nodes menu item in the nav.">ノード</translation>
+  <translation id="9013223871612027405" key="MSG_CHROME_NAV_NAV_20" desc="Plori menu item in the nav.">Plori</translation>
+  <translation id="4869738081843778268" key="MSG_CHROME_NAV_NAV_21" desc="Catalog menu item in the nav.">Catalog</translation>
+  <translation id="150602437324185194" key="MSG_CHROME_NAV_NAV_22" desc="Instances menu item in the nav.">Instances</translation>
   <translation id="4957526140740745953" key="MSG_CHROME_NAV_NAV_3" desc="Persistent Volumes menu item in the nav.">永続ボリューム</translation>
   <translation id="4398523516847444868" key="MSG_CHROME_NAV_NAV_4" desc="Workloads menu item in the nav.">ワークロード</translation>
   <translation id="6003139668988832289" key="MSG_CHROME_NAV_NAV_5" desc="Deployments menu item in the nav.">デプロイメント</translation>
@@ -1478,6 +1483,13 @@
   <translation id="1932088152662132374" key="MSG_SECRET_LIST_NAMESPACE_LABEL" desc="Label 'Namespace' which appears as a column label in the table of secrets (secret list view).">ネームスペース</translation>
   <translation id="5369075053717474120" key="MSG_SECRET_LIST_NAME_LABEL" desc="Label 'Name' which appears as a column label in the table of pods (pod list view).">名前</translation>
   <translation id="2799384691872397176" key="MSG_SECRET_LIST_STARTED_AT_TOOLTIP" desc="Tooltip 'Started at [some date]' showing the exact start time of the secret."><ph name="START_DATE"/> UTC に作成</translation>
+  <translation id="2007599665845337529" key="MSG_SERVICEBINDINGDETAIL_SERVICEBINDINGINFO_0" desc="Header in a detail view">Binding Details</translation>
+  <translation id="4427168939960118662" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_0" desc="Label which appears above the list of such objects.">Bindings</translation>
+  <translation id="2547147336713723896" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of service bindings">Name</translation>
+  <translation id="3952601175497551501" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_2" desc="Label which appears as the label of the column corresponding to which instance the binding is from">From Instance</translation>
+  <translation id="766773006064384536" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_3" desc="Label which appears as the label of the column corresponding to which instance the binding is to">To Selector</translation>
+  <translation id="8682537773903929729" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_4" desc="Label which appears as the label of the column corresponding to the labels for the binding">Labels</translation>
+  <translation id="6005028992894086818" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARD_0" desc="tooltip for pending binding card icon">This binding is in a pending state</translation>
   <translation id="3174922746683388850" key="MSG_SERVICEDETAIL_SERVICEDETAILINFO_0" desc="Title \'Resource details\' at the top service details view.">リソース詳細</translation>
   <translation id="7259128300465442626" key="MSG_SERVICEDETAIL_SERVICEDETAILINFO_0" desc="Header in a detail view">詳細</translation>
   <translation id="1436736742516221745" key="MSG_SERVICEDETAIL_SERVICEDETAILINFO_1" desc="Label \'Label selector\' for the service\'s label selector in the details part (left) of the service details view.">ラベルセレクター</translation>
@@ -1496,6 +1508,15 @@
   <translation id="2090175037984090761" key="MSG_SERVICEDETAIL_SERVICEDETAIL_0" desc="Title \'Pods\', which appears at the top of the pods list on the service detail view.">ポッド</translation>
   <translation id="8302893756956754954" key="MSG_SERVICEDETAIL_SERVICEDETAIL_0" desc="Title for pods card zerostate in stateful set details page.">表示するものがありません</translation>
   <translation id="1777687475500640375" key="MSG_SERVICEDETAIL_SERVICEDETAIL_1" desc="Text for pods card zerostate in stateful set details page.">このサービスに選択されたポッドはありません。</translation>
+  <translation id="5871355117264820591" key="MSG_SERVICEINSTANCEDETAIL_SERVICEINSTANCEDETAIL_0" desc="Title for instances card zerostate in stateful set details page.">There is nothing to display here</translation>
+  <translation id="9067232545601979529" key="MSG_SERVICEINSTANCEDETAIL_SERVICEINSTANCEDETAIL_1" desc="Text for instances card zerostate in stateful set details page.">There are currently no bindings used by this Instance.</translation>
+  <translation id="6776329724501500085" key="MSG_SERVICEINSTANCEDETAIL_SERVICEINSTANCEINFO_0" desc="Header in a detail view">Details</translation>
+  <translation id="8837528392774226735" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_0" desc="Label which appears above the list of such objects.">Instances</translation>
+  <translation id="880579436903444842" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of service instances">Name</translation>
+  <translation id="1906213562845364310" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_2" desc="Label \'Type\' which appears as the label of the column corresponding to the service class of the service instance.">Type</translation>
+  <translation id="4096534321476028472" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_3" desc="Label \'Plan\' which appears as the label of the column corresponding to the plan of the given instance">Plan</translation>
+  <translation id="2118963057525941559" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_4" desc="Label \'Labels\' which appears as the label of the column corresponding to the Labels of the given instance">Labels</translation>
+  <translation id="8684296629873680147" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARD_0" desc="tooltip for pending service card icon">This service is in a pending state</translation>
   <translation id="5598175555148966016" key="MSG_SERVICELIST_SERVICECARDLIST_0" desc="Label which appears above the list of such objects.">サービス</translation>
   <translation id="9217085047117833277" key="MSG_SERVICELIST_SERVICECARDLIST_0" desc="Label \'Name\' which appears as a column label in the table of services (service list view).">名前</translation>
   <translation id="668323935453874914" key="MSG_SERVICELIST_SERVICECARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of services (service list view).">名前</translation>

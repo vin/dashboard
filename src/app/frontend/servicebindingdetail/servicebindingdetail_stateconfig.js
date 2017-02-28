@@ -83,7 +83,7 @@ export function getServiceBindingResource($stateParams, $resource) {
  * @ngInject
  */
 export function resolveServiceBinding(serviceBindingResource, $stateParams) {
-  return serviceBindingResource.get({namespace: $stateParams.namespace})
+  return serviceBindingResource.get({namespace: $stateParams.objectNamespace})
       .$promise.then((serviceBinding) => {
         serviceBinding.typeMeta = {
           kind: 'servicebinding',

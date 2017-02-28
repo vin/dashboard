@@ -1218,6 +1218,50 @@ backendApi.HorizontalPodAutoscalerList;
 backendApi.Controller;
 
 /**
+ * @typedef {Object}
+ */
+backendApi.ServiceBroker;
+
+/**
+ * @typedef {{
+ *   items: Array.<backendApi.ServiceBroker>
+ * }}
+ */
+backendApi.ServiceBrokerList;
+
+/**
+ * @typedef {{
+ *   BrokerName: string,
+ *   Plans: Array.<Object>,
+ * }}
+ */
+backendApi.ServiceClass;
+
+/**
+ * @typedef {{
+ *   items: Array.<backendApi.ServiceClass>
+ * }}
+ */
+backendApi.ServiceClassList;
+
+/**
+ * @typedef {Object}
+ */
+backendApi.ServiceInstance;
+
+/**
+ * @typedef {{
+ *   items: Array.<backendApi.ServiceInstance>
+ * }}
+ */
+backendApi.ServiceInstanceList;
+
+/**
+ * @typedef {Object}
+ */
+backendApi.ServiceBinding;
+
+/**
  * @typedef {{
  *   token: string
  * }}

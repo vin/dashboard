@@ -25,7 +25,7 @@ export class CreateServiceBindingDialogController {
   constructor(serviceInstance, $scope, $mdDialog, $resource, kdCsrfTokenService, $state) {
     this.serviceInstance = serviceInstance;
     this.scope = $scope;
-    this.scope.formData = {
+    this.formData = {
       bindingName: '',
       labelSelector: '',
     };
