@@ -43,7 +43,7 @@ export class NetworkFunctionCardListController {
     });
   }
 
-  getNetworkfunctions(){
+  getNetworkFunctions(){
     if(this.serviceBinding.istio_config){
       return this.serviceBinding.istio_config.rules;
     } else {

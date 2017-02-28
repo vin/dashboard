@@ -43,7 +43,21 @@ export class AddNetworkFunctionDialogController {
   }
 
   getPutData() {
-    return {};
+    let putData = angular.copy(this.serviceBinding);
+    delete putData.typeMeta;
+    delete putData.objectMeta;
+
+    if(!putData.istio_config){
+      putData.istio_config = {};
+    }
+    if(!putData.istio_config.rules){
+      putData.istio_config.rules = [];
+    }
+
+    putData.istio_config.rules.push(
+        {kind: this.formData.kind, params: JSON.parse(this.formData.params)});
+
+    return putData;
   }
 
   createNetworkFunction() {
