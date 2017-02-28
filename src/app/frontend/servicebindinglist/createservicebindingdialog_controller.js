@@ -15,7 +15,7 @@
 export class CreateServiceBindingDialogController {
   /**
    * @param {?} serviceInstance
-   * @param {!angular.$scope} $scope
+   * @param {!angular.Scope} $scope
    * @param {!md.$dialog} $mdDialog
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
