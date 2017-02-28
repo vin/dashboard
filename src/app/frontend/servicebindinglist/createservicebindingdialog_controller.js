@@ -20,9 +20,10 @@ export class CreateServiceBindingDialogController {
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
    * @param {!ui.router.$state} $state
+   * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
    * @ngInject
    */
-  constructor(serviceInstance, $scope, $mdDialog, $resource, kdCsrfTokenService, $state) {
+  constructor(serviceInstance, $scope, $mdDialog, $resource, kdCsrfTokenService, $state, $stateParams) {
     this.serviceInstance = serviceInstance;
     this.scope = $scope;
     this.scope.formData = {
@@ -37,6 +38,8 @@ export class CreateServiceBindingDialogController {
     this.tokenPromise_ = kdCsrfTokenService.getTokenForAction('servicebinding');
     /** @private {!ui.router.$state} */
     this.state_ = $state;
+    /** @private {!./../common/resource/resourcedetail.StateParams} */
+    this.stateParams_ = $stateParams;
   }
 
   getPutData() {
@@ -53,10 +56,49 @@ export class CreateServiceBindingDialogController {
           namespace: 'default',
         },
         serviceName: this.serviceInstance.name,
-        // TODO rossholland do something with the label selector
+        AppLabelSelector: this.parseLabelSelector(this.formData.labelSelector),
       },
       to: this.serviceInstance.name,
     };
+  }
+
+  /**
+   * @param {string} rawLabelSelector
+   * @return {string}
+   */
+  parseLabelSelector(rawLabelSelector){
+    let matchExpressions = rawLabelSelector.split(/\n/g)
+        .map((s) => s.trim())
+        .filter((s) => s)
+        .map((singleLabelSelector) => {
+          let match = singleLabelSelector.match(/(.*) (in|notin|=|!=) (.*)/);
+          if(match){
+            let [key, operator, value] = match.slice(1);
+            if(operator === 'in' || operator === 'notin'){
+              let values = value.slice(1,-1).split(',').map((s) => s.trim());
+              return {key, operator: operator === 'in' ? 'In' : 'NotIn', values};
+            } else {
+              return {
+                key,
+                operator: operator === '=' ? 'In' : 'NotIn',
+                values: [value],
+              };
+            }
+          } else {
+            if(singleLabelSelector.slice(0,1) === '!'){
+              return {
+                key: singleLabelSelector.slice(1),
+                operator: 'DoesNotExist',
+              };
+            } else {
+              return {
+                key: singleLabelSelector,
+                operator: 'Exists',
+              };
+            }
+          }
+        });
+    return {matchExpressions};
   }
 
 
@@ -65,7 +107,7 @@ export class CreateServiceBindingDialogController {
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
-              'api/v1alpha1/servicebinding', {},
+              `api/v1alpha1/servicebinding/${this.stateParams_.namespace}`, {},
               {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
           return resource.save(this.getPutData()).$promise;
         })
