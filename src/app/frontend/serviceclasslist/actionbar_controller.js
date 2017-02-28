@@ -34,7 +34,7 @@ export class ActionBarController {
     this.stateParams_ = $stateParams;
   }
 
-  showAddCatalogDialog() {
+  showAddCatalogDialog(event) {
     this.mdDialog_.show({
       controller: AddCatalogDialogController,
       controllerAs: '$ctrl',
