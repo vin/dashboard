@@ -14,7 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-
-<p class="kd-service-class-detail-description">
-  {{$ctrl.serviceClass.LongDescription || $ctrl.serviceClass.Description || '(No Description)'}}
-</p>
+<img ng-if="$ctrl.imgUrl" class="kd-service-class-icon-img" src="{{$ctrl.imgUrl}}"
+     style="width:{{$ctrl.imgSize}};height:{{$ctrl.imgSize}}">
+<md-icon ng-if="!$ctrl.imgUrl" class="material-icons kd-service-class-icon-default-img"
+         style="font-size:{{$ctrl.imgSize}}">
+  cloud_queue
+</md-icon>

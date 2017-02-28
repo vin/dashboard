@@ -31,6 +31,7 @@ import middleEllipsisDirective from './middleellipsis/middleellipsis_directive';
 import resourceCardModule from './resourcecard/resourcecard_module';
 import resourceDetailModule from './resourcedetail/module';
 import serializedReferenceModule from './serializedreference/serializedreference_module';
+import serviceClassIconModule from './serviceclassicon/serviceclassicon_module';
 import serviceGraphModule from './servicegraph/servicegraph_module';
 import sparklineDirective from './sparkline/sparkline_directive';
 import tileModule from './tile/tile_module';
@@ -61,6 +62,7 @@ export default angular
           graphModule.name,
           conditionsModule.name,
           serializedReferenceModule.name,
+          serviceClassIconModule.name,
           serviceGraphModule.name,
           annotationsModule.name,
           toggleHiddenTextModule.name,

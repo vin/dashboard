@@ -17,7 +17,7 @@ limitations under the License.
 
 <a class="kd-service-instance-tile-link" ng-href="{{$ctrl.getServiceInstanceDetailHref()}}">
   <div class="kd-service-instance-tile-icon">
-    <img class="kd-service-instance-tile-icon-img" src="{{::$ctrl.serviceClass.ImageURL}}">
+    <kd-service-class-icon img-url="$ctrl.serviceClass.ImageURL" img-size="'48px'"></kd-service-class-icon>
   </div>
   <h2 class="kd-service-instance-tile-name md-title">
     {{$ctrl.serviceInstance.name}}

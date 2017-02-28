@@ -16,11 +16,11 @@ limitations under the License.
 
 <kd-service-class-card-columns>
   <kd-service-class-card-column class="kd-service-class-card-column-icon">
-    <img class="kd-service-class-card-icon" src="{{$ctrl.serviceClass.ImageURL}}">
+    <kd-service-class-icon img-url="$ctrl.serviceClass.ImageURL" img-size="'32px'"></kd-service-class-icon>
   </kd-service-class-card-column>
   <kd-service-class-card-column>
     <a ng-href="{{::$ctrl.getServiceClassDetailHref()}}">
-      <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.DisplayName}}">
+      <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.DisplayName || $ctrl.serviceClass.name}}">
       </kd-middle-ellipsis>
     </a>
   </kd-service-class-card-column>
@@ -37,7 +37,7 @@ limitations under the License.
     </div>
   </kd-service-class-card-column>
   <kd-service-class-card-column-multi-line>
-    {{$ctrl.serviceClass.Description || $ctrl.serviceClass.LongDescription}}
+    {{$ctrl.serviceClass.Description || $ctrl.serviceClass.LongDescription || '(No Description)'}}
   </kd-service-class-card-column-multi-line>
 </kd-service-class-card-columns>
 

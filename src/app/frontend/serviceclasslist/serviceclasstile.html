@@ -17,10 +17,10 @@ limitations under the License.
 
 <a class="kd-service-class-tile-link" ng-href="{{$ctrl.getServiceClassDetailHref()}}">
   <div class="kd-service-class-tile-icon">
-    <img class="kd-service-class-tile-icon-img" src="{{$ctrl.serviceClass.ImageURL}}">
+    <kd-service-class-icon img-url="$ctrl.serviceClass.ImageURL" img-size="'48px'"></kd-service-class-icon>
   </div>
   <h2 class="kd-service-class-tile-name md-title">
-    {{::$ctrl.serviceClass.DisplayName}}
+    {{::$ctrl.serviceClass.DisplayName || $ctrl.serviceClass.name}}
   </h2>
   <div class="kd-service-class-tile-provider">
     <kd-middle-ellipsis display-string="{{::$ctrl.serviceClass.ProviderDisplayName || '-'}}">
@@ -28,7 +28,7 @@ limitations under the License.
 
   </div>
   <p class="kd-service-class-tile-description">
-    {{$ctrl.serviceClass.Description || $ctrl.serviceClass.LongDescription}}
+    {{$ctrl.serviceClass.Description || $ctrl.serviceClass.LongDescription || '(No Description)'}}
   </p>
   <div class="kd-service-class-tile-catalog">
     <span class="kd-service-class-tile-catalog-label">Catalog</span> {{$ctrl.serviceBroker.name}}
