@@ -49,6 +49,7 @@ export class ActionBarController {
       case 'tile':
         return 'view_module';
       case 'graph':
+      default:
         return 'share';
     }
   }

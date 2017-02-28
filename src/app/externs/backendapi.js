@@ -1245,7 +1245,10 @@ backendApi.ServiceClass;
 backendApi.ServiceClassList;
 
 /**
- * @typedef {Object}
+ * @typedef {{
+ *   Type: string,
+ *   Status: string,
+ * }}
  */
 backendApi.ServiceInstanceCondition;
 
@@ -1256,9 +1259,19 @@ backendApi.ServiceInstanceCondition;
  */
 backendApi.ServiceInstanceStatus;
 
+
 /**
  * @typedef {{
- *   Status: backendApi.ServiceInstanceStatus
+ *   name: string
+ * }}
+ */
+backendApi.ServiceInstanceMetadata;
+
+
+/**
+ * @typedef {{
+ *   Status: backendApi.ServiceInstanceStatus,
+ *   metadata: backendApi.ServiceInstanceMetadata
  * }}
  */
 backendApi.ServiceInstance;
