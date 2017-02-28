@@ -64,7 +64,7 @@ export class CreateServiceBindingDialogController {
 
   /**
    * @param {string} rawLabelSelector
-   * @return {string}
+   * @return {!{matchExpressions: Array}}
    */
   parseLabelSelector(rawLabelSelector){
     let matchExpressions = rawLabelSelector.split(/\n/g)
@@ -107,7 +107,7 @@ export class CreateServiceBindingDialogController {
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
-              `api/v1alpha1/servicebinding/${this.stateParams_.namespace}`, {},
+              `api/v1alpha1/servicebinding/${this.stateParams_.objectNamespace}`, {},
               {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
           return resource.save(this.getPutData()).$promise;
         })

@@ -64,10 +64,9 @@ export function getServiceClassDetailResource($stateParams, $resource) {
 
 /**
  * @param {!angular.Resource} serviceClassDetailResource
- * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceClassDetail(serviceClassDetailResource, $stateParams) {
-  return serviceClassDetailResource.get({namespace: $stateParams.namespace}).$promise;
+export function resolveServiceClassDetail(serviceClassDetailResource) {
+  return serviceClassDetailResource.get().$promise;
 }

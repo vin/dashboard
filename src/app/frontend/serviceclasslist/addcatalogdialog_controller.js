@@ -18,7 +18,7 @@ export class AddCatalogDialogController {
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
    * @param {!md.$dialog} $mdDialog
    * @param {!ui.router.$state} $state
-   * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
+   * @param {!Object} $stateParams
    * @ngInject
    */
   constructor($resource, kdCsrfTokenService, $mdDialog, $state, $stateParams) {
@@ -38,7 +38,7 @@ export class AddCatalogDialogController {
       login: '',
       password: '',
     };
-    /** @private {!./../common/resource/resourcedetail.StateParams} */
+    /** @private {!Object} */
     this.stateParams_ = $stateParams;
   }
 
