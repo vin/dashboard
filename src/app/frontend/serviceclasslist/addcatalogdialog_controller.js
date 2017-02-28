@@ -18,9 +18,10 @@ export class AddCatalogDialogController {
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
    * @param {!md.$dialog} $mdDialog
    * @param {!ui.router.$state} $state
+   * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
    * @ngInject
    */
-  constructor($resource, kdCsrfTokenService, $mdDialog, $state) {
+  constructor($resource, kdCsrfTokenService, $mdDialog, $state, $stateParams) {
     /** @private {!angular.$resource} */
     this.resource_ = $resource;
     /** @private {!angular.$q.Promise} */
@@ -37,6 +38,8 @@ export class AddCatalogDialogController {
       login: '',
       password: '',
     };
+    /** @private {!./../common/resource/resourcedetail.StateParams} */
+    this.stateParams_ = $stateParams;
   }
 
   getPutData() {
@@ -67,7 +70,7 @@ export class AddCatalogDialogController {
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
-              'api/v1alpha1/servicebroker', {},
+              `api/v1alpha1/servicebroker/${this.stateParams_.namespace}`, {},
               {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
           return resource.save(this.getPutData()).$promise;
         })
