@@ -19,7 +19,8 @@ limitations under the License.
     [[Instances|Label which appears above the list of such objects.]]
   </kd-resource-card-list-header>
   <!--TODO(rossholland) list-resource="::$ctrl.serviceInstanceListResource" needs to be added once we're using real data -->
-  <kd-resource-card-list-pagination pagination-id="servicesinstances"
+  <kd-resource-card-list-pagination ng-if="$ctrl.serviceInstanceList.listMeta.totalItems > 0"
+                                    pagination-id="servicesinstances"
                                     list="$ctrl.serviceInstanceList">
   </kd-resource-card-list-pagination>
 
@@ -39,11 +40,16 @@ limitations under the License.
     <kd-resource-card-header-column size="small" grow="nogrow">
     </kd-resource-card-header-column>
   </kd-resource-card-header-columns>
+  <div ng-if="$ctrl.serviceInstanceList.listMeta.totalItems > 0">
+    <kd-service-instance-card ng-if="$ctrl.serviceInstanceList.listMeta.totalItems > 0" service-instance="serviceInstance"
+                              dir-paginate="serviceInstance in $ctrl.serviceInstanceList.serviceInstances | itemsPerPage: default"
+                              total-items="$ctrl.serviceInstanceList.listMeta.totalItems" pagination-id="servicesinstances">
 
-  <kd-service-instance-card ng-if="::true" service-instance="serviceInstance"
-                   dir-paginate="serviceInstance in $ctrl.serviceInstanceList.serviceInstances | itemsPerPage: default"
-                   total-items="::$ctrl.serviceInstanceList.listMeta.totalItems" pagination-id="servicesinstances">
-  </kd-service-instance-card>
+    </kd-service-instance-card>
+  </div>
+  <div class="kd-service-instance-card-list-none" ng-if="$ctrl.serviceInstanceList.listMeta.totalItems <= 0">
+    No Instances
+  </div>
   <!--<kd-service-instance-card ng-if="::!$ctrl.serviceListResource" pagination-id="servicesinstances"-->
                    <!--dir-paginate="serviceInstance in $ctrl.serviceInstanceList.items | itemsPerPage: default"-->
                    <!--service="serviceInstance">-->

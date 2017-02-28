@@ -42,7 +42,7 @@ export class ServiceInstanceListController {
    * @export
    */
   shouldShowZeroState() {
-    return this.serviceInstanceList.listMeta.totalItems === 0;
+    return this.serviceInstanceList.listMeta.totalItems === 0 && this.filterTerm === '';
   }
 
   /**
@@ -56,6 +56,9 @@ export class ServiceInstanceListController {
       this.filteredServiceInstanceList_.serviceInstances =
           this.filteredServiceInstanceList_.serviceInstances.filter(
               (serviceInstance) => serviceInstance.name.toLowerCase().indexOf(filterTerm) !== -1);
+      this.filteredServiceInstanceList_.listMeta = {
+        totalItems: this.filteredServiceInstanceList_.serviceInstances.length
+      };
       this.previousFilterTerm_ = this.filterTerm;
     }
     return this.filteredServiceInstanceList_;
