@@ -23,7 +23,7 @@ describe('Actionbar edit item component', () => {
   let kdResourceVerberService;
   /** @type {!angular.$q} **/
   let q;
-  /** @type {!angular.$scope} **/
+  /** @type {!angular.Scope} **/
   let scope;
 
   beforeEach(() => {

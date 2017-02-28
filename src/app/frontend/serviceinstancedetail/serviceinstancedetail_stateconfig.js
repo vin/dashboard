@@ -78,7 +78,7 @@ export function getServiceInstanceDetailResource($stateParams, $resource) {
  * @ngInject
  */
 export function resolveServiceInstanceDetail(serviceInstanceDetailResource, $stateParams) {
-  return serviceInstanceDetailResource.get({namespace: $stateParams.namespace}).$promise.then(
+  return serviceInstanceDetailResource.get({namespace: $stateParams.objectNamespace}).$promise.then(
       (serviceInstance) => {
         serviceInstance.typeMeta = {
           kind: 'serviceinstance',
@@ -106,7 +106,7 @@ export function getServiceBindingListResource($resource) {
  * @ngInject
  */
 export function resolveServiceBindingList(serviceBindingListResource, $stateParams) {
-  return serviceBindingListResource.get({namespace: $stateParams.namespace})
+  return serviceBindingListResource.get({namespace: $stateParams.objectNamespace})
       .$promise.then((serviceBindingList) => {
         serviceBindingList.serviceBindings = serviceBindingList.items.filter(
             (binding) => binding.spec.instanceRef.name === $stateParams.objectName);

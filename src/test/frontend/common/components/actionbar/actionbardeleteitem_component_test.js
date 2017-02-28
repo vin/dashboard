@@ -24,7 +24,7 @@ describe('Actionbar delete item component', () => {
   let kdResourceVerberService;
   /** @type {!angular.$q} **/
   let q;
-  /** @type {!angular.$scope} **/
+  /** @type {!angular.Scope} **/
   let scope;
 
   /**

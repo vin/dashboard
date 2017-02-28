@@ -30,7 +30,7 @@ describe('DeployFromFile controller', () => {
   let mdDialog;
   /** @type {!angular.$q} **/
   let q;
-  /** @type {!angular.$scope} **/
+  /** @type {!angular.Scope} **/
   let scope;
 
   beforeEach(() => {

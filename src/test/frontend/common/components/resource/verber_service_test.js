@@ -21,7 +21,7 @@ describe('Verber service', () => {
   let mdDialog;
   /** @type {!angular.$q} **/
   let q;
-  /** @type {!angular.$scope} **/
+  /** @type {!angular.Scope} **/
   let scope;
   /** @type {!ui.router.State} **/
   let state;

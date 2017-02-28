@@ -15,7 +15,7 @@
 export class CreateServiceBindingDialogController {
   /**
    * @param {?} serviceInstance
-   * @param {!angular.$scope} $scope
+   * @param {!angular.Scope} $scope
    * @param {!md.$dialog} $mdDialog
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
@@ -26,7 +26,7 @@ export class CreateServiceBindingDialogController {
   constructor(serviceInstance, $scope, $mdDialog, $resource, kdCsrfTokenService, $state, $stateParams) {
     this.serviceInstance = serviceInstance;
     this.scope = $scope;
-    this.scope.formData = {
+    this.formData = {
       bindingName: '',
       labelSelector: '',
     };

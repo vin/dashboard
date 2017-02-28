@@ -12,8 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {StateParams} from 'common/resource/resourcedetail';
+import {StateParams as ResourceStateParams} from 'common/resource/resourcedetail';
 import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
+
+export class StateParams extends ResourceStateParams {
+  /**
+   * @param {string} objectNamespace
+   * @param {string} objectName
+   * @param {string} bindingName
+   */
+  constructor(objectNamespace, objectName, bindingName) {
+    super(objectNamespace, objectName);
+
+    this.bindingName = bindingName;
+  }
+}
 
 /**
  * @final
@@ -49,8 +62,9 @@ export class ServiceBindingCardController {
    */
   getServiceBindingDetailHref() {
     let stateParams = new StateParams(
-        this.serviceInstance.metadata.namespace, this.serviceInstance.metadata.name);
-    stateParams.bindingName = this.serviceBinding.name;
+        this.serviceInstance.metadata.namespace,
+        this.serviceInstance.metadata.name,
+        this.serviceBinding.name);
     return this.state_.href(stateName, stateParams);
   }
 }

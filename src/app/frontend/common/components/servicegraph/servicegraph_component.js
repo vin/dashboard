@@ -35,10 +35,9 @@ export class ServiceGraphController {
   /**
    * Generates graph using this.metrics provided.
    * @private
+   * @param {{edges: Array<Object>, nodes: Array<Object>}} data
    */
   generateGraph(data) {
-    let chart;
-
     let width = this.element_[0].clientWidth;
     let height = this.element_[0].clientHeight;
     let svg = d3.select(this.element_[0]).select('svg.servicegraph');
