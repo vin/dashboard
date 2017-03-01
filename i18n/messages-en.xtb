@@ -49,7 +49,7 @@
   <translation id="2865700765105354763" key="MSG_CHROME_NAV_NAV_23" desc="Config Maps item in the nav.">Config Maps</translation>
   <translation id="4957526140740745953" key="MSG_CHROME_NAV_NAV_3" desc="Persistent Volumes menu item in the nav.">Persistent Volumes</translation>
   <translation id="8926655942187062282" key="MSG_CHROME_NAV_NAV_4" desc="Storage Classes menu item in the nav.">Storage Classes</translation>
-  <translation id="6878321828243911270" key="MSG_CHROME_NAV_NAV_5" desc="Plori menu item in the nav.">Plori</translation>
+  <translation id="143477992365217475" key="MSG_CHROME_NAV_NAV_5" desc="Service Catalog menu item in the nav.">Service Catalog</translation>
   <translation id="6845412903967076932" key="MSG_CHROME_NAV_NAV_6" desc="Catalog menu item in the nav.">Catalog</translation>
   <translation id="8028400971794257538" key="MSG_CHROME_NAV_NAV_7" desc="Instances menu item in the nav.">Instances</translation>
   <translation id="2752104484791123618" key="MSG_CHROME_NAV_NAV_8" desc="Workloads menu item in the nav.">Workloads</translation>
