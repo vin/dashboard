@@ -15,6 +15,7 @@
 package common
 
 import (
+	kdClient "github.com/kubernetes/dashboard/src/app/backend/client"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/fields"
 	"k8s.io/apimachinery/pkg/labels"
@@ -24,8 +25,7 @@ import (
 	autoscaling "k8s.io/client-go/pkg/apis/autoscaling/v1"
 	batch "k8s.io/client-go/pkg/apis/batch/v1"
 	extensions "k8s.io/client-go/pkg/apis/extensions/v1beta1"
-
-	kdClient "github.com/kubernetes/dashboard/src/app/backend/client"
+	storage "k8s.io/client-go/pkg/apis/storage/v1beta1"
 )
 
 // ResourceChannels struct holds channels to resource lists. Each list channel is paired with
@@ -102,6 +102,9 @@ type ResourceChannels struct {
 
 	// List and error channels to ThirdPartyResources
 	ThirdPartyResourceList ThirdPartyResourceListChannel
+
+	// List and error channels to StorageClasses
+	StorageClassList StorageClassListChannel
 }
 
 // ServiceListChannel is a list and error channels to Services.
@@ -719,7 +722,7 @@ func GetPodMetricsChannel(heapsterClient kdClient.HeapsterClient, name string, n
 	}
 
 	go func() {
-		podNamesByNamespace := map[string][]string{namespace: []string{name}}
+		podNamesByNamespace := map[string][]string{namespace: {name}}
 		metrics, err := getPodListMetrics(podNamesByNamespace, heapsterClient)
 		channel.MetricsByPod <- metrics
 		channel.Error <- err
@@ -769,6 +772,31 @@ func GetThirdPartyResourceListChannel(client client.Interface, numReads int) Thi
 
 	go func() {
 		list, err := client.Extensions().ThirdPartyResources().List(listEverything)
+		for i := 0; i < numReads; i++ {
+			channel.List <- list
+			channel.Error <- err
+		}
+	}()
+
+	return channel
+}
+
+// StorageClassListChannel is a list and error channels to storage classes.
+type StorageClassListChannel struct {
+	List  chan *storage.StorageClassList
+	Error chan error
+}
+
+// GetStorageClassListChannel returns a pair of channels to a storage class list and
+// errors that both must be read numReads times.
+func GetStorageClassListChannel(client client.Interface, numReads int) StorageClassListChannel {
+	channel := StorageClassListChannel{
+		List:  make(chan *storage.StorageClassList, numReads),
+		Error: make(chan error, numReads),
+	}
+
+	go func() {
+		list, err := client.Storage().StorageClasses().List(listEverything)
 		for i := 0; i < numReads; i++ {
 			channel.List <- list
 			channel.Error <- err

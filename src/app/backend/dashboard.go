@@ -46,6 +46,7 @@ var (
 func main() {
 	// Set logging output to standard console out
 	log.SetOutput(os.Stdout)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
 	pflag.Parse()
@@ -61,6 +62,7 @@ func main() {
 
 	apiserverClient, config, err := client.CreateApiserverClient(*argApiserverHost, *argKubeConfigFile)
 	if err != nil {
+		log.Printf("Failed to create apiserverClient")
 		handleFatalInitError(err)
 	}
 

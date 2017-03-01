@@ -4,6 +4,7 @@
  */
 
 
+/** @const */
 d3.layout = {};
 
 
@@ -66,7 +67,7 @@ d3.ForceSimulation.prototype.on = function(e, f) {};
 
 
 /**
- * @return {d3.ForceSimulation}
+ * @return {!d3.ForceSimulation}
  */
 d3.layout.force = function() {};
 
