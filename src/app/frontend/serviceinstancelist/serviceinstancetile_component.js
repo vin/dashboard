@@ -33,11 +33,19 @@ export class ServiceInstanceTileController {
     this.state_ = $state;
   }
 
+  /**
+   * @return {boolean}
+   * @export
+   */
   isSuccess() {
     return !!this.serviceInstance.Status.Conditions.find(
         ({Type, Status}) => Type === 'Ready' && Status === 'True');
   }
 
+  /**
+   * @return {boolean}
+   * @export
+   */
   isPending() {
     return !this.isSuccess();
   }

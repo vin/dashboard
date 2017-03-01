@@ -30,10 +30,20 @@ export class ActionBarController {
     this.stateParams_ = $stateParams;
   }
 
+  /**
+   * @param {string} viewMode
+   * @returns {string}
+   * @export
+   */
   getServiceInstanceListHref(viewMode) {
     return this.state_.href(stateName, {viewMode});
   }
 
+  /**
+   * @param {string} viewMode
+   * @return {boolean}
+   * @export
+   */
   isCurrentViewMode(viewMode) {
     return viewMode === this.stateParams_.viewMode;
   }
@@ -41,6 +51,7 @@ export class ActionBarController {
   /**
    * @param {string} viewMode
    * @return {string}
+   * @export
    */
   getIconForViewMode(viewMode) {
     switch (viewMode) {

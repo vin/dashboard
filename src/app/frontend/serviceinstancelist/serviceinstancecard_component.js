@@ -32,11 +32,19 @@ export class ServiceInstanceCardController {
     this.state_ = $state;
   }
 
+  /**
+   * @returns {boolean}
+   * @export
+   */
   isSuccess() {
-    return this.serviceInstance.Status && !!this.serviceInstance.Status.Conditions.find(
+    return !!this.serviceInstance.Status && !!this.serviceInstance.Status.Conditions.find(
         ({Type, Status}) => Type === 'Ready' && Status === 'True');
   }
 
+  /**
+   * @returns {boolean}
+   * @export
+   */
   isPending() {
     return !this.isSuccess();
   }

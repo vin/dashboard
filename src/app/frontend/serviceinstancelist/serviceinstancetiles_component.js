@@ -29,6 +29,7 @@ export class ServiceInstanceTilesController {
   /**
    * @param {?} serviceInstance
    * @return {?} serviceClass
+   * @export
    */
   getServiceClassForServiceInstance(serviceInstance){
     return this.serviceClassList.items.find((serviceClass) =>

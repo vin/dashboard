@@ -47,6 +47,7 @@ export class ServiceInstanceListController {
 
   /**
    * @return {!backendApi.ServiceInstanceList}
+   * @export
    */
   getFilteredServiceInstanceList() {
     if (this.filteredServiceInstanceList_ === null ||
@@ -66,6 +67,7 @@ export class ServiceInstanceListController {
 
   /**
    * @return {boolean}
+   * @export
    */
   shouldShowListView() {
     return this.viewMode_ === 'list';
@@ -73,6 +75,7 @@ export class ServiceInstanceListController {
 
   /**
    * @return {boolean}
+   * @export
    */
   shouldShowTileView() {
     return this.viewMode_ === 'tile';
