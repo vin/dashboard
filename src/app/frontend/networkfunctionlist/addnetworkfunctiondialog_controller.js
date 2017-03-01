@@ -35,8 +35,8 @@ export class AddNetworkFunctionDialogController {
     this.state_ = $state;
     /** @export {?} */
     this.formData = {
-      kind: 'quotas',
-      limit: '5',
+      'kind': 'quotas',
+      'limit': '5',
     };
     /** @private {!Object} */
     this.stateParams_ = $stateParams;
@@ -47,12 +47,12 @@ export class AddNetworkFunctionDialogController {
     delete putData.typeMeta;
     delete putData.objectMeta;
 
-    if(!putData.istio_config){
-      putData.istio_config = [];
+    if(!putData['istio_config']){
+      putData['istio_config'] = [];
     }
 
-    putData.istio_config.push(
-        {aspects: [{kind: this.formData.kind}]});
+    putData['istio_config'].push(
+        {'aspects': [{'kind': this.formData.kind}]});
 
     return putData;
   }

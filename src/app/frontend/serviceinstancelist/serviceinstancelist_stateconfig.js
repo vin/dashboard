@@ -70,15 +70,15 @@ export default function stateConfig($stateProvider) {
 export function resolveServiceInstanceList(kdServiceInstanceListResource, $stateParams) {
   return kdServiceInstanceListResource.get({namespace: $stateParams.namespace})
       .$promise.then((serviceInstanceList) => {
-        serviceInstanceList.serviceInstances = serviceInstanceList.items;
+        serviceInstanceList['serviceInstances'] = serviceInstanceList.items;
         delete serviceInstanceList.items;
-        serviceInstanceList.listMeta = {};
-        serviceInstanceList.listMeta.totalItems = serviceInstanceList.serviceInstances.length;
-        serviceInstanceList.serviceInstances.forEach((serviceInstance) => {
-          serviceInstance.typeMeta = {
-            kind: 'serviceinstance',
+        serviceInstanceList['listMeta'] = {};
+        serviceInstanceList['listMeta']['totalItems'] = serviceInstanceList['serviceInstances'].length;
+        serviceInstanceList['serviceInstances'].forEach((serviceInstance) => {
+          serviceInstance['typeMeta'] = {
+            'kind': 'serviceinstance',
           };
-          serviceInstance.objectMeta = serviceInstance.metadata;
+          serviceInstance['objectMeta'] = serviceInstance['metadata'];
         });
         return serviceInstanceList;
       });

@@ -27,8 +27,8 @@ export class CreateServiceBindingDialogController {
     this.serviceInstance = serviceInstance;
     this.scope = $scope;
     this.formData = {
-      bindingName: '',
-      labelSelector: '',
+      'bindingName': '',
+      'labelSelector': '',
     };
     /** @private {!md.$dialog} */
     this.mdDialog_ = $mdDialog;
@@ -48,21 +48,21 @@ export class CreateServiceBindingDialogController {
    */
   getPutData() {
     return {
-      apiVersion: 'catalog.k8s.io/v1alpha1',
-      kind: 'ServiceBinding',
-      metadata: {
-        name: this.formData.bindingName,
+      'apiVersion': 'catalog.k8s.io/v1alpha1',
+      'kind': 'ServiceBinding',
+      'metadata': {
+        'name': this.formData['bindingName'],
       },
-      name: this.formData.bindingName,
-      spec: {
-        instanceRef: {
-          name: this.serviceInstance.name,
-          namespace: 'default',
+      'name': this.formData['bindingName'],
+      'spec': {
+        'instanceRef': {
+          'name': this.serviceInstance['name'],
+          'namespace': 'default',
         },
-        serviceName: this.serviceInstance.name,
-        AppLabelSelector: this.parseLabelSelector(this.formData.labelSelector),
+        'serviceName': this.serviceInstance.name,
+        'AppLabelSelector': this.parseLabelSelector(this.formData['labelSelector']),
       },
-      to: this.serviceInstance.name,
+      'to': this.serviceInstance['name'],
     };
   }
 
