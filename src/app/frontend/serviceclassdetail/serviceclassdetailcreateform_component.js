@@ -34,7 +34,7 @@ export class ServiceClassDetailCreateFormController {
     this.formData = {
       'name': '',
       'plan': '',
-      'parameters': '',
+      'parameters': '{"useProxy": true}',
       'labels': [{
         'key': '',
         'value': '',
@@ -72,7 +72,7 @@ export class ServiceClassDetailCreateFormController {
     };
 
     if(this.formData['parameters'].trim()){
-      putData.parameters = JSON.parse(this.formData['parameters']);
+      putData['Parameters'] = JSON.parse(this.formData['parameters']);
     }
     return putData;
   }
