@@ -60,6 +60,9 @@ export class AddNetworkFunctionDialogController {
     return putData;
   }
 
+  /**
+   * @export
+   */
   createNetworkFunction() {
     this.tokenPromise_
         .then((token) => {
@@ -80,6 +83,9 @@ export class AddNetworkFunctionDialogController {
         });
   }
 
+  /**
+   * @export
+   */
   hide() {
     this.mdDialog_.hide();
   }

@@ -30,6 +30,9 @@ export class NetworkFunctionCardListController {
     this.serviceBinding;
   }
 
+  /**
+   * @export
+   */
   showAddNetworkFunctionDialog(event) {
     this.mdDialog_.show({
       controller: AddNetworkFunctionDialogController,
@@ -43,6 +46,9 @@ export class NetworkFunctionCardListController {
     });
   }
 
+  /**
+   * @export
+   */
   getNetworkFunctions(){
     if(this.serviceBinding.istio_config){
       return this.serviceBinding.istio_config.rules;
