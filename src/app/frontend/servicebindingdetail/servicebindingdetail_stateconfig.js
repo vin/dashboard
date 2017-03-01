@@ -85,10 +85,10 @@ export function getServiceBindingResource($stateParams, $resource) {
 export function resolveServiceBinding(serviceBindingResource, $stateParams) {
   return serviceBindingResource.get({namespace: $stateParams.objectNamespace})
       .$promise.then((serviceBinding) => {
-        serviceBinding.typeMeta = {
-          kind: 'servicebinding',
+        serviceBinding['typeMeta'] = {
+          'kind': 'servicebinding',
         };
-        serviceBinding.objectMeta = serviceBinding.metadata;
+        serviceBinding['objectMeta'] = serviceBinding['metadata'];
         return serviceBinding;
       });
 }
