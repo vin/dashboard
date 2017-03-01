@@ -32,12 +32,12 @@ export class ServiceClassDetailCreateFormController {
     this.onCancel;
     /** @export {?} */
     this.formData = {
-      name: '',
-      plan: '',
-      parameters: '',
-      labels: [{
-        key: '',
-        value: '',
+      'name': '',
+      'plan': '',
+      'parameters': '',
+      'labels': [{
+        'key': '',
+        'value': '',
       }],
     };
     /** @private {!angular.$resource} */
@@ -54,25 +54,25 @@ export class ServiceClassDetailCreateFormController {
    * @export
    */
   $onInit() {
-    this.formData.plan = this.serviceClass.Plans[0].Name;
+    this.formData['plan'] = this.serviceClass['Plans'][0]['Name'];
   }
 
   getPutData() {
     let putData = {
       "kind": "ServiceInstance",
       "metadata": {
-        "name": this.formData.name,
+        "name": this.formData['name'],
       },
-      "name": this.formData.name,
+      "name": this.formData['name'],
       "spec": {
-        "serviceClassName": this.serviceClass.name,
-        "planName": this.formData.plan,
+        "serviceClassName": this.serviceClass['name'],
+        "planName": this.formData['plan'],
       },
       "space_guid": "default",
     };
 
-    if(this.formData.parameters.trim()){
-      putData.parameters = JSON.parse(this.formData.parameters);
+    if(this.formData['parameters'].trim()){
+      putData.parameters = JSON.parse(this.formData['parameters']);
     }
     return putData;
   }
