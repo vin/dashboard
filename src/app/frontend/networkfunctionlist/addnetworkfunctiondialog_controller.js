@@ -54,7 +54,7 @@ export class AddNetworkFunctionDialogController {
       putData['istio_config']['rules'] = [];
     }
 
-    putData['istio_config']['rules']push(
+    putData['istio_config']['rules'].push(
         {'kind': this.formData['kind'], 'params': JSON.parse(this.formData['params'])});
 
     return putData;
