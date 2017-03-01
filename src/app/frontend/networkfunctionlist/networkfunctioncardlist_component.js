@@ -51,7 +51,7 @@ export class NetworkFunctionCardListController {
    */
   getNetworkFunctions(){
     if(this.serviceBinding.istio_config){
-      return this.serviceBinding.istio_config.rules;
+      return this.serviceBinding.istio_config;
     } else {
       return [];
     }

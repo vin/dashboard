@@ -20,14 +20,14 @@ limitations under the License.
       <div>
         <md-input-container class="kd-service-class-list-add-network-function-dialog-kind">
           <md-select ng-model="$ctrl.formData.kind">
-            <md-option ng-value="'quota'">Quota</md-option>
+            <md-option ng-value="'quotas'">Quotas</md-option>
           </md-select>
         </md-input-container>
       </div>
       <div>
-        <md-input-container class="kd-service-class-list-add-network-function-dialog-params">
-          <label>Parameters</label>
-          <textarea ng-model="$ctrl.formData.params"></textarea>
+        <md-input-container class="kd-service-class-list-add-network-function-dialog-limit">
+          <label>Max QPS</label>
+          <input ng-model="$ctrl.formData.limit"></textarea>
         </md-input-container>
       </div>
       <div>
