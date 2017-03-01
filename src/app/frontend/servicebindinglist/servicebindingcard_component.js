@@ -24,6 +24,7 @@ export class StateParams extends ResourceStateParams {
   constructor(objectNamespace, objectName, bindingName) {
     super(objectNamespace, objectName);
 
+    /** @export {string} */
     this.bindingName = bindingName;
   }
 }
