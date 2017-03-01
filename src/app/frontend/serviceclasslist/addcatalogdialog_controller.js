@@ -65,6 +65,9 @@ export class AddCatalogDialogController {
     }
   }
 
+  /**
+   * @export
+   */
   createCatalog() {
     this.tokenPromise_
         .then((token) => {
@@ -84,6 +87,9 @@ export class AddCatalogDialogController {
         });
   }
 
+  /**
+   * @export
+   */
   hide() {
     this.mdDialog_.hide();
   }

@@ -29,7 +29,7 @@ export class ServiceClassTilesController {
   /**
    * @param {?} serviceClass
    * @return {?}
-   * @ngInject
+   * @export
    */
   getServiceBrokerForServiceClass(serviceClass) {
     return this.serviceBrokerList.items.find(

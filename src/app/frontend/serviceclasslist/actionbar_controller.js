@@ -34,6 +34,10 @@ export class ActionBarController {
     this.stateParams_ = $stateParams;
   }
 
+  /**
+   * @param {!angular.Scope.Event} event
+   * @export
+   */
   showAddCatalogDialog(event) {
     this.mdDialog_.show({
       controller: AddCatalogDialogController,

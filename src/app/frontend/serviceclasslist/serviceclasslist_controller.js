@@ -43,6 +43,7 @@ export class ServiceClassListController {
 
   /**
    * @return {Array}
+   * @export
    */
   getSearchedServiceClassList() {
     if (this.searchedServiceClassList_ === null ||
@@ -60,6 +61,7 @@ export class ServiceClassListController {
 
   /**
    * @return {boolean}
+   * @export
    */
   shouldShowListView() {
     return this.viewMode_ === 'list';
@@ -67,6 +69,7 @@ export class ServiceClassListController {
 
   /**
    * @return {boolean}
+   * @export
    */
   shouldShowTileView() {
     return this.viewMode_ === 'tile';

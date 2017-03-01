@@ -29,7 +29,7 @@ export class ServiceClassCardListController {
   /**
    * @param {?} serviceClass
    * @return {?}
-   * @ngInject
+   * @export
    */
   getServiceBrokerForServiceClass(serviceClass) {
     return this.serviceBrokerList.items.find(
