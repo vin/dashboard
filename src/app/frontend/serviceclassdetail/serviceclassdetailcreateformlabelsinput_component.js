@@ -24,12 +24,16 @@ export class ServiceClassDetailCreateFormLabelsInputController {
     this.labelsModel;
   }
 
+  /**
+   * @export
+   */
   addLabel() {
     this.labelsModel.push({key: '', value: ''});
   }
 
   /**
    * @param {?} labelObject
+   * @export
    */
   deleteLabel(labelObject) {
     let labelObjectIndex = this.labelsModel.indexOf(labelObject);

@@ -30,20 +30,21 @@ export class ServiceClassDetailController {
 
   /**
    * @return {boolean}
+   * @export
    */
   isInstantiatingClass() {
     return this.isInstantiatingClass_;
   }
 
   /**
-   *
+   * @export
    */
   startInstantiatingClass() {
     this.isInstantiatingClass_ = true;
   }
 
   /**
-   *
+   * @export
    */
   stopInstantiatingClass() {
     this.isInstantiatingClass_ = false;

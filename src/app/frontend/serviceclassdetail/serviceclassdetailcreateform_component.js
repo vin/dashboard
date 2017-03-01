@@ -50,6 +50,9 @@ export class ServiceClassDetailCreateFormController {
     this.stateParams_ = $stateParams;
   }
 
+  /**
+   * @export
+   */
   $onInit() {
     this.formData.plan = this.serviceClass.Plans[0].Name;
   }
@@ -74,6 +77,9 @@ export class ServiceClassDetailCreateFormController {
     return putData;
   }
 
+  /**
+   * @export
+   */
   createInstance() {
     this.tokenPromise_
         .then((token) => {
