@@ -80,10 +80,10 @@ export function getServiceInstanceDetailResource($stateParams, $resource) {
 export function resolveServiceInstanceDetail(serviceInstanceDetailResource, $stateParams) {
   return serviceInstanceDetailResource.get({namespace: $stateParams.objectNamespace}).$promise.then(
       (serviceInstance) => {
-        serviceInstance.typeMeta = {
-          kind: 'serviceinstance',
+        serviceInstance['typeMeta'] = {
+          'kind': 'serviceinstance',
         };
-        serviceInstance.objectMeta = serviceInstance.metadata;
+        serviceInstance['objectMeta'] = serviceInstance['metadata'];
         return serviceInstance;
       }
   );
@@ -108,17 +108,17 @@ export function getServiceBindingListResource($resource) {
 export function resolveServiceBindingList(serviceBindingListResource, $stateParams) {
   return serviceBindingListResource.get({namespace: $stateParams.objectNamespace})
       .$promise.then((serviceBindingList) => {
-        serviceBindingList.serviceBindings = serviceBindingList.items.filter(
-            (binding) => binding.spec.instanceRef.name === $stateParams.objectName);
-        delete serviceBindingList.items;
-        serviceBindingList.listMeta = {
-          totalItems: serviceBindingList.serviceBindings.length,
+        serviceBindingList['serviceBindings'] = serviceBindingList['items'].filter(
+            (binding) => binding['spec']['instanceRef']['name'] === $stateParams.objectName);
+        delete serviceBindingList['items'];
+        serviceBindingList['listMeta'] = {
+          'totalItems': serviceBindingList['serviceBindings'].length,
         };
-        serviceBindingList.serviceBindings.forEach((serviceBinding) => {
-          serviceBinding.typeMeta = {
-            kind: 'servicebinding',
+        serviceBindingList['serviceBindings'].forEach((serviceBinding) => {
+          serviceBinding['typeMeta'] = {
+            'kind': 'servicebinding',
           };
-          serviceBinding.objectMeta = serviceBinding.metadata;
+          serviceBinding['objectMeta'] = serviceBinding['metadata'];
         });
         return serviceBindingList;
       });
