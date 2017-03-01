@@ -45,21 +45,21 @@ export class AddCatalogDialogController {
   getPutData() {
     if (this.formData.loginRequired) {
       return {
-        name: this.formData.name,
-        url: this.formData.url,
-        login: this.formData.login,
-        password: this.formData.password,
+        'name': this.formData.name,
+        'url': this.formData.url,
+        'login': this.formData.login,
+        'password': this.formData.password,
       };
     } else {
       return {
-        apiVersion: 'catalog.k8s.io/v1alpha1',
-        kind: 'ServiceBroker',
-        metadata: {
-          name: this.formData.name,
+        'apiVersion': 'catalog.k8s.io/v1alpha1',
+        'kind': 'ServiceBroker',
+        'metadata': {
+          'name': this.formData.name,
         },
-        name: this.formData.name,
-        spec: {
-          URL: this.formData.url,
+        'name': this.formData.name,
+        'spec': {
+          'URL': this.formData.url,
         },
       };
     }
