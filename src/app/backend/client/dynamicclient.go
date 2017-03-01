@@ -20,8 +20,20 @@ import (
 
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
+	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 )
+
+func buildConfigFromFlags(apiserverHost string, kubeConfig string) (*rest.Config, error) {
+	if apiserverHost == "" && kubeConfig == "" {
+		return rest.InClusterConfig()
+	}
+	return clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
+		&clientcmd.ClientConfigLoadingRules{ExplicitPath: kubeConfig},
+		&clientcmd.ConfigOverrides{ClusterInfo: clientcmdapi.Cluster{Server: apiserverHost}}).ClientConfig()
+}
+
 
 // CreateDynamicClient creates new client-go dynamic client, for accessing third party resources.
 // groupName
@@ -29,7 +41,8 @@ import (
 // kubeConfig location of kubeconfig file
 func CreateDynamicClient(apiserverHost string, kubeConfig string, groupName string, apiVersion string) (*dynamic.Client, error) {
 
-	cfg, err := clientcmd.BuildConfigFromFlags(apiserverHost, kubeConfig)
+	log.Printf("Creating dynamic client.")
+	cfg, err := buildConfigFromFlags(apiserverHost, kubeConfig)
 	if err != nil {
 		debug.PrintStack()
 		log.Printf("%v", kubeConfig)

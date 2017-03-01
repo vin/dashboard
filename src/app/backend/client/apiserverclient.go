@@ -20,6 +20,7 @@ import (
 	client "k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
+	"k8s.io/client-go/rest"
 )
 
 // Dashboard UI default values for client configs.
@@ -43,8 +44,15 @@ func CreateApiserverClient(apiserverHost string, kubeConfig string) (*client.Cli
 	clientConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
 		&clientcmd.ClientConfigLoadingRules{ExplicitPath: kubeConfig},
 		&clientcmd.ConfigOverrides{ClusterInfo: clientcmdapi.Cluster{Server: apiserverHost}})
-
-	cfg, err := clientConfig.ClientConfig()
+	var cfg *rest.Config
+	var err error
+	if kubeConfig == "" && apiserverHost == "" {
+		cfg, err = rest.InClusterConfig()
+	}
+	if cfg == nil {
+		// inclusterconfig failed or wasn't attempted
+		cfg, err = clientConfig.ClientConfig()
+	}
 	if err != nil {
 		return nil, nil, err
 	}
