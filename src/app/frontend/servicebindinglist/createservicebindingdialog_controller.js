@@ -42,6 +42,10 @@ export class CreateServiceBindingDialogController {
     this.stateParams_ = $stateParams;
   }
 
+  /**
+   * @return {!Object}
+   * @export
+   */
   getPutData() {
     return {
       apiVersion: 'catalog.k8s.io/v1alpha1',
@@ -65,6 +69,7 @@ export class CreateServiceBindingDialogController {
   /**
    * @param {string} rawLabelSelector
    * @return {!{matchExpressions: Array}}
+   * @export
    */
   parseLabelSelector(rawLabelSelector){
     let matchExpressions = rawLabelSelector.split(/\n/g)
@@ -101,7 +106,9 @@ export class CreateServiceBindingDialogController {
     return {matchExpressions};
   }
 
-
+  /**
+   * @export
+   */
   createBinding() {
     this.tokenPromise_
         .then((token) => {
@@ -117,6 +124,9 @@ export class CreateServiceBindingDialogController {
         });
   }
 
+  /**
+   * @export
+   */
   hide() {
     this.mdDialog_.hide();
   }

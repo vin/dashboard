@@ -45,13 +45,20 @@ export class ServiceBindingCardController {
     /** @private {!ui.router.$state} */
     this.state_ = $state;
   }
-
+  /**
+   * @return {boolean}
+   * @export
+   */
   isSuccess() {
-    return this.serviceBinding && this.serviceBinding.Status &&
+    return !!this.serviceBinding && !!this.serviceBinding.Status &&
         !!this.serviceBinding.Status.Conditions.find(
             ({Type, Status}) => Type === 'Ready' && Status === 'True');
   }
 
+  /**
+   * @return {boolean}
+   * @export
+   */
   isPending() {
     return !this.isSuccess();
   }

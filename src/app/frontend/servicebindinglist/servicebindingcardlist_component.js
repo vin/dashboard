@@ -34,6 +34,10 @@ export class ServiceBindingCardListController {
     this.mdDialog = $mdDialog;
   }
 
+  /**
+   * @param {!angular.Scope.Event} event
+   * @export
+   */
   showAddBindingDialog(event) {
     this.mdDialog.show({
       controller: CreateServiceBindingDialogController,
