@@ -129,6 +129,7 @@ function createCompileTask(translation) {
     path.join(conf.paths.externs, 'backendapi.js'),
     path.join(conf.paths.externs, 'ansiup.js'),
     path.join(conf.paths.externs, 'uirouter.js'),
+    path.join(conf.paths.externs, 'd3v3.js'),
   ];
 
   let closureCompilerConfig = {
