@@ -50,8 +50,8 @@ export class NetworkFunctionCardListController {
    * @export
    */
   getNetworkFunctions(){
-    if(this.serviceBinding.istio_config){
-      return this.serviceBinding.istio_config;
+    if(this.serviceBinding['istio_config']){
+      return this.serviceBinding['istio_config'];
     } else {
       return [];
     }
