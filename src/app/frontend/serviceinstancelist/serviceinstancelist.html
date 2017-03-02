@@ -19,6 +19,7 @@ limitations under the License.
 </kd-service-instance-list-filter>
 <kd-content-card ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowListView()">
   <kd-content>
+    <kd-service-graph></kd-service-graph>
     <kd-service-instance-card-list service-instance-list="ctrl.getFilteredServiceInstanceList()">
     </kd-service-instance-card-list>
   </kd-content>
