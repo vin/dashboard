@@ -86,6 +86,6 @@ export class ServiceInstanceListController {
    * @export
    */
   shouldShowGraphView() {
-    return this.viewMode_ === 'graph';
+    return true;
   }
 }
