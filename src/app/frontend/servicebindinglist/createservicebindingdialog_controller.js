@@ -15,7 +15,7 @@
 export class CreateServiceBindingDialogController {
   /**
    * @param {?} serviceInstance
-   * @param {!angular.Scope} $scope
+   * @param {!{serviceInstances: Array.<backendApi.ServiceInstance>}} serviceInstanceList
    * @param {!md.$dialog} $mdDialog
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
@@ -23,12 +23,16 @@ export class CreateServiceBindingDialogController {
    * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
    * @ngInject
    */
-  constructor(serviceInstance, $scope, $mdDialog, $resource, kdCsrfTokenService, $state, $stateParams) {
+  constructor(serviceInstance, serviceInstanceList, $mdDialog, $resource, kdCsrfTokenService, $state, $stateParams) {
+    /** @export {?} */
     this.serviceInstance = serviceInstance;
-    this.scope = $scope;
+    /** @export {!{serviceInstances: Array.<backendApi.ServiceInstance>}} */
+    this.serviceInstanceList = serviceInstanceList;
+    /** @export */
     this.formData = {
-      'bindingSuffix': '',
+      'fromInstance': serviceInstanceList['serviceInstances'][0]['name'],
       'labelSelector': '',
+      'parameters': '',
     };
     /** @private {!md.$dialog} */
     this.mdDialog_ = $mdDialog;
@@ -48,8 +52,8 @@ export class CreateServiceBindingDialogController {
    */
   getPutData() {
     let myName = this.serviceInstance['name'];
-    let bindingName = myName + '-' + this.formData['bindingSuffix'];
-    return {
+    let bindingName = `${this.formData['fromInstance']}-${myName}`;
+    let putData = {
       'apiVersion': 'catalog.k8s.io/v1alpha1',
       'kind': 'ServiceBinding',
       'metadata': {
@@ -62,15 +66,21 @@ export class CreateServiceBindingDialogController {
           'namespace': 'default',
         },
         'serviceName': myName,
-        'AppLabelSelector': this.parseLabelSelector(this.formData['labelSelector']),
+        // 'AppLabelSelector': this.parseLabelSelector(this.formData['labelSelector']),
       },
       'to': myName,
     };
+
+    if(this.formData['parameters']){
+      putData['parameters'] = this.formData['parameters'];
+    }
+
+    return putData;
   }
 
   /**
    * @param {string} rawLabelSelector
-   * @return {!{matchExpressions: Array}}
+   * @return {!Object}
    * @export
    */
   parseLabelSelector(rawLabelSelector){
@@ -105,7 +115,11 @@ export class CreateServiceBindingDialogController {
             }
           }
         });
-    return {matchExpressions};
+    if(matchExpressions.length){
+      return {matchExpressions};
+    } else {
+      return {};
+    }
   }
 
   /**

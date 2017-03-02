@@ -30,6 +30,9 @@ export class ServiceBindingCardListController {
     /** @export {?} Initialized from binding. */
     this.serviceInstance;
 
+    /** @export {?} Initialized from binding. */
+    this.serviceInstanceList;
+
     /** @export {!md.$dialog} */
     this.mdDialog = $mdDialog;
   }
@@ -47,6 +50,7 @@ export class ServiceBindingCardListController {
       targetEvent: event,
       locals: {
         'serviceInstance': this.serviceInstance,
+        'serviceInstanceList': this.serviceInstanceList,
       },
     });
   }
@@ -65,5 +69,7 @@ export const serviceBindingCardListComponent = {
     'serviceBindingList': '<',
     /** {?} */
     'serviceInstance': '<?',
+    /** {?} */
+    'serviceInstanceList': '<?',
   },
 };

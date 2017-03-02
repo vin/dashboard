@@ -20,6 +20,7 @@ import {stateName as serviceInstanceListStateName, stateUrl} from './../servicei
 import {ActionBarController} from './actionbar_controller';
 import {ServiceInstanceDetailController} from './serviceinstancedetail_controller';
 import {stateName} from './serviceinstancedetail_state';
+import {resolveServiceInstanceList} from '../serviceinstancelist/serviceinstancelist_stateconfig';
 
 
 
@@ -38,6 +39,7 @@ export default function stateConfig($stateProvider) {
       'serviceInstance': resolveServiceInstanceDetail,
       'serviceBindingListResource': getServiceBindingListResource,
       'serviceBindingList': resolveServiceBindingList,
+      'serviceInstanceList': resolveServiceInstanceList,
     },
     data: {
       [breadcrumbsConfig]: {
