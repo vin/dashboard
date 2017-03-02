@@ -18,6 +18,7 @@ import (
 	"crypto/rand"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -670,10 +671,31 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 		apiV1alpha1Ws.Route(
 			apiV1alpha1Ws.DELETE("/" + path + "/{namespace}/{name}").
 				To(apiHandler.deleteServiceCatalogItem(rt)))
-
 	}
 
+	apiV1alpha1Ws.Route(
+		apiV1alpha1Ws.GET("/servicegraph").
+		To(apiHandler.getServiceGraph).
+		Writes(unstructured.Unstructured{}))
+
 	return wsContainer, nil
+}
+
+func (apiHandler *APIHandler) getServiceGraph(request *restful.Request, response *restful.Response)  {
+	resp, err := http.Get("http://localhost:8080/api/v1/proxy/namespaces/catalog/services/servicegraph:8088/graph")
+
+	if err != nil {
+		handleInternalError(response, err)
+		return
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+
+	if err != nil {
+		handleInternalError(response, err)
+		return
+	}
+	response.Write(body)
 }
 
 func (apiHandler *APIHandler) getResourceClient(t servicecatalog.ResourceType, namespace string) *dynamic.ResourceClient {
