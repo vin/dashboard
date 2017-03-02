@@ -51,8 +51,7 @@ export class AddNetworkFunctionDialogController {
       putData['istio_config'] = [];
     }
 
-    putData['istio_config'].push(
-        {'aspects': [{'kind': this.formData.kind}]});
+    putData['istio_config'].push({'kind': this.formData.kind});
 
     return putData;
   }
