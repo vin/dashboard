@@ -80,4 +80,12 @@ export class ServiceInstanceListController {
   shouldShowTileView() {
     return this.viewMode_ === 'tile';
   }
+
+  /**
+   * @return {boolean}
+   * @export
+   */
+  shouldShowGraphView() {
+    return this.viewMode_ === 'graph';
+  }
 }

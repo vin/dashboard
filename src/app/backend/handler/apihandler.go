@@ -681,8 +681,12 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 	return wsContainer, nil
 }
 
+func servicegraphUrl() string {
+	return "http://servicegraph.catalog/graph"
+}
+
 func (apiHandler *APIHandler) getServiceGraph(request *restful.Request, response *restful.Response)  {
-	resp, err := http.Get("http://localhost:8080/api/v1/proxy/namespaces/catalog/services/servicegraph:8088/graph")
+	resp, err := http.Get(servicegraphUrl())
 
 	if err != nil {
 		handleInternalError(response, err)
