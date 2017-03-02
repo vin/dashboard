@@ -21,6 +21,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -682,7 +683,15 @@ func CreateHTTPAPIHandler(client *clientK8s.Clientset, heapsterClient client.Hea
 }
 
 func servicegraphUrl() string {
-	return "http://servicegraph.catalog/graph"
+	svc_graph_host, ok := os.LookupEnv("SERVICEGRAPH_SERVICE_HOST")
+	if !ok {
+		svc_graph_host = "localhost:8080/api/v1/proxy/namespaces/catalog/services/servicegraph"
+	}
+	svc_graph_port, ok := os.LookupEnv("SERVICEGRAPH_SERVICE_PORT")
+	if !ok {
+		svc_graph_port = "8088"
+	}
+	return fmt.Sprintf("http://%v:%v/graph", svc_graph_host, svc_graph_port);
 }
 
 func (apiHandler *APIHandler) getServiceGraph(request *restful.Request, response *restful.Response)  {
