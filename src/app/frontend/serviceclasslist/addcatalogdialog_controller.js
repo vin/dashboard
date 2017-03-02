@@ -38,6 +38,8 @@ export class AddCatalogDialogController {
       'login': '',
       'password': '',
     };
+    /** @export {boolean} */
+    this.isCreatingCatalog = false;
     /** @private {!Object} */
     this.stateParams_ = $stateParams;
   }
@@ -78,8 +80,11 @@ export class AddCatalogDialogController {
           return resource.save(this.getPutData()).$promise;
         })
         .then(() => {
-          this.state_.reload();
-          this.hide();
+          this.isCreatingCatalog = true;
+          setTimeout(() => {
+            this.state_.reload();
+            this.hide();
+          }, 5000);
         })
         .catch(() => {
           // TODO rossholland: better error handling

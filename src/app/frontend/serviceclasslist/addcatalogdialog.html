@@ -44,9 +44,14 @@ limitations under the License.
           <input required ng-model="$ctrl.formData.password" type="password">
         </md-input-container>
       </div>
-      <div>
+
+      <div ng-if="!$ctrl.isCreatingCatalog">
         <md-button class="md-raised md-primary" ng-click="$ctrl.createCatalog()">Add Catalog</md-button>
         <md-button class="md-raised" ng-click="$ctrl.hide()">Cancel</md-button>
+      </div>
+      <div ng-if="$ctrl.isCreatingCatalog">
+        <md-progress-circular class="kd-service-class-list-add-catalog-progress" md-mode="indeterminate">
+        </md-progress-circular>
       </div>
     </form>
 
