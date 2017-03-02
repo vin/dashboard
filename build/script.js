@@ -130,6 +130,7 @@ function createCompileTask(translation) {
     path.join(conf.paths.externs, 'ansiup.js'),
     path.join(conf.paths.externs, 'uirouter.js'),
     path.join(conf.paths.externs, 'd3v3.js'),
+    path.join(conf.paths.externs, 'catalog.js'),
   ];
 
   let closureCompilerConfig = {
