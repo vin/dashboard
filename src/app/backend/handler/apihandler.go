@@ -695,7 +695,9 @@ func servicegraphUrl() string {
 }
 
 func (apiHandler *APIHandler) getServiceGraph(request *restful.Request, response *restful.Response)  {
-	resp, err := http.Get(servicegraphUrl())
+	url := servicegraphUrl()
+	log.Printf("fetching service graph data from %v", url)
+	resp, err := http.Get(url)
 
 	if err != nil {
 		handleInternalError(response, err)
