@@ -36,7 +36,7 @@ export class ActionBarController {
    * @export
    */
   getServiceInstanceListHref(viewMode) {
-    return this.state_.href(stateName, {viewMode});
+    return this.state_.href(stateName, {'viewMode': viewMode});
   }
 
   /**

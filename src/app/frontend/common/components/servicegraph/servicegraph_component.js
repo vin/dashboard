@@ -38,8 +38,9 @@ export class ServiceGraphController {
    * @param {{edges: Array<Object>, nodes: Array<Object>}} data
    */
   generateGraph(data) {
-    let width = this.element_[0].clientWidth;
-    let height = this.element_[0].clientHeight;
+    let svgEl = this.element_.find('svg')[0];
+    let width = svgEl.clientWidth;
+    let height = svgEl.clientHeight;
     let svg = d3.select(this.element_[0]).select('svg.servicegraph');
 
     let nodes = [];

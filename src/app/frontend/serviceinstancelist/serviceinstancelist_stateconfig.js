@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {actionbarViewName, stateName as chromeStateName} from 'chrome/chrome_state';
+import {actionbarViewName, stateName as chromeStateName, fillContentConfig} from 'chrome/chrome_state';
 import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
 
 import {ActionBarController} from './actionbar_controller';
@@ -44,6 +44,7 @@ export default function stateConfig($stateProvider) {
       [breadcrumbsConfig]: {
         'label': i18n.MSG_BREADCRUMBS_INSTANCE_LABEL,
       },
+      [fillContentConfig]: true,
     },
     views: {
       '': {
