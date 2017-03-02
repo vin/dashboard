@@ -16,18 +16,12 @@ limitations under the License.
 <md-dialog>
   <md-dialog-content class="kd-service-binding-list-create-service-binding-dialog">
     <h1 class="md-title kd-service-binding-list-create-service-binding-dialog-title">
-      Create Binding from {{$ctrl.serviceInstance.name}}
+      Create binding
     </h1>
     <form>
       <md-input-container
           class="kd-service-binding-list-create-service-binding-dialog-input-container">
-        <label>Binding Name</label>
-        <input ng-model="$ctrl.formData.bindingName">
-      </md-input-container>
-      <md-input-container
-          class="kd-service-binding-list-create-service-binding-dialog-input-container">
-        <label>To (Label Selector):</label>
-        <textarea ng-model="$ctrl.formData.labelSelector"></textarea>
+         {{$ctrl.serviceInstance.name}}-<input ng-model="$ctrl.formData.bindingSuffix">
       </md-input-container>
       <div>
         <md-button class="md-primary md-raised" ng-click="$ctrl.createBinding()">Create</md-button>
