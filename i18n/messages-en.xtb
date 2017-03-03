@@ -707,6 +707,7 @@
   <translation id="4427168939960118662" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_0" desc="Label which appears above the list of such objects.">Bindings</translation>
   <translation id="2547147336713723896" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of service bindings">Name</translation>
   <translation id="3952601175497551501" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_2" desc="Label which appears as the label of the column corresponding to which instance the binding is from">From Instance</translation>
+  <translation id="4861806635328584773" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_2" desc="Label which appears as the label of the column corresponding to which instance the binding is to">To Instance</translation>
   <translation id="766773006064384536" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_3" desc="Label which appears as the label of the column corresponding to which instance the binding is to">To Selector</translation>
   <translation id="8682537773903929729" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARDLIST_4" desc="Label which appears as the label of the column corresponding to the labels for the binding">Labels</translation>
   <translation id="6005028992894086818" key="MSG_SERVICEBINDINGLIST_SERVICEBINDINGCARD_0" desc="tooltip for pending binding card icon">This binding is in a pending state</translation>
