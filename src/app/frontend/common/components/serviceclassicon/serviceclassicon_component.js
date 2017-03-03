@@ -34,7 +34,7 @@ export class ServiceClassIconController {
 export const serviceClassIconComponent = {
   templateUrl: 'common/components/serviceclassicon/serviceclassicon.html',
   bindings: {
-    'imgURL': '<',
+    'imgUrl': '<',
     'imgSize': '<',
   },
   controller: ServiceClassIconController,
