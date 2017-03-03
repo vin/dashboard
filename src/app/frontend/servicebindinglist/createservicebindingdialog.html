@@ -18,29 +18,26 @@ limitations under the License.
     <h1 class="md-title kd-service-binding-list-create-service-binding-dialog-title">
       Create binding
     </h1>
-    <form>
+    <form name="createForm">
       <div>
         <md-input-container
             class="kd-service-binding-list-create-service-binding-dialog-input-container">
-          <label>From Instance</label>
-          <md-select ng-model="$ctrl.formData.fromInstance">
-            <md-option ng-repeat="serviceInstance in $ctrl.serviceInstanceList.serviceInstances" ng-value="serviceInstance.name">
-              {{serviceInstance.name}}
-            </md-option>
-          </md-select>
+          <label>From (label)</label>
+          <input ng-model="$ctrl.formData.fromLabel" placeholder="app:name" ng-pattern="'app:[a-z0-9]+'">
         </md-input-container>
-      </div>
-      <div>
-        To {{$ctrl.serviceInstance.name}}
-      </div>
-      <div>
+        <md-input-container
+            class="kd-service-binding-list-create-service-binding-dialog-input-container">
+          <label>
+            To {{$ctrl.serviceInstance.name}}
+          </label>
+        </md-input-container>
         <md-input-container class="kd-service-binding-list-create-service-binding-dialog-input-container">
           <label>Parameters</label>
           <textarea ng-model="$ctrl.formData.parameters"></textarea>
         </md-input-container>
       </div>
       <div>
-        <md-button class="md-primary md-raised" ng-click="$ctrl.createBinding()">Create</md-button>
+        <md-button class="md-primary md-raised" ng-click="$ctrl.createBinding()" ng-disabled="createForm.$invalid">Create</md-button>
         <md-button class="md-raised" ng-click="$ctrl.hide()">Cancel</md-button>
       </div>
     </form>
