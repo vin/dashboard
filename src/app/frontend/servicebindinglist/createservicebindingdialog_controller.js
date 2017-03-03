@@ -72,7 +72,7 @@ export class CreateServiceBindingDialogController {
     };
 
     if(this.formData['parameters']){
-      putData['parameters'] = this.formData['parameters'];
+      putData['spec']['parameters'] = JSON.parse(this.formData['parameters']);
     }
 
     return putData;
