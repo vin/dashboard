@@ -55,6 +55,7 @@ export class ServiceClassDetailCreateFormController {
    */
   $onInit() {
     this.formData['plan'] = this.serviceClass['Plans'][0]['Name'];
+    this.formData['name'] = this.serviceClass['name'];
   }
 
   getPutData() {
