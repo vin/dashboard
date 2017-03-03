@@ -30,7 +30,7 @@ export class CreateServiceBindingDialogController {
     this.serviceInstanceList = serviceInstanceList;
     /** @export */
     this.formData = {
-      'fromInstance': serviceInstanceList['serviceInstances'][0]['name'],
+      'fromLabel': '',
       'labelSelector': '',
       'parameters': '',
     };
@@ -52,7 +52,7 @@ export class CreateServiceBindingDialogController {
    */
   getPutData() {
     let myName = this.serviceInstance['name'];
-    let bindingName = `${this.formData['fromInstance']}-${myName}`;
+    let bindingName = this.createBindingName();
     let putData = {
       'apiVersion': 'catalog.k8s.io/v1alpha1',
       'kind': 'ServiceBinding',
@@ -76,6 +76,13 @@ export class CreateServiceBindingDialogController {
     }
 
     return putData;
+  }
+
+  createBindingName() {
+    let matchLabel = this.formData['fromLabel'];
+    let myName = this.serviceInstance['name'];
+    let [key, value] = matchLabel.split(/ *: */);
+    return `${value}-${myName}`;
   }
 
   /**
