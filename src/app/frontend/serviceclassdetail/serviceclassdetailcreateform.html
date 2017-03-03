@@ -24,6 +24,7 @@ limitations under the License.
   </div>
   <div>
     <md-input-container class="kd-service-class-detail-create-form-plan">
+      <label>Plan</label>
       <md-select ng-model="$ctrl.formData.plan">
         <md-option ng-repeat="plan in $ctrl.serviceClass.Plans" ng-value="plan.Name">
           {{plan.Name}}
