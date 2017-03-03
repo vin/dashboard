@@ -45,7 +45,7 @@ export class ServiceGraphController {
 
     let nodes = [];
     let nodemap = {};
-    for (let k in data.nodes) {
+    for (let k in data['nodes']) {
       let node = {
         name: k
       };
@@ -53,7 +53,7 @@ export class ServiceGraphController {
       nodemap[k] = node;
     }
 
-    let links = data.edges.map(edge => ({
+    let links = data['edges'].map(edge => ({
       source: nodemap[edge.source],
       target: nodemap[edge.target],
       labels: edge.labels,
