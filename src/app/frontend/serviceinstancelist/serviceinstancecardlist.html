@@ -16,7 +16,7 @@ limitations under the License.
 
 <kd-resource-card-list selectable="::false" with-statuses="true">
   <kd-resource-card-list-header>
-    [[Instances|Label which appears above the list of such objects.]]
+    [[Service Instances|Label which appears above the list of such objects.]]
   </kd-resource-card-list-header>
   <!--TODO(rossholland) list-resource="::$ctrl.serviceInstanceListResource" needs to be added once we're using real data -->
   <kd-resource-card-list-pagination ng-if="$ctrl.serviceInstanceList.listMeta.totalItems > 0"
@@ -29,7 +29,7 @@ limitations under the License.
       [[Name|Label 'Name' which appears as a column label in the table of service instances]]
     </kd-resource-card-header-column>
     <kd-resource-card-header-column size="small" grow="2">
-      [[Type|Label 'Type' which appears as the label of the column corresponding to the service class of the service instance.]]
+      [[Class|Label 'Class' which appears as the label of the column corresponding to the service class of the service instance.]]
     </kd-resource-card-header-column>
     <kd-resource-card-header-column size="small" grow="2">
       [[Plan|Label 'Plan' which appears as the label of the column corresponding to the plan of the given instance]]

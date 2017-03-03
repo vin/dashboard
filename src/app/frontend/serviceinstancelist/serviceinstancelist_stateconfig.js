@@ -87,5 +87,5 @@ export function resolveServiceInstanceList(kdServiceInstanceListResource, $state
 
 const i18n = {
   /** @type {string} @desc Label 'Instances' that appears as a breadcrumbs on the action bar. */
-  MSG_BREADCRUMBS_INSTANCE_LABEL: goog.getMsg('Instances'),
+  MSG_BREADCRUMBS_INSTANCE_LABEL: goog.getMsg('Service Instances'),
 };
