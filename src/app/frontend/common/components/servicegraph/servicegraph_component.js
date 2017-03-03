@@ -61,8 +61,8 @@ export class ServiceGraphController {
 
     let force = d3.layout.force()
         .gravity(0.05)
-        .distance(height / 4)
-        .charge(-200)
+        .distance(height / 2)
+        .charge(-400)
         .size([width, height])
         .nodes(nodes)
         .links(links)
