@@ -14,6 +14,7 @@
   <translation id="2248903848244811172" key="MSG_BREADCRUMBS_HORIZONTAL_POD_AUTOSCALERS_LABEL" desc="Label 'Horizontal Pod Autoscalers' that appears as a breadcrumbs on the action bar.">Horizontal Pod Autoscalers</translation>
   <translation id="5747298115200147575" key="MSG_BREADCRUMBS_INGRESSS_LABEL" desc="Label 'Ingress' that appears as a breadcrumbs on the action bar.">Ingress</translation>
   <translation id="6038532131188007717" key="MSG_BREADCRUMBS_INSTANCE_LABEL" desc="Label 'Instances' that appears as a breadcrumbs on the action bar.">Instances</translation>
+  <translation id="7406023549247269204" key="MSG_BREADCRUMBS_INSTANCE_LABEL" desc="Label 'Instances' that appears as a breadcrumbs on the action bar.">Service Instances</translation>
   <translation id="2741276106482217695" key="MSG_BREADCRUMBS_INTERNALERROR_LABEL" desc="Label for internal error page for breadcrumbs on the action bar.">Internal error</translation>
   <translation id="2024511088483477440" key="MSG_BREADCRUMBS_JOBS_LABEL" desc="Label 'Jobs' that appears as a breadcrumbs on the action bar.">Jobs</translation>
   <translation id="1050029015813261838" key="MSG_BREADCRUMBS_LOGS_LABEL" desc="Breadcrum label for the logs view.">Logs</translation>
@@ -723,9 +724,11 @@
   <translation id="5871355117264820591" key="MSG_SERVICEINSTANCEDETAIL_SERVICEINSTANCEDETAIL_0" desc="Title for instances card zerostate in stateful set details page.">There is nothing to display here</translation>
   <translation id="9067232545601979529" key="MSG_SERVICEINSTANCEDETAIL_SERVICEINSTANCEDETAIL_1" desc="Text for instances card zerostate in stateful set details page.">There are currently no bindings used by this Instance.</translation>
   <translation id="6776329724501500085" key="MSG_SERVICEINSTANCEDETAIL_SERVICEINSTANCEINFO_0" desc="Header in a detail view">Details</translation>
+  <translation id="981647773978712414" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_0" desc="Label which appears above the list of such objects.">Service Instances</translation>
   <translation id="8837528392774226735" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_0" desc="Label which appears above the list of such objects.">Instances</translation>
   <translation id="880579436903444842" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of service instances">Name</translation>
   <translation id="1906213562845364310" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_2" desc="Label \'Type\' which appears as the label of the column corresponding to the service class of the service instance.">Type</translation>
+  <translation id="2586180340015298106" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_2" desc="Label \'Class\' which appears as the label of the column corresponding to the service class of the service instance.">Class</translation>
   <translation id="4096534321476028472" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_3" desc="Label \'Plan\' which appears as the label of the column corresponding to the plan of the given instance">Plan</translation>
   <translation id="2118963057525941559" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARDLIST_4" desc="Label \'Labels\' which appears as the label of the column corresponding to the Labels of the given instance">Labels</translation>
   <translation id="8684296629873680147" key="MSG_SERVICEINSTANCELIST_SERVICEINSTANCECARD_0" desc="tooltip for pending service card icon">This service is in a pending state</translation>
