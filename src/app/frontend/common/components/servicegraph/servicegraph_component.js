@@ -70,8 +70,10 @@ export class ServiceGraphController {
 
     let link = svg.selectAll(".link")
         .data(links)
-        .enter().append("line")
+        .enter()
+        .append("g")
         .attr("class", "link")
+        .append("line")
         .attr("marker-end", "url(#arrowhead)");
 
     let node = svg.selectAll(".node")
@@ -79,6 +81,18 @@ export class ServiceGraphController {
         .enter().append("g")
         .attr("class", "node")
         .call(force.drag);
+
+    let linkText = svg.selectAll(".link")
+        .append("text")
+        .attr("class", "link-label")
+        .attr("font-family", "Arial, Helvetica, sans-serif")
+        .attr("fill", "Black")
+        .style("font", "normal 12px Arial")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .text(function(d) {
+          return Math.round(d.labels.qps) + "qps";
+        });
 
     node.append("image")
         .attr("xlink:href", "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_donut_large_black_24px.svg")
@@ -99,6 +113,9 @@ export class ServiceGraphController {
           .attr("y2", (d) => d.target.y);
 
       node.attr("transform", d => ("translate(" + d.x + "," + d.y + ")"));
+
+      linkText.attr("x", (d) => (d.source.x + d.target.x) / 2)
+          .attr("y", (d) => (d.source.y + d.target.y) / 2);
     });
   }
 }
