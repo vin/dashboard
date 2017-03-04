@@ -34,8 +34,9 @@ limitations under the License.
   </div>
   <div>
     <md-input-container class="kd-service-class-detail-create-form-params">
-      <label>Parameters</label>
-      <textarea rows=5 ng-model="$ctrl.formData.parameters"></textarea>
+      <md-checkbox ng-model="$ctrl.formData.useProxy" required>
+        Use Proxy
+      </md-checkbox>
     </md-input-container>
   </div>
   <!--<kd-service-class-detail-create-form-labels-input labels-model="$ctrl.formData.labels">-->
