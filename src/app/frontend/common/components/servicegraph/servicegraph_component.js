@@ -53,14 +53,16 @@ export class ServiceGraphController {
       nodemap[k] = node;
     }
 
-    let links = data['edges'].map(edge => ({
+    let edges = data['edges'] || []
+
+    let links = edges.map(edge => ({
       source: nodemap[edge.source],
       target: nodemap[edge.target],
       labels: edge.labels,
     }));
 
     let force = d3.layout.force()
-        .gravity(0.05)
+        .gravity(0.02)
         .distance(height / 2)
         .charge(-400)
         .size([width, height])
@@ -105,6 +107,12 @@ export class ServiceGraphController {
         .attr("dx", 12)
         .attr("dy", ".35em")
         .text(d => d.name);
+
+    node.insert("rect", "image")
+        .attr("x", -15)
+        .attr("y", -15)
+        .attr("width", (d) => d.name.length * 15)
+        .attr("height", 30)
 
     force.on("tick", () => {
       link.attr("x1", (d) => d.source.x)

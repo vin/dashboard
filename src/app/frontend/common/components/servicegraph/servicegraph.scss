@@ -5,6 +5,11 @@ kd-service-graph {
 .servicegraph line {
   stroke: #ccc;
 }
+rect {
+	fill: blue;
+	fill-opacity: 0.2;
+	stroke: blue;
+}
 .container {
 	display: block;
 	height: 100%;
