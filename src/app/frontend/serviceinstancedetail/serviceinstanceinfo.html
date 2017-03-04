@@ -19,5 +19,13 @@ limitations under the License.
   <kd-info-card-section>
     <kd-object-meta-info-card object-meta="::$ctrl.serviceInstance.metadata">
     </kd-object-meta-info-card>
+    <kd-info-card-entry title="Service Class">
+      <a ng-href="{{::$ctrl.getServiceClassDetailHref()}}">      
+        {{::$ctrl.serviceInstance.spec.serviceClassName}}
+      </a>
+    </kd-info-card-entry>
+    <kd-info-card-entry title="Plan Name">
+            {{::$ctrl.serviceInstance.spec.planName}}
+    </kd-info-card-entry>
   </kd-info-card-section>
 </kd-info-card>
