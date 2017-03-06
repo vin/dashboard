@@ -111,7 +111,7 @@ export default class BreadcrumbsController {
     let breadcrumb = new Breadcrumb();
 
     breadcrumb.label = this.getDisplayName_(state, params);
-    breadcrumb.stateLink = this.state_.href(state['name']);
+    breadcrumb.stateLink = this.state_.href(state['name'], params);
 
     return breadcrumb;
   }
