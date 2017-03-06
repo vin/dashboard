@@ -2,8 +2,13 @@ kd-service-graph {
 	display: block;
 	height: 100%;
 }
-.servicegraph .link {
+.servicegraph line {
   stroke: #ccc;
+}
+rect {
+	fill: blue;
+	fill-opacity: 0.2;
+	stroke: blue;
 }
 .container {
 	display: block;

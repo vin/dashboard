@@ -53,14 +53,16 @@ export class ServiceGraphController {
       nodemap[k] = node;
     }
 
-    let links = data['edges'].map(edge => ({
+    let edges = data['edges'] || []
+
+    let links = edges.map(edge => ({
       source: nodemap[edge.source],
       target: nodemap[edge.target],
       labels: edge.labels,
     }));
 
     let force = d3.layout.force()
-        .gravity(0.05)
+        .gravity(0.02)
         .distance(height / 2)
         .charge(-400)
         .size([width, height])
@@ -70,8 +72,10 @@ export class ServiceGraphController {
 
     let link = svg.selectAll(".link")
         .data(links)
-        .enter().append("line")
+        .enter()
+        .append("g")
         .attr("class", "link")
+        .append("line")
         .attr("marker-end", "url(#arrowhead)");
 
     let node = svg.selectAll(".node")
@@ -79,6 +83,18 @@ export class ServiceGraphController {
         .enter().append("g")
         .attr("class", "node")
         .call(force.drag);
+
+    let linkText = svg.selectAll(".link")
+        .append("text")
+        .attr("class", "link-label")
+        .attr("font-family", "Arial, Helvetica, sans-serif")
+        .attr("fill", "Black")
+        .style("font", "normal 12px Arial")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .text(function(d) {
+          return Math.round(d.labels['qps']) + "qps";
+        });
 
     node.append("image")
         .attr("xlink:href", "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_donut_large_black_24px.svg")
@@ -92,6 +108,12 @@ export class ServiceGraphController {
         .attr("dy", ".35em")
         .text(d => d.name);
 
+    node.insert("rect", "image")
+        .attr("x", -15)
+        .attr("y", -15)
+        .attr("width", (d) => d.name.length * 15)
+        .attr("height", 30)
+
     force.on("tick", () => {
       link.attr("x1", (d) => d.source.x)
           .attr("y1", (d) => d.source.y)
@@ -99,6 +121,9 @@ export class ServiceGraphController {
           .attr("y2", (d) => d.target.y);
 
       node.attr("transform", d => ("translate(" + d.x + "," + d.y + ")"));
+
+      linkText.attr("x", (d) => (d.source.x + d.target.x) / 2)
+          .attr("y", (d) => (d.source.y + d.target.y) / 2);
     });
   }
 }

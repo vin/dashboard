@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<kd-service-instance-list-filter ng-if="!ctrl.shouldShowZeroState()"
+<kd-service-instance-list-filter ng-if="!ctrl.shouldShowZeroState() && !ctrl.shouldShowGraphView()"
                                  filter-term-model="ctrl.filterTerm">
 </kd-service-instance-list-filter>
 <kd-content-card ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowListView()">
