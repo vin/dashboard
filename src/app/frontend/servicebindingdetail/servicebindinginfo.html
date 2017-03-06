@@ -19,5 +19,12 @@ limitations under the License.
   <kd-info-card-section>
     <kd-object-meta-info-card object-meta="::$ctrl.serviceBinding.metadata">
     </kd-object-meta-info-card>
+    <kd-info-card-entry title="Service Instance">
+      <a ng-href="{{$ctrl.getServiceInstanceDetailHref()}}">{{$ctrl.serviceBinding.spec.instanceRef.name}}</a>
+    </kd-info-card-entry>
+    <kd-info-card-entry ng-if="$ctrl.serviceBinding.spec.Parameters" title="Parameters">
+      {{$ctrl.serviceBinding.spec.Parameters}}
+    </kd-info-card-entry>
   </kd-info-card-section>
+
 </kd-info-card>

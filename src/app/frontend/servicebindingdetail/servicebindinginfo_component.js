@@ -12,14 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {StateParams} from 'common/resource/resourcedetail';
+import {stateName} from 'serviceinstancedetail/serviceinstancedetail_state';
+
 /**
  * Binding info controller.
  * @final
  */
 class ServiceBindingInfoController {
-  constructor() {
+  /**
+   * @param {!ui.router.$state} $state
+   * @param {StateParams} $stateParams
+   * @ngInject
+   */
+  constructor($state, $stateParams) {
     /** @export {?} Initialized from a binding. */
     this.serviceBinding;
+
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
+
+    /** @private {!StateParams} */
+    this.stateParams_ = $stateParams;
+  }
+
+  /**
+   * @return {string}
+   * @export
+   */
+  getServiceInstanceDetailHref() {
+    return this.state_.href(
+        stateName,
+        new StateParams(this.stateParams_.objectNamespace, this.stateParams_.objectName));
   }
 }
 
