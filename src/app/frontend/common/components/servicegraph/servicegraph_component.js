@@ -29,7 +29,8 @@ export class ServiceGraphController {
   }
 
   $onInit() {
-    this.fetcher_.getData().then(response => this.generateGraph(response.data));
+    this.generateServiceGraph();
+    //this.fetcher_.getData().then(response => this.generateIstioGraph(response.data));
   }
 
   /**
@@ -37,7 +38,7 @@ export class ServiceGraphController {
    * @private
    * @param {{edges: Array<Object>, nodes: Array<Object>}} data
    */
-  generateGraph(data) {
+  generateIstioGraph(data) {
     let svgEl = this.element_.find('svg')[0];
     let width = svgEl.clientWidth;
     let height = svgEl.clientHeight;
@@ -115,13 +116,96 @@ export class ServiceGraphController {
           .attr("y", (d) => (d.source.y + d.target.y) / 2);
     });
   }
+
+  generateServiceGraph() {
+    let svgEl = this.element_.find('svg')[0];
+    let width = svgEl.clientWidth;
+    let height = svgEl.clientHeight;
+    let svg = d3.select(this.element_[0]).select('svg.servicegraph');
+    let overlay = d3.select(this.element_[0]).select('.overlay');
+
+    let nodes = this.serviceInstances.serviceInstances || [];
+    let nodemap = {};
+    for (let n of nodes) {
+      if (n.kind == 'ServiceInstance') {
+        n.href = `/serviceinstancelist/${n.metadata.namespace}/${n.name}`;
+      }
+      let serviceClass = this.serviceClasses.items.find(sc => (sc.name == n.spec.serviceClassName));
+      if (serviceClass) {
+        n.imgURL = serviceClass.ImageURL || "https://cloud.google.com/_static/images/cloud/products/logos/svg/bigquery.svg";
+      }
+      nodemap[n.name] = n;
+    }
+
+    let links = this.serviceBindings.items || [];
+    for (let l of links) {
+      let name = l.name;
+      let [from, to] = name.split('-');
+      if (!(from in nodemap)) {
+        nodemap[from] = {name: from}
+        nodes.push(nodemap[from])
+      }
+      l.source = nodemap[from];
+      if (!(to in nodemap)) {
+        nodemap[to] = {name: to}
+        nodes.push(nodemap[from])
+      }
+      l.target = nodemap[to];
+    }
+
+    let force = d3.layout.force()
+        .gravity(0.05)
+        .distance(height / 1.5)
+        .charge(-5000)
+        .chargeDistance(250)
+        .size([width, height])
+        .nodes(nodes)
+        .links(links)
+        .start();
+
+    let link = svg.selectAll(".link")
+        .data(links)
+        .enter()
+        .append("g")
+        .attr("class", "link")
+        .append("line")
+        .attr("marker-mid", "url(#arrowhead)");
+
+    let node = overlay.selectAll(".node")
+        .data(nodes, node => node.name)
+        .enter().append("div")
+        .attr("class", "node")
+        .html(d => getNodeTemplate(d))
+        .call(force.drag);
+
+    node.on("click", c => {
+      node.classed("selected", d => ( d == c ));
+    });
+
+    force.on("tick", () => {
+      link.attr("x1", (d) => d.source.x)
+          .attr("y1", (d) => d.source.y)
+          .attr("x2", (d) => d.target.x)
+          .attr("y2", (d) => d.target.y);
+
+      node.style("left", d => `${d.x - 110}px`);
+      node.style("top", d => `${d.y - 60}px`);
+    });
+
+  }
 }
 
 function getNodeTemplate(node) {
   let template = `<div id='node_${node.name}' class='node_inner'>`
   template += "<div class='background'></div>";
-  //template += "<img class='logo' src='/static/"+node.name+".png' />";
-  template += '<div class="title">' + node.name + '</div>';
+  if (node.imgURL) {
+    template += `<img class='logo' src='${node.imgURL}' />`;
+  }
+  if (node.href) {
+    template += `<div class="title"><a href="${node.href}">${node.name}</a></div>`;
+  } else {
+    template += '<div class="title">' + node.name + '</div>';
+  }
   if (node.labels) {
     template += '<div class="labels">';
     for (let label of node.labels) {
@@ -145,6 +229,9 @@ function getNodeTemplate(node) {
 export const serviceGraphComponent = {
   bindings: {
     'metrics': '<',
+    'serviceInstances': '<',
+    'serviceBindings': '<',
+    'serviceClasses': '<',
   },
   controller: ServiceGraphController,
   templateUrl: 'common/components/servicegraph/servicegraph.html',
