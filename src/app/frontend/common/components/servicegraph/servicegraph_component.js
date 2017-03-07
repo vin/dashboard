@@ -115,7 +115,6 @@ export class ServiceGraphController {
           .attr("y", (d) => (d.source.y + d.target.y) / 2);
     });
   }
-
 }
 
 function getNodeTemplate(node) {

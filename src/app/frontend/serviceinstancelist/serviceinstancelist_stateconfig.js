@@ -33,6 +33,7 @@ export default function stateConfig($stateProvider) {
     resolve: {
       'serviceInstanceList': resolveServiceInstanceList,
       'serviceClassList': resolveServiceClassList,
+      'serviceBindingList': resolveServiceBindingList,
     },
     params: {
       viewMode: {
@@ -82,6 +83,28 @@ export function resolveServiceInstanceList(kdServiceInstanceListResource, $state
           serviceInstance['objectMeta'] = serviceInstance['metadata'];
         });
         return serviceInstanceList;
+      });
+}
+
+/**
+ * @param {!angular.Resource} kdServiceBindingListResource
+ * @param {!./../chrome/chrome_state.StateParams} $stateParams
+ * @return {!angular.$q.Promise}
+ * @ngInject
+ */
+export function resolveServiceBindingList(kdServiceBindingListResource, $stateParams) {
+  return kdServiceBindingListResource.get({namespace: $stateParams.namespace})
+      .$promise.then((serviceBindingList) => {
+        serviceBindingList['listMeta'] = {
+          'totalItems': serviceBindingList['items'].length,
+        };
+        serviceBindingList['items'].forEach((serviceBinding) => {
+          serviceBinding['typeMeta'] = {
+            'kind': 'servicebinding',
+          };
+          serviceBinding['objectMeta'] = serviceBinding['metadata'];
+        });
+        return serviceBindingList;
       });
 }
 
