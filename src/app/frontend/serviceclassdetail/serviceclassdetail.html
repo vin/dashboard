@@ -26,7 +26,8 @@ limitations under the License.
         <kd-service-class-detail-header service-class="ctrl.serviceClass"
                                         class="kd-service-class-detail-header-container">
         </kd-service-class-detail-header>
-        <md-button class="kd-service-class-detail-create-instance md-raised md-primary"
+        <md-button ng-if="!ctrl.isInstantiatingClass()"
+                   class="kd-service-class-detail-create-instance md-raised md-primary"
                    ng-click="ctrl.startInstantiatingClass()">Create Instance</md-button>
       </div>
     </div>
