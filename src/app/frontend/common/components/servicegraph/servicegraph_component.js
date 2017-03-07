@@ -64,8 +64,8 @@ export class ServiceGraphController {
 
     let force = d3.layout.force()
         .gravity(0.02)
-        .distance(height / 1.5)
-        .charge(-400)
+        .distance(height / 3)
+        .charge(-500)
         .size([width, height])
         .nodes(nodes)
         .links(links)
@@ -77,7 +77,7 @@ export class ServiceGraphController {
         .append("g")
         .attr("class", "link")
         .append("line")
-        .attr("marker-end", "url(#arrowhead)");
+        .attr("marker-mid", "url(#arrowhead)");
 
     let node = overlay.selectAll(".node")
         .data(nodes, node => node.name)
@@ -85,6 +85,10 @@ export class ServiceGraphController {
         .attr("class", "node")
         .html(d => getNodeTemplate(d))
         .call(force.drag);
+
+    node.on("click", c => {
+      node.classed("selected", d => ( d == c ));
+    });
 
     let linkText = svg.selectAll(".link")
         .append("text")
@@ -115,9 +119,9 @@ export class ServiceGraphController {
 }
 
 function getNodeTemplate(node) {
-  let template = "<div id='node_"+node.name+"' class='node_inner' onclick='node_onclick(\""+node.name+"\")'>";
+  let template = `<div id='node_${node.name}' class='node_inner'>`
   template += "<div class='background'></div>";
-  template += "<img class='logo' src='/static/"+node.name+".png' />";
+  //template += "<img class='logo' src='/static/"+node.name+".png' />";
   template += '<div class="title">' + node.name + '</div>';
   if (node.labels) {
     template += '<div class="labels">';
