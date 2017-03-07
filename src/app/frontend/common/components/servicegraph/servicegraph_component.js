@@ -83,7 +83,7 @@ export class ServiceGraphController {
         .data(nodes, node => node.name)
         .enter().append("div")
         .attr("class", "node")
-	.html(d => getNodeTemplate(d))
+        .html(d => getNodeTemplate(d))
         .call(force.drag);
 
     let linkText = svg.selectAll(".link")
@@ -123,7 +123,7 @@ function getNodeTemplate(node) {
     template += '<div class="labels">';
     for (let label of node.labels) {
       for (let key in label) {
-	template += '<div class="label">' + key + ':' + label[key] + '</div>';
+        template += '<div class="label">' + key + ':' + label[key] + '</div>';
       }
     }
     template += '</div>'; // close .labels
