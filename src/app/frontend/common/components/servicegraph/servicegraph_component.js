@@ -42,6 +42,7 @@ export class ServiceGraphController {
     let width = svgEl.clientWidth;
     let height = svgEl.clientHeight;
     let svg = d3.select(this.element_[0]).select('svg.servicegraph');
+    let overlay = d3.select(this.element_[0]).select('.overlay');
 
     let nodes = [];
     let nodemap = {};
@@ -63,7 +64,7 @@ export class ServiceGraphController {
 
     let force = d3.layout.force()
         .gravity(0.02)
-        .distance(height / 2)
+        .distance(height / 1.5)
         .charge(-400)
         .size([width, height])
         .nodes(nodes)
@@ -78,10 +79,11 @@ export class ServiceGraphController {
         .append("line")
         .attr("marker-end", "url(#arrowhead)");
 
-    let node = svg.selectAll(".node")
+    let node = overlay.selectAll(".node")
         .data(nodes, node => node.name)
-        .enter().append("g")
+        .enter().append("div")
         .attr("class", "node")
+	.html(d => getNodeTemplate(d))
         .call(force.drag);
 
     let linkText = svg.selectAll(".link")
@@ -96,37 +98,41 @@ export class ServiceGraphController {
           return Math.round(d.labels['qps']) + " qps";
         });
 
-    node.append("image")
-        .attr("xlink:href", "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_donut_large_black_24px.svg")
-        .attr("x", -8)
-        .attr("y", -8)
-        .attr("width", 16)
-        .attr("height", 16);
-
-    node.append("text")
-        .attr("dx", 12)
-        .attr("dy", ".35em")
-        .text(d => d.name);
-
-    node.insert("rect", "image")
-        .attr("x", -15)
-        .attr("y", -15)
-        .attr("width", (d) => d.name.length * 15)
-        .attr("height", 30)
-
     force.on("tick", () => {
       link.attr("x1", (d) => d.source.x)
           .attr("y1", (d) => d.source.y)
           .attr("x2", (d) => d.target.x)
           .attr("y2", (d) => d.target.y);
 
-      node.attr("transform", d => ("translate(" + d.x + "," + d.y + ")"));
+      node.style("left", d => `${d.x - 95}px`);
+      node.style("top", d => `${d.y - 40}px`);
 
       linkText.attr("x", (d) => (d.source.x + d.target.x) / 2)
           .attr("y", (d) => (d.source.y + d.target.y) / 2);
     });
   }
+
 }
+
+function getNodeTemplate(node) {
+  let template = "<div id='node_"+node.name+"' class='node_inner' onclick='node_onclick(\""+node.name+"\")'>";
+  template += "<div class='background'></div>";
+  template += "<img class='logo' src='/static/"+node.name+".png' />";
+  template += '<div class="title">' + node.name + '</div>';
+  if (node.labels) {
+    template += '<div class="labels">';
+    for (let label of node.labels) {
+      for (let key in label) {
+	template += '<div class="label">' + key + ':' + label[key] + '</div>';
+      }
+    }
+    template += '</div>'; // close .labels
+  }
+  template += '</div>'; // close .inner
+  //console.log(template);
+  return template;
+}
+
 
 /**
  * Definition object for the service graph component.
