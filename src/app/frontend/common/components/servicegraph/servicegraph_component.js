@@ -127,10 +127,12 @@ export class ServiceGraphController {
     let nodes = this.serviceInstances.serviceInstances || [];
     let nodemap = {};
     for (let n of nodes) {
+      n.x = 200;
+      n.y = 200;
       if (n.kind == 'ServiceInstance') {
-        n.href = `/serviceinstancelist/${n.metadata.namespace}/${n.name}`;
+        n.href = `#/serviceinstancelist/${n.metadata.namespace}/${n.name}`;
       }
-      let serviceClass = this.serviceClasses.items.find(sc => (sc.name == n.spec.serviceClassName));
+      let serviceClass = this.getServiceClass(n);
       if (serviceClass) {
         n.imgURL = serviceClass.ImageURL || "https://cloud.google.com/_static/images/cloud/products/logos/svg/bigquery.svg";
       }
@@ -192,6 +194,10 @@ export class ServiceGraphController {
       node.style("top", d => `${d.y - 60}px`);
     });
 
+  }
+
+  getServiceClass(node) {
+    return this.serviceClasses.items.find(sc => (sc.name == node.spec.serviceClassName));
   }
 }
 
