@@ -93,7 +93,7 @@ export class ServiceGraphController {
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
         .text(function(d) {
-          return Math.round(d.labels['qps']) + "qps";
+          return Math.round(d.labels['qps']) + " qps";
         });
 
     node.append("image")
