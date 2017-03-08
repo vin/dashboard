@@ -23,10 +23,12 @@ limitations under the License.
     </kd-service-instance-card-list>
   </kd-content>
 </kd-content-card>
-<kd-service-instance-tiles ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowTileView()"
-                           service-instance-list="ctrl.getFilteredServiceInstanceList()"
-                           service-class-list="ctrl.serviceClassList">
-</kd-service-instance-tiles>
+<div ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowTileView()"
+     class="kd-service-instance-list-tile-view">
+  <kd-service-instance-tiles service-instance-list="ctrl.getFilteredServiceInstanceList()"
+                             service-class-list="ctrl.serviceClassList">
+  </kd-service-instance-tiles>
+</div>
 <div class="kd-service-instance-list-graph-view" ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowGraphView()">
   <kd-service-graph></kd-service-graph>
 </div>

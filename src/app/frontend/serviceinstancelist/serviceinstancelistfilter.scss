@@ -20,7 +20,7 @@ kd-service-instance-list-filter {
   border-radius: $baseline-grid / 4;
   box-shadow: $whiteframe-shadow-1dp;
   display: block;
-  margin: $baseline-grid * 3;
+  margin: $baseline-grid * 3 $baseline-grid * 2.5  $baseline-grid * 0 $baseline-grid * 2.5;
   max-width: 50%;
 }
 
@@ -31,8 +31,7 @@ kd-service-instance-list-filter {
 
 .kd-service-instance-list-filter-icon {
   height: $baseline-grid;
-  margin-bottom: $baseline-grid;
-  margin-top: $baseline-grid;
+  margin: $baseline-grid $baseline-grid $baseline-grid $baseline-grid * 0.5;
 }
 
 .kd-service-instance-list-filter-container {
