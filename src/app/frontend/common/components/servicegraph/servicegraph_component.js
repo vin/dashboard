@@ -134,7 +134,7 @@ export class ServiceGraphController {
       }
       let serviceClass = this.getServiceClass(n);
       if (serviceClass) {
-        n.imgURL = serviceClass.ImageURL || "https://cloud.google.com/_static/images/cloud/products/logos/svg/bigquery.svg";
+        n.imgURL = serviceClass.ImageURL;
       }
       nodemap[n.name] = n;
     }
