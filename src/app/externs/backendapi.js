@@ -1309,6 +1309,13 @@ backendApi.ServiceBinding;
 
 /**
  * @typedef {{
+ *   items: Array.<backendApi.ServiceBinding>
+ * }}
+ */
+backendApi.ServiceBindingList;
+
+/**
+ * @typedef {{
  *   token: string
  * }}
  */
