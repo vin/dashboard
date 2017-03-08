@@ -197,8 +197,8 @@ export class ServiceGraphController {
           .attr("x2", (d) => constrain(110, width-110)(d.target.x))
           .attr("y2", (d) => constrain(60, height-60)(d.target.y));
 
-      node.style("left", d => `${constrain(0, width - 220)(d.x) - 110}px`);
-      node.style("top", d => `${constrain(0, height - 120)(d.y) - 60}px`);
+      node.style("left", d => `${constrain(110, width - 110)(d.x) - 110}px`);
+      node.style("top", d => `${constrain(60, height - 60)(d.y) - 60}px`);
     });
 
   }
