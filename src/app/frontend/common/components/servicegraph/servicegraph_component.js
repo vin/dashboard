@@ -127,8 +127,8 @@ export class ServiceGraphController {
     let nodes = this.serviceInstances.serviceInstances || [];
     let nodemap = {};
     for (let n of nodes) {
-      n.x = 200;
-      n.y = 200;
+      n.x = width / 2;
+      n.y = height / 2;
       if (n.kind == 'ServiceInstance') {
         n.href = `#/serviceinstancelist/${n.metadata.namespace}/${n.name}`;
       }
@@ -158,8 +158,9 @@ export class ServiceGraphController {
     let force = d3.layout.force()
         .gravity(0.05)
         .distance(height / 1.5)
+        .linkStrength(0.3)
         .charge(-5000)
-        .chargeDistance(250)
+        .chargeDistance(300)
         .size([width, height])
         .nodes(nodes)
         .links(links)
@@ -184,14 +185,20 @@ export class ServiceGraphController {
       node.classed("selected", d => ( d == c ));
     });
 
-    force.on("tick", () => {
-      link.attr("x1", (d) => d.source.x)
-          .attr("y1", (d) => d.source.y)
-          .attr("x2", (d) => d.target.x)
-          .attr("y2", (d) => d.target.y);
+    let constrain = (min, max) => (v) => {
+        v = Math.max(v, min);
+        v = Math.min(v, max);
+        return v;
+    }
 
-      node.style("left", d => `${d.x - 110}px`);
-      node.style("top", d => `${d.y - 60}px`);
+    force.on("tick", () => {
+      link.attr("x1", (d) => constrain(110, width-110)(d.source.x))
+          .attr("y1", (d) => constrain(60, height-60)(d.source.y))
+          .attr("x2", (d) => constrain(110, width-110)(d.target.x))
+          .attr("y2", (d) => constrain(60, height-60)(d.target.y));
+
+      node.style("left", d => `${constrain(0, width - 220)(d.x) - 110}px`);
+      node.style("top", d => `${constrain(0, height - 120)(d.y) - 60}px`);
     });
 
   }
