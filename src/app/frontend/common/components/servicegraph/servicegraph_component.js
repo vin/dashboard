@@ -29,7 +29,7 @@ export class ServiceGraphController {
   }
 
   $onInit() {
-    this.generateServiceGraph();
+    this.fetcher_.getData().then(response => this.generateServiceGraph(response.data));
     //this.fetcher_.getData().then(response => this.generateIstioGraph(response.data));
   }
 
@@ -117,7 +117,10 @@ export class ServiceGraphController {
     });
   }
 
-  generateServiceGraph() {
+  /**
+   * @param {{edges: Array<Object>, nodes: Array<Object>}} istioData
+   */
+  generateServiceGraph(istioData) {
     let svgEl = this.element_.find('svg')[0];
     let width = svgEl.clientWidth;
     let height = svgEl.clientHeight;
@@ -153,6 +156,12 @@ export class ServiceGraphController {
         nodes.push(nodemap[from])
       }
       l.target = nodemap[to];
+      if (istioData.edges) {
+        let istioEdge = istioData.edges.find(e => e.source == name);
+        if (istioEdge) {
+          l.labels = istioEdge.labels;
+        }
+      }
     }
 
     let force = d3.layout.force()
@@ -171,8 +180,7 @@ export class ServiceGraphController {
         .enter()
         .append("g")
         .attr("class", "link")
-        .append("line")
-        .attr("marker-mid", "url(#arrowhead)");
+        .append("line");
 
     let node = overlay.selectAll(".node")
         .data(nodes, node => node.name)
@@ -191,6 +199,20 @@ export class ServiceGraphController {
         return v;
     }
 
+    let linkText = svg.selectAll(".link")
+        .append("text")
+        .attr("class", "link-label")
+        .attr("font-family", "Arial, Helvetica, sans-serif")
+        .attr("fill", "Black")
+        .style("font", "normal 12px Arial")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .text(function(d) {
+          if (d.labels) {
+            return Math.round(d.labels['qps']) + " qps";
+          }
+        });
+
     force.on("tick", () => {
       link.attr("x1", (d) => constrain(110, width-110)(d.source.x))
           .attr("y1", (d) => constrain(60, height-60)(d.source.y))
@@ -199,6 +221,9 @@ export class ServiceGraphController {
 
       node.style("left", d => `${constrain(110, width - 110)(d.x) - 110}px`);
       node.style("top", d => `${constrain(60, height - 60)(d.y) - 60}px`);
+
+      linkText.attr("x", (d) => (d.source.x + d.target.x) / 2)
+          .attr("y", (d) => (d.source.y + d.target.y) / 2);
     });
 
   }
