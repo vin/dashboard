@@ -27,11 +27,11 @@ export class ServiceGraphController {
 
     this.fetcher_ = kdServiceGraphFetcher;
 
-    /** @type {backendApi.ServiceInstanceList} */
+    /** @export {backendApi.ServiceInstanceList} */
     this.serviceInstances;
-    /** @type {backendApi.ServiceBindingList} */
+    /** @export {backendApi.ServiceBindingList} */
     this.serviceBindings;
-    /** @type {backendApi.ServiceClassList} */
+    /** @export {backendApi.ServiceClassList} */
     this.serviceClasses;
   }
 

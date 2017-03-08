@@ -18,7 +18,8 @@ export class ServiceGraphFetcher {
    * @ngInject
    */
   constructor($http) {
-    this.graphdata_ = $http.get('/api/v1alpha1/servicegraph')
+    //this.graphdata_ = $http.get('/fakedata.json');
+    this.graphdata_ = $http.get('api/v1alpha1/servicegraph');
   }
 
   getData() {

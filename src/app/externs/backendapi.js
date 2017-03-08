@@ -1252,6 +1252,7 @@ backendApi.ServiceBrokerList;
  * @typedef {{
  *   BrokerName: string,
  *   Plans: Array.<Object>,
+ *   ImageURL: string
  * }}
  */
 backendApi.ServiceClass;
@@ -1289,15 +1290,24 @@ backendApi.ServiceInstanceMetadata;
 
 /**
  * @typedef {{
+ *   serviceClassName: string
+ * }}
+ */
+backendApi.ServiceInstanceSpec;
+
+
+/**
+ * @typedef {{
  *   Status: backendApi.ServiceInstanceStatus,
- *   metadata: backendApi.ServiceInstanceMetadata
+ *   metadata: backendApi.ServiceInstanceMetadata,
+ *   spec: backendApi.ServiceInstanceSpec
  * }}
  */
 backendApi.ServiceInstance;
 
 /**
  * @typedef {{
- *   items: Array.<backendApi.ServiceInstance>
+ *   serviceInstances: Array.<backendApi.ServiceInstance>
  * }}
  */
 backendApi.ServiceInstanceList;
