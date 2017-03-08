@@ -26,6 +26,13 @@ export class ServiceGraphController {
     this.element_ = $element;
 
     this.fetcher_ = kdServiceGraphFetcher;
+
+    /** @type {backendApi.ServiceInstanceList} */
+    this.serviceInstances;
+    /** @type {backendApi.ServiceBindingList} */
+    this.serviceBindings;
+    /** @type {backendApi.ServiceClassList} */
+    this.serviceClasses;
   }
 
   $onInit() {

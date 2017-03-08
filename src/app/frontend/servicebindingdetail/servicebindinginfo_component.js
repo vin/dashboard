@@ -22,7 +22,7 @@ import {stateName} from 'serviceinstancedetail/serviceinstancedetail_state';
 class ServiceBindingInfoController {
   /**
    * @param {!ui.router.$state} $state
-   * @param {StateParams} $stateParams
+   * @param {!StateParams} $stateParams
    * @ngInject
    */
   constructor($state, $stateParams) {
