@@ -103,7 +103,7 @@ export default class BreadcrumbsController {
    * Creates breadcrumb object based on state object.
    *
    * @param {!ui.router.$state} state
-   * @param {*} params state params object to be passed for interpolation
+   * @param {Object|Object<string,string>|null|undefined} params state params object to be passed for interpolation
    * @return {!Breadcrumb}
    * @private
    */
@@ -111,7 +111,7 @@ export default class BreadcrumbsController {
     let breadcrumb = new Breadcrumb();
 
     breadcrumb.label = this.getDisplayName_(state, params);
-    breadcrumb.stateLink = this.state_.href(state['name'], params);
+    breadcrumb.stateLink = this.state_.href(state['name'], params || undefined);
 
     return breadcrumb;
   }

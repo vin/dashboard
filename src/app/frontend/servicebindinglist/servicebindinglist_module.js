@@ -35,4 +35,15 @@ export default angular
           chromeModule.name,
         ])
     .component('kdServiceBindingCardList', serviceBindingCardListComponent)
-    .component('kdServiceBindingCard', serviceBindingCardComponent);
+    .component('kdServiceBindingCard', serviceBindingCardComponent)
+    .factory('kdServiceBindingListResource', serviceBindingListResource);
+
+
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function serviceBindingListResource($resource) {
+  return $resource('api/v1alpha1/servicebinding/:namespace');
+}

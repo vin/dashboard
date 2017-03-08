@@ -37,7 +37,6 @@ export default function stateConfig($stateProvider) {
     resolve: {
       'serviceInstanceDetailResource': getServiceInstanceDetailResource,
       'serviceInstance': resolveServiceInstanceDetail,
-      'serviceBindingListResource': getServiceBindingListResource,
       'serviceBindingList': resolveServiceBindingList,
       'serviceInstanceList': resolveServiceInstanceList,
     },
@@ -93,22 +92,13 @@ export function resolveServiceInstanceDetail(serviceInstanceDetailResource, $sta
 
 
 /**
- * @param {!angular.$resource} $resource
- * @return {!angular.Resource}
- * @ngInject
- */
-export function getServiceBindingListResource($resource) {
-  return $resource(`api/v1alpha1/servicebinding/:namespace`);
-}
-
-/**
- * @param {!angular.Resource} serviceBindingListResource
+ * @param {!angular.Resource} kdServiceBindingListResource
  * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceBindingList(serviceBindingListResource, $stateParams) {
-  return serviceBindingListResource.get({namespace: $stateParams.objectNamespace})
+export function resolveServiceBindingList(kdServiceBindingListResource, $stateParams) {
+  return kdServiceBindingListResource.get({namespace: $stateParams.objectNamespace})
       .$promise.then((serviceBindingList) => {
         serviceBindingList['serviceBindings'] = serviceBindingList['items'].filter(
             (binding) => binding['spec']['instanceRef']['name'] === $stateParams.objectName);

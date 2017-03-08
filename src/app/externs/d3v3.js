@@ -25,6 +25,13 @@ d3.ForceSimulation.prototype.charge = function(c) {};
  * @param {number} d
  * @return {d3.ForceSimulation}
  */
+d3.ForceSimulation.prototype.chargeDistance = function(d) {};
+
+
+/**
+ * @param {number} d
+ * @return {d3.ForceSimulation}
+ */
 d3.ForceSimulation.prototype.distance = function(d) {};
 
 
@@ -40,6 +47,13 @@ d3.ForceSimulation.prototype.gravity = function(g) {};
  * @return {d3.ForceSimulation}
  */
 d3.ForceSimulation.prototype.links = function(ls) {};
+
+
+/**
+ * @param {number} ls
+ * @return {d3.ForceSimulation}
+ */
+d3.ForceSimulation.prototype.linkStrength = function(ls) {};
 
 
 /**

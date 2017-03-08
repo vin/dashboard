@@ -30,6 +30,7 @@ limitations under the License.
   </kd-service-instance-tiles>
 </div>
 <div class="kd-service-instance-list-graph-view" ng-if="!ctrl.shouldShowZeroState() && ctrl.shouldShowGraphView()">
-  <kd-service-graph></kd-service-graph>
+  <kd-service-graph service-instances="ctrl.serviceInstanceList"
+    service-bindings="ctrl.serviceBindingList" service-classes="ctrl.serviceClassList"></kd-service-graph>
 </div>
 <kd-zero-state ng-if="ctrl.shouldShowZeroState()"></kd-zero-state>
