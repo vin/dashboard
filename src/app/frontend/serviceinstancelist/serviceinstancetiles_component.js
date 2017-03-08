@@ -33,7 +33,7 @@ export class ServiceInstanceTilesController {
    */
   getServiceClassForServiceInstance(serviceInstance){
     return this.serviceClassList.items.find((serviceClass) =>
-      serviceInstance.spec.serviceClassName === serviceClass.name
+      serviceInstance['spec']['serviceClassName'] === serviceClass['name']
     );
   }
 }
