@@ -26,6 +26,10 @@
 }
 
 .kd-service-class-list-add-network-function-dialog {
-  padding: 2 * $baseline-grid;
+  min-width: $baseline-grid * 50;
+}
+
+.kd-service-class-list-add-network-function-dialog-content {
+  padding: 4 * $baseline-grid;
 }
 

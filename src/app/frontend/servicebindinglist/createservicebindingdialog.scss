@@ -15,7 +15,11 @@
 @import '../variables';
 
 .kd-service-binding-list-create-service-binding-dialog {
-  padding: 2 * $baseline-grid;
+  min-width: $baseline-grid * 50;
+}
+
+.kd-service-binding-list-create-service-binding-dialog-content {
+  padding: 4 * $baseline-grid;
 }
 
 

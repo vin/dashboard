@@ -50,8 +50,4 @@ export const serviceClassCardListComponent = {
     /** {?} */
     'serviceBrokerList': '<',
   },
-  transclude: {
-    'searchInput': 'kdServiceClassCardListSearchInput',
-    'catalogSelector': 'kdServiceClassCardListCatalogSelector',
-  },
 };

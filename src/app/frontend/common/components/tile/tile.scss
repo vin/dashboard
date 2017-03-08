@@ -20,8 +20,9 @@
 
 .kd-tile-content {
   display: block;
-  height: $baseline-grid * 26;
+  min-height: $baseline-grid * 17.5;
   overflow: hidden;
   padding: $baseline-grid * 2;
   width: $baseline-grid * 28;
+
 }

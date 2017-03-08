@@ -21,8 +21,7 @@
 
 .kd-service-class-list-search-input-icon {
   height: $baseline-grid;
-  margin-bottom: $baseline-grid;
-  margin-top: $baseline-grid;
+  margin: $baseline-grid $baseline-grid * 2 $baseline-grid $baseline-grid * 1.5;
 }
 
 .kd-service-class-list-search-input-container {

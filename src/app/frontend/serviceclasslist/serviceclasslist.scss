@@ -16,7 +16,6 @@
 
 .kd-service-class-list-tile-view {
   margin: $baseline-grid * 2;
-  margin-top: $baseline-grid * 4;
 }
 
 kd-service-class-list-search-input {
@@ -26,8 +25,9 @@ kd-service-class-list-search-input {
   display: block;
 }
 
-.kd-service-class-list-tile-view-input {
+.kd-service-class-list-input {
   display: flex;
+  margin: $baseline-grid * 3 $baseline-grid * 2.5  $baseline-grid * 0 $baseline-grid * 2.5;
 
   kd-service-class-list-search-input {
     flex-grow: 1;

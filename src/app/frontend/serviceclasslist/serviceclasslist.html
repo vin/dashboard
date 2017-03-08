@@ -14,33 +14,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+<div class="kd-service-class-list-input">
+  <kd-service-class-list-search-input ng-if="!$ctrl.shouldShowZeroState()" search-term-model="$ctrl.searchTerm">
+  </kd-service-class-list-search-input>
+  <kd-service-class-list-catalog-selector selected-broker-model="$ctrl.selectedBroker"
+                                          service-broker-list="$ctrl.serviceBrokerList">
+  </kd-service-class-list-catalog-selector>
+</div>
 <kd-content-card ng-if="!$ctrl.shouldShowZeroState() && $ctrl.shouldShowListView()">
   <kd-content>
     <kd-service-class-card-list service-class-list="$ctrl.getSearchedServiceClassList()"
                                 service-broker-list="$ctrl.serviceBrokerList">
-      <kd-service-class-card-list-search-input>
-        <kd-service-class-list-search-input search-term-model="$ctrl.searchTerm">
-        </kd-service-class-list-search-input>
-      </kd-service-class-card-list-search-input>
-      <kd-service-class-card-list-catalog-selector>
-        <kd-service-class-list-catalog-selector selected-broker-model="$ctrl.selectedBroker"
-                                                service-broker-list="$ctrl.serviceBrokerList">
-        </kd-service-class-list-catalog-selector>
-      </kd-service-class-card-list-catalog-selector>
     </kd-service-class-card-list>
   </kd-content>
 </kd-content-card>
 <div class="kd-service-class-list-tile-view" ng-if="!$ctrl.shouldShowZeroState() && $ctrl.shouldShowTileView()">
-  <div class="kd-service-class-list-tile-view-input">
-    <kd-service-class-list-search-input search-term-model="$ctrl.searchTerm">
-    </kd-service-class-list-search-input>
-    <kd-service-class-list-catalog-selector selected-broker-model="$ctrl.selectedBroker"
-                                            service-broker-list="$ctrl.serviceBrokerList">
-    </kd-service-class-list-catalog-selector>
-  </div>
   <kd-service-class-tiles service-class-list="$ctrl.getSearchedServiceClassList()"
                           service-broker-list="$ctrl.serviceBrokerList">
   </kd-service-class-tiles>
 </div>
-
 <kd-zero-state ng-if="$ctrl.shouldShowZeroState()"></kd-zero-state>

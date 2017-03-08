@@ -32,10 +32,6 @@ export class ServiceClassCardListHeaderController {
 export const serviceClassCardListHeaderComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardlistheader.html',
   controller: ServiceClassCardListHeaderController,
-  transclude: {
-    'searchInput': 'kdServiceClassCardListHeaderSearchInput',
-    'catalogSelector': 'kdServiceClassCardListHeaderCatalogSelector',
-  },
   bindings: {
     /** {number} */
     'numSolutions': '<',

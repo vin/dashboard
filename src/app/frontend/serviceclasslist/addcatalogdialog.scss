@@ -26,7 +26,12 @@
 }
 
 .kd-service-class-list-add-catalog-dialog {
-  padding: 2 * $baseline-grid;
+  min-width: 50 * $baseline-grid;
+
+}
+
+.kd-service-class-list-add-catalog-dialog-content {
+  padding: 4 * $baseline-grid;
 }
 
 .kd-service-class-list-add-catalog-dialog-url-input,
