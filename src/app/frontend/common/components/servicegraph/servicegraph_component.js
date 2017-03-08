@@ -219,6 +219,9 @@ function getNodeTemplate(node) {
   } else {
     template += '<div class="title">' + node.name + '</div>';
   }
+  if (node.spec && node.spec.serviceClassName) {
+    template += `<div class="kd-service-instance-tile-class">instance of ${node.spec.serviceClassName}</div>`;
+  }
   if (node.labels) {
     template += '<div class="labels">';
     for (let label of node.labels) {
