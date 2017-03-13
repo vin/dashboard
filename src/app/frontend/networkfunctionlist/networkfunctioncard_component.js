@@ -20,7 +20,7 @@ export class NetworkFunctionCardController {
    * @ngInject
    */
   constructor() {
-    /** @export {?} */
+    /** @export {!backendApi.NetworkFunction} */
     this.networkFunction;
   }
 }
@@ -34,6 +34,7 @@ export const networkFunctionCardComponent = {
   templateUrl: 'networkfunctionlist/networkfunctioncard.html',
   controller: NetworkFunctionCardController,
   bindings: {
+    /** {!backendApi.NetworkFunction} */
     'networkFunction': '<',
   },
 };

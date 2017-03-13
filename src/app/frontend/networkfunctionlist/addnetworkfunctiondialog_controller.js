@@ -14,7 +14,7 @@
 
 export class AddNetworkFunctionDialogController {
   /**
-   * @param {?} serviceBinding
+   * @param {!backendApi.ServiceBinding} serviceBinding
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
    * @param {!md.$dialog} $mdDialog
@@ -23,7 +23,7 @@ export class AddNetworkFunctionDialogController {
    * @ngInject
    */
   constructor(serviceBinding, $resource, kdCsrfTokenService, $mdDialog, $state, $stateParams) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBinding} */
     this.serviceBinding = serviceBinding;
     /** @private {!angular.$resource} */
     this.resource_ = $resource;
@@ -33,7 +33,7 @@ export class AddNetworkFunctionDialogController {
     this.mdDialog_ = $mdDialog;
     /** @private {!ui.router.$state} */
     this.state_ = $state;
-    /** @export {?} */
+    /** @export {{kind: string, limit: string}} */
     this.formData = {
       'kind': 'quotas',
       'limit': '5',

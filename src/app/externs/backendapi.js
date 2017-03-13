@@ -1325,6 +1325,11 @@ backendApi.ServiceBinding;
 backendApi.ServiceBindingList;
 
 /**
+ * @typedef {Object}
+ */
+backendApi.NetworkFunction;
+
+/**
  * @typedef {{
  *   token: string
  * }}

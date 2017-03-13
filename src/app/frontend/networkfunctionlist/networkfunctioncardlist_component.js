@@ -26,7 +26,7 @@ export class NetworkFunctionCardListController {
   constructor($mdDialog) {
     /** @private {!md.$dialog} */
     this.mdDialog_ = $mdDialog;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBinding} */
     this.serviceBinding;
   }
 
@@ -67,7 +67,7 @@ export const networkFunctionCardListComponent = {
   templateUrl: 'networkfunctionlist/networkfunctioncardlist.html',
   controller: NetworkFunctionCardListController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceBinding} */
     'serviceBinding': '<',
   },
 };
