@@ -38,9 +38,9 @@ export class ServiceBindingCardController {
    * @ngInject
    */
   constructor($state) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBinding} */
     this.serviceBinding;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceInstance} */
     this.serviceInstance;
 
     /** @private {!ui.router.$state} */
@@ -107,9 +107,9 @@ export const serviceBindingCardComponent = {
   templateUrl: 'servicebindinglist/servicebindingcard.html',
   controller: ServiceBindingCardController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceBinding} */
     'serviceBinding': '<',
-    /** {?} */
+    /** {!backendApi.ServiceInstance} */
     'serviceInstance': '<',
   },
 };

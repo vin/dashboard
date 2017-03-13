@@ -24,13 +24,13 @@ export class ServiceBindingCardListController {
    * @ngInject
    */
   constructor($mdDialog) {
-    /** @export {?} Initialized from binding. */
+    /** @export {!backendApi.ServiceBindingList} Initialized from binding. */
     this.serviceBindingList;
 
-    /** @export {?} Initialized from binding. */
+    /** @export {!backendApi.ServiceInstance} Initialized from binding. */
     this.serviceInstance;
 
-    /** @export {?} Initialized from binding. */
+    /** @export {!backendApi.ServiceInstanceList} Initialized from binding. */
     this.serviceInstanceList;
 
     /** @export {!md.$dialog} */
@@ -65,11 +65,11 @@ export const serviceBindingCardListComponent = {
   templateUrl: 'servicebindinglist/servicebindingcardlist.html',
   controller: ServiceBindingCardListController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceBindingList} */
     'serviceBindingList': '<',
-    /** {?} */
+    /** {!backendApi.ServiceInstance} */
     'serviceInstance': '<?',
-    /** {?} */
+    /** {!backendApi.ServiceInstanceList} */
     'serviceInstanceList': '<?',
   },
 };

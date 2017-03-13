@@ -17,7 +17,7 @@
  */
 export class ServiceBindingDetailController {
   /**
-   * @param {?} serviceBinding
+   * @param {!backendApi.ServiceBinding} serviceBinding
    * @ngInject
    */
   constructor(serviceBinding) {

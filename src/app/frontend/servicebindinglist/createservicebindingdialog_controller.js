@@ -14,8 +14,8 @@
 
 export class CreateServiceBindingDialogController {
   /**
-   * @param {?} serviceInstance
-   * @param {!{serviceInstances: Array.<backendApi.ServiceInstance>}} serviceInstanceList
+   * @param {!backendApi.ServiceInstance} serviceInstance
+   * @param {!backendApi.ServiceInstanceList} serviceInstanceList
    * @param {!md.$dialog} $mdDialog
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
@@ -23,12 +23,14 @@ export class CreateServiceBindingDialogController {
    * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
    * @ngInject
    */
-  constructor(serviceInstance, serviceInstanceList, $mdDialog, $resource, kdCsrfTokenService, $state, $stateParams) {
-    /** @export {?} */
+  constructor(
+      serviceInstance, serviceInstanceList, $mdDialog, $resource, kdCsrfTokenService, $state,
+      $stateParams) {
+    /** @export {!backendApi.ServiceInstance} */
     this.serviceInstance = serviceInstance;
-    /** @export {!{serviceInstances: Array.<backendApi.ServiceInstance>}} */
+    /** @export {!backendApi.ServiceInstanceList} */
     this.serviceInstanceList = serviceInstanceList;
-    /** @export */
+    /** @export {{fromLabel:string, labelSelector: string, parameters: string}} */
     this.formData = {
       'fromLabel': '',
       'labelSelector': '',
@@ -71,7 +73,7 @@ export class CreateServiceBindingDialogController {
       'to': myName,
     };
 
-    if(this.formData['parameters']){
+    if (this.formData['parameters']) {
       putData['spec']['parameters'] = JSON.parse(this.formData['parameters']);
     }
 
@@ -90,39 +92,40 @@ export class CreateServiceBindingDialogController {
    * @return {!Object}
    * @export
    */
-  parseLabelSelector(rawLabelSelector){
-    let matchExpressions = rawLabelSelector.split(/\n/g)
-        .map((s) => s.trim())
-        .filter((s) => s)
-        .map((singleLabelSelector) => {
-          let match = singleLabelSelector.match(/(.*) (in|notin|=|!=) (.*)/);
-          if(match){
-            let [key, operator, value] = match.slice(1);
-            if(operator === 'in' || operator === 'notin'){
-              let values = value.slice(1,-1).split(',').map((s) => s.trim());
-              return {key, operator: operator === 'in' ? 'In' : 'NotIn', values};
-            } else {
-              return {
-                key,
-                operator: operator === '=' ? 'In' : 'NotIn',
-                values: [value],
-              };
-            }
-          } else {
-            if(singleLabelSelector.slice(0,1) === '!'){
-              return {
-                key: singleLabelSelector.slice(1),
-                operator: 'DoesNotExist',
-              };
-            } else {
-              return {
-                key: singleLabelSelector,
-                operator: 'Exists',
-              };
-            }
-          }
-        });
-    if(matchExpressions.length){
+  parseLabelSelector(rawLabelSelector) {
+    let matchExpressions =
+        rawLabelSelector.split(/\n/g)
+            .map((s) => s.trim())
+            .filter((s) => s)
+            .map((singleLabelSelector) => {
+              let match = singleLabelSelector.match(/(.*) (in|notin|=|!=) (.*)/);
+              if (match) {
+                let [key, operator, value] = match.slice(1);
+                if (operator === 'in' || operator === 'notin') {
+                  let values = value.slice(1, -1).split(',').map((s) => s.trim());
+                  return {key, operator: operator === 'in' ? 'In' : 'NotIn', values};
+                } else {
+                  return {
+                    key,
+                    operator: operator === '=' ? 'In' : 'NotIn',
+                    values: [value],
+                  };
+                }
+              } else {
+                if (singleLabelSelector.slice(0, 1) === '!') {
+                  return {
+                    key: singleLabelSelector.slice(1),
+                    operator: 'DoesNotExist',
+                  };
+                } else {
+                  return {
+                    key: singleLabelSelector,
+                    operator: 'Exists',
+                  };
+                }
+              }
+            });
+    if (matchExpressions.length) {
       return {matchExpressions};
     } else {
       return {};

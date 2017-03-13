@@ -26,7 +26,7 @@ class ServiceBindingInfoController {
    * @ngInject
    */
   constructor($state, $stateParams) {
-    /** @export {?} Initialized from a binding. */
+    /** @export {!backendApi.ServiceBinding} Initialized from a binding. */
     this.serviceBinding;
 
     /** @private {!ui.router.$state} */
@@ -55,7 +55,7 @@ class ServiceBindingInfoController {
 export const serviceBindingInfoComponent = {
   templateUrl: 'servicebindingdetail/servicebindinginfo.html',
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceBinding} */
     'serviceBinding': '<',
   },
   controller: ServiceBindingInfoController,
