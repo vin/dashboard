@@ -22,7 +22,7 @@ export class ServiceClassListCatalogSelectorController {
   constructor() {
     /** @export {string} */
     this.selectedBrokerModel;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBrokerList} */
     this.serviceBrokerList;
   }
 }
@@ -37,7 +37,7 @@ export const serviceClassListCatalogSelectorComponent = {
   bindings: {
     /** {string} */
     'selectedBrokerModel': '=',
-    /** {?} */
+    /** {!backendApi.ServiceBrokerList} */
     'serviceBrokerList': '<',
   },
 };

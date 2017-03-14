@@ -20,20 +20,21 @@ export class ServiceClassCardListController {
    * @ngInject
    */
   constructor() {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceClassList} */
     this.serviceClassList;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBrokerList} */
     this.serviceBrokerList;
   }
 
   /**
-   * @param {?} serviceClass
-   * @return {?}
+   * @param {!backendApi.ServiceClass} serviceClass
+   * @return {backendApi.ServiceBroker}
    * @export
    */
   getServiceBrokerForServiceClass(serviceClass) {
     return this.serviceBrokerList.items.find(
-        (serviceBroker) => serviceBroker.name === serviceClass.BrokerName);
+               (serviceBroker) => serviceBroker.name === serviceClass.BrokerName) ||
+        null;
   }
 }
 
@@ -45,9 +46,9 @@ export const serviceClassCardListComponent = {
   templateUrl: 'serviceclasslist/serviceclasscardlist.html',
   controller: ServiceClassCardListController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceClassList} */
     'serviceClassList': '<',
-    /** {?} */
+    /** {!backendApi.ServiceBrokerList} */
     'serviceBrokerList': '<',
   },
 };

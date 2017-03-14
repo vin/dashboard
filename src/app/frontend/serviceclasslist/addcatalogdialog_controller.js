@@ -30,7 +30,15 @@ export class AddCatalogDialogController {
     this.mdDialog_ = $mdDialog;
     /** @private {!ui.router.$state} */
     this.state_ = $state;
-    /** @export {?} */
+    /** @export
+     * {{
+     *  name: string,
+     *  url: string,
+     *  loginRequired: boolean,
+     *  login: string,
+     *  password: string,
+     * }}
+     */
     this.formData = {
       'name': '',
       'url': '',

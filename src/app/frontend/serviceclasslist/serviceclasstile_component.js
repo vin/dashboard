@@ -25,9 +25,9 @@ export class ServiceClassTileController {
    * @ngInject
    */
   constructor($state) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceClass} */
     this.serviceClass;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBroker} */
     this.serviceBroker;
     /** @private {!ui.router.$state} */
     this.state_ = $state;
@@ -52,9 +52,9 @@ export const serviceClassTileComponent = {
   templateUrl: 'serviceclasslist/serviceclasstile.html',
   controller: ServiceClassTileController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceClass} */
     'serviceClass': '<',
-    /** {?} */
+    /** {!backendApi.ServiceBroker} */
     'serviceBroker': '<',
   },
 };

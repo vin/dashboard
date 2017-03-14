@@ -35,7 +35,7 @@ export class ServiceClassListController {
     this.previousSearchTerm_ = '';
     /** @private {string} */
     this.previousSelectedBroker_ = '';
-    /** @private {?} */
+    /** @private {Array<!backendApi.ServiceClass>} */
     this.searchedServiceClassList_ = null;
     /** @private {string} */
     this.viewMode_ = $stateParams.viewMode;

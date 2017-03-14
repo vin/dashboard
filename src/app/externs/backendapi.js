@@ -1250,9 +1250,18 @@ backendApi.ServiceBrokerList;
 
 /**
  * @typedef {{
+ *   name: string,
+ *   namespace: string,
+ * }}
+ */
+backendApi.ServiceClassMetadata;
+
+/**
+ * @typedef {{
  *   BrokerName: string,
  *   Plans: Array.<Object>,
- *   ImageURL: string
+ *   ImageURL: string,
+ *   metadata: backendApi.ServiceClassMetadata,
  * }}
  */
 backendApi.ServiceClass;

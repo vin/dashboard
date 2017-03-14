@@ -22,7 +22,7 @@ export class ActionBarController {
   /**
    * @param {!md.$dialog} $mdDialog
    * @param {!ui.router.$state} $state
-   * @param {?} $stateParams
+   * @param {{viewMode: string}} $stateParams
    * @ngInject
    */
   constructor($mdDialog, $state, $stateParams) {
@@ -30,7 +30,7 @@ export class ActionBarController {
     this.mdDialog_ = $mdDialog;
     /** @private {!ui.router.$state} */
     this.state_ = $state;
-    /** @private {?} */
+    /** @private {{viewMode: string}} */
     this.stateParams_ = $stateParams;
   }
 
