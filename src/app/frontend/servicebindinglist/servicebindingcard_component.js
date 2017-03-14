@@ -12,22 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {StateParams as ResourceStateParams} from 'common/resource/resourcedetail';
-import {stateName} from 'servicebindingdetail/servicebindingdetail_state';
+import {stateName, StateParams} from 'servicebindingdetail/servicebindingdetail_state';
 
-export class StateParams extends ResourceStateParams {
-  /**
-   * @param {string} objectNamespace
-   * @param {string} objectName
-   * @param {string} bindingName
-   */
-  constructor(objectNamespace, objectName, bindingName) {
-    super(objectNamespace, objectName);
-
-    /** @export {string} */
-    this.bindingName = bindingName;
-  }
-}
 
 /**
  * @final

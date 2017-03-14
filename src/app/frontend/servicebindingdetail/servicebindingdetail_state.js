@@ -12,5 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {StateParams as ResourceStateParams} from 'common/resource/resourcedetail';
+
 /** Name of the state. Can be used in, e.g., $state.go method. */
 export const stateName = 'serviceBindingDetail';
+
+export class StateParams extends ResourceStateParams {
+  /**
+   * @param {string} objectNamespace
+   * @param {string} objectName
+   * @param {string} bindingName
+   */
+  constructor(objectNamespace, objectName, bindingName) {
+    super(objectNamespace, objectName);
+
+    /** @export {string} */
+    this.bindingName = bindingName;
+  }
+}

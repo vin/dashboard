@@ -28,13 +28,21 @@ export class ServiceInstanceTilesController {
 
   /**
    * @param {!backendApi.ServiceInstance} serviceInstance
-   * @return {backendApi.ServiceClass} serviceClass
+   * @return {!backendApi.ServiceClass} serviceClass
    * @export
    */
   getServiceClassForServiceInstance(serviceInstance){
-    return this.serviceClassList.items.find((serviceClass) =>
+    let retServiceClass = this.serviceClassList.items.find((serviceClass) =>
       serviceInstance['spec']['serviceClassName'] === serviceClass['name']
-    ) || null;
+    );
+    if(!retServiceClass){
+      throw new Error(
+          `Could not find the service class with name ` +
+          `'${serviceInstance['spec']['serviceClassName']}' for ` +
+          `serviceInstance with name ${serviceInstance}`);
+    } else {
+      return retServiceClass;
+    }
   }
 }
 

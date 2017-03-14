@@ -19,7 +19,7 @@ export class ServiceClassListController {
   /**
    * @param {!backendApi.ServiceClassList} serviceClassList
    * @param {!backendApi.ServiceBrokerList} serviceBrokerList
-   * @param {Object} $stateParams
+   * @param {!{viewMode: string}} $stateParams
    * @ngInject
    */
   constructor(serviceClassList, serviceBrokerList, $stateParams) {

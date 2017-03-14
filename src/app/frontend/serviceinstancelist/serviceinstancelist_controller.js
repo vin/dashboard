@@ -20,7 +20,7 @@ export class ServiceInstanceListController {
    * @param {!backendApi.ServiceInstanceList} serviceInstanceList
    * @param {!backendApi.ServiceClassList} serviceClassList
    * @param {!backendApi.ServiceBindingList} serviceBindingList
-   * @param {Object} $stateParams
+   * @param {{viewMode: string}} $stateParams
    * @ngInject
    */
   constructor(serviceInstanceList, serviceClassList, serviceBindingList, $stateParams) {
@@ -34,8 +34,8 @@ export class ServiceInstanceListController {
     this.filterTerm = '';
     /** @private {string} */
     this.previousFilterTerm_ = '';
-    /** @private {!backendApi.ServiceInstanceList} */
-    this.filteredServiceInstanceList_ = null;
+    /** @private {backendApi.ServiceInstanceList} */
+    this.filteredServiceInstanceList_;
     /** @private {string} */
     this.viewMode_ = $stateParams.viewMode;
   }
@@ -53,7 +53,7 @@ export class ServiceInstanceListController {
    * @export
    */
   getFilteredServiceInstanceList() {
-    if (this.filteredServiceInstanceList_ === null ||
+    if (!this.filteredServiceInstanceList_ ||
         this.filterTerm !== this.previousFilterTerm_) {
       let filterTerm = this.filterTerm.toLowerCase();
       this.filteredServiceInstanceList_ = angular.copy(this.serviceInstanceList);
@@ -61,7 +61,7 @@ export class ServiceInstanceListController {
           this.filteredServiceInstanceList_['serviceInstances'].filter(
               (serviceInstance) => serviceInstance['name'].toLowerCase().indexOf(filterTerm) !== -1);
       this.filteredServiceInstanceList_['listMeta'] = {
-        'totalItems': this.filteredServiceInstanceList_['serviceInstances'].length
+        'totalItems': this.filteredServiceInstanceList_['serviceInstances'].length,
       };
       this.previousFilterTerm_ = this.filterTerm;
     }

@@ -22,7 +22,7 @@ export class ServiceClassDetailCreateFormController {
    * @param {!angular.$resource} $resource
    * @param {!./../common/csrftoken/csrftoken_service.CsrfTokenService} kdCsrfTokenService
    * @param {!ui.router.$state} $state
-   * @param {!Object} $stateParams
+   * @param {!./../common/resource/resourcedetail.StateParams} $stateParams
    * @ngInject
    */
   constructor($resource, kdCsrfTokenService, $state, $stateParams) {
@@ -53,7 +53,7 @@ export class ServiceClassDetailCreateFormController {
     this.tokenPromise_ = kdCsrfTokenService.getTokenForAction('serviceinstance');
     /** @private {!ui.router.$state} */
     this.state_ = $state;
-    /** @private {!Object} */
+    /** @private {!./../common/resource/resourcedetail.StateParams} */
     this.stateParams_ = $stateParams;
   }
 
@@ -93,7 +93,7 @@ export class ServiceClassDetailCreateFormController {
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
-              `api/v1alpha1/serviceinstance/${this.stateParams_.namespace}`, {},
+              `api/v1alpha1/serviceinstance/${this.stateParams_.objectNamespace}`, {},
               {save: {method: 'PUT', headers: {'X-CSRF-TOKEN': token}}});
           return resource.save(this.getPutData()).$promise;
         })
