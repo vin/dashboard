@@ -25,7 +25,7 @@ export class ServiceInstanceCardController {
    * @ngInject
    */
   constructor($state) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceInstance} */
     this.serviceInstance;
 
     /** @private {!ui.router.$state} */
@@ -70,7 +70,7 @@ export const serviceInstanceCardComponent = {
   templateUrl: 'serviceinstancelist/serviceinstancecard.html',
   controller: ServiceInstanceCardController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceInstance} */
     'serviceInstance': '<',
   },
 };

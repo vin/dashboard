@@ -20,7 +20,7 @@ export class ServiceInstanceListFilterController {
    * @ngInject
    */
   constructor() {
-    /** @export {?} Initialized from binding. */
+    /** @export {string} Initialized from binding. */
     this.filterTermModel;
   }
 }
@@ -34,7 +34,7 @@ export const serviceInstanceListFilterComponent = {
   templateUrl: 'serviceinstancelist/serviceinstancelistfilter.html',
   controller: ServiceInstanceListFilterController,
   bindings: {
-    /** {?} */
+    /** {string} */
     'filterTermModel': '=',
   },
 };

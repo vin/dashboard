@@ -20,21 +20,21 @@ export class ServiceInstanceTilesController {
    * @ngInject
    */
   constructor() {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceInstanceList} */
     this.serviceInstanceList;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceClassList} */
     this.serviceClassList;
   }
 
   /**
-   * @param {?} serviceInstance
-   * @return {?} serviceClass
+   * @param {!backendApi.ServiceInstance} serviceInstance
+   * @return {backendApi.ServiceClass} serviceClass
    * @export
    */
   getServiceClassForServiceInstance(serviceInstance){
     return this.serviceClassList.items.find((serviceClass) =>
       serviceInstance['spec']['serviceClassName'] === serviceClass['name']
-    );
+    ) || null;
   }
 }
 
@@ -46,9 +46,9 @@ export const serviceInstanceTilesComponent = {
   templateUrl: 'serviceinstancelist/serviceinstancetiles.html',
   controller: ServiceInstanceTilesController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceInstanceList} */
     'serviceInstanceList': '<',
-    /** {?} */
+    /** {!backendApi.ServiceClassList} */
     'serviceClassList': '<',
   },
 };

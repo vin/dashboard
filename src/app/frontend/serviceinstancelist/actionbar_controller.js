@@ -20,13 +20,13 @@ import {stateName} from './serviceinstancelist_state';
 export class ActionBarController {
   /**
    * @param {!ui.router.$state} $state
-   * @param {?} $stateParams
+   * @param {{viewMode: string}} $stateParams
    * @ngInject
    */
   constructor($state, $stateParams) {
     /** @private {!ui.router.$state} */
     this.state_ = $state;
-    /** @private {?} */
+    /** @private {{viewMode: string}} */
     this.stateParams_ = $stateParams;
   }
 

@@ -20,7 +20,7 @@ export class ServiceInstanceCardListController {
    * @ngInject
    */
   constructor() {
-    /** @export {?} Initialized from binding. */
+    /** @export {!backendApi.ServiceInstanceList} Initialized from binding. */
     this.serviceInstanceList;
   }
 }

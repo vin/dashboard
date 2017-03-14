@@ -17,17 +17,17 @@
  */
 export class ServiceInstanceDetailController {
   /**
-   * @param {?} serviceInstance
-   * @param {?} serviceBindingList
-   * @param {?} serviceInstanceList
+   * @param {!backendApi.ServiceInstance} serviceInstance
+   * @param {!backendApi.ServiceBindingList} serviceBindingList
+   * @param {!backendApi.ServiceInstanceList} serviceInstanceList
    * @ngInject
    */
   constructor(serviceInstance, serviceBindingList, serviceInstanceList) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceInstance} */
     this.serviceInstance = serviceInstance;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceBindingList} */
     this.serviceBindingList = serviceBindingList;
-    /** @export {?} */
+    /** @export {!backendApi.ServiceInstanceList} */
     this.serviceInstanceList = serviceInstanceList;
   }
 }

@@ -34,7 +34,7 @@ export class ServiceInstanceListController {
     this.filterTerm = '';
     /** @private {string} */
     this.previousFilterTerm_ = '';
-    /** @private {?} */
+    /** @private {!backendApi.ServiceInstanceList} */
     this.filteredServiceInstanceList_ = null;
     /** @private {string} */
     this.viewMode_ = $stateParams.viewMode;

@@ -26,7 +26,7 @@ class ServiceInstanceInfoController {
    * @ngInject
    */
   constructor($state) {
-    /** @export {?} Initialized from a binding. */
+    /** @export {!backendApi.ServiceInstance} Initialized from a binding. */
     this.serviceInstance;
     /** @private {!ui.router.$state} */
     this.state_ = $state;
@@ -52,7 +52,7 @@ class ServiceInstanceInfoController {
 export const serviceInstanceInfoComponent = {
   templateUrl: 'serviceinstancedetail/serviceinstanceinfo.html',
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceInstance} */
     'serviceInstance': '<',
   },
   controller: ServiceInstanceInfoController,
