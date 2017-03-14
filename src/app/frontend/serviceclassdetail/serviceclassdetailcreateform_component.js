@@ -26,11 +26,18 @@ export class ServiceClassDetailCreateFormController {
    * @ngInject
    */
   constructor($resource, kdCsrfTokenService, $state, $stateParams) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceClass} */
     this.serviceClass;
-    /** @export {Function} */
+    /** @export {!Function} */
     this.onCancel;
-    /** @export {?} */
+    /** @export
+     * {{
+     *   name: string,
+     *   plan: string,
+     *   useProxy: boolean,
+     *   labels: Array<{key: string, value: string}>
+     * }}
+     */
     this.formData = {
       'name': '',
       'plan': '',
@@ -104,9 +111,9 @@ export const serviceClassDetailCreateFormComponent = {
   templateUrl: 'serviceclassdetail/serviceclassdetailcreateform.html',
   controller: ServiceClassDetailCreateFormController,
   bindings: {
-    /** {?} */
+    /** {!backendApi.ServiceClass} */
     'serviceClass': '<',
-    /** {?} */
+    /** {!Function} */
     'onCancel': '&',
   },
 };

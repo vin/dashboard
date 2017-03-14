@@ -17,11 +17,11 @@
  */
 export class ServiceClassDetailController {
   /**
-   * @param {?} serviceClass
+   * @param {!backendApi.ServiceClass} serviceClass
    * @ngInject
    */
   constructor(serviceClass) {
-    /** @export {?} */
+    /** @export {!backendApi.ServiceClass} */
     this.serviceClass = serviceClass;
 
     /** @private {boolean} */
