@@ -1322,7 +1322,51 @@ backendApi.ServiceInstance;
 backendApi.ServiceInstanceList;
 
 /**
- * @typedef {Object}
+ * @typedef {{
+ *   Type: string,
+ *   Status: string,
+ * }}
+ */
+backendApi.ServiceBindingCondition;
+
+/**
+ * @typedef {{
+ *   Conditions: Array.<backendApi.ServiceBindingCondition>
+ * }}
+ */
+backendApi.ServiceBindingStatus;
+
+/**
+ * @typedef {{
+ *   name: string,
+ *   namespace: string,
+ * }}
+ */
+backendApi.ServiceBindingMetadata;
+
+/**
+ * @typedef {{
+ *    metadata: backendApi.ServiceBindingMetadata,
+ *    objectMeta: !backendApi.ObjectMeta,
+ *    typeMeta: !backendApi.TypeMeta,
+ *    Status: backendApi.ServiceBindingStatus,
+ *    name: string,
+ *    istio_config: Array<backendApi.NetworkFunction>,
+ *    spec: {
+ *      instanceRef: {
+ *        name: string
+ *      },
+ *      Parameters: Object,
+ *      AppLabelSelector: {
+ *        matchLabels: (Object<string,string>|undefined),
+ *        matchExpressions: (Array<{
+ *          key: string,
+ *          operator: string,
+ *          values: (Array<string>|undefined),
+ *        }>|undefined)
+ *      }
+ *    }
+ * }}
  */
 backendApi.ServiceBinding;
 
@@ -1334,7 +1378,9 @@ backendApi.ServiceBinding;
 backendApi.ServiceBindingList;
 
 /**
- * @typedef {Object}
+ * @typedef {{
+ *   kind: string,
+ * }}
  */
 backendApi.NetworkFunction;
 

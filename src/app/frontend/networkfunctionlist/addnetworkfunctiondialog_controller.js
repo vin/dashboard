@@ -43,6 +43,7 @@ export class AddNetworkFunctionDialogController {
   }
 
   getPutData() {
+    /** @type {Object} */
     let putData = angular.copy(this.serviceBinding);
     delete putData.typeMeta;
     delete putData.objectMeta;

@@ -48,6 +48,7 @@ export class NetworkFunctionCardListController {
 
   /**
    * @export
+   * @return {!Array<backendApi.NetworkFunction>}
    */
   getNetworkFunctions(){
     if(this.serviceBinding['istio_config']){
