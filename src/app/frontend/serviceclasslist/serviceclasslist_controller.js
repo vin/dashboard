@@ -50,9 +50,13 @@ export class ServiceClassListController {
         this.selectedBroker !== this.previousSelectedBroker_ ||
         this.searchTerm !== this.previousSearchTerm_) {
       let searchTerm = this.searchTerm.toLowerCase();
-      this.searchedServiceClassList_ = this.serviceClassList.items.filter(
-          (serviceClass) => serviceClass.name.toLowerCase().indexOf(searchTerm) !== -1 &&
-              (this.selectedBroker === 'all' || serviceClass.BrokerName === this.selectedBroker));
+      this.searchedServiceClassList_ = this.serviceClassList.items.filter((serviceClass) => {
+        let matchesSearchTerm = serviceClass.name.toLowerCase().includes(searchTerm) ||
+            serviceClass.DisplayName.toLowerCase().includes(searchTerm);
+        let matchesCatalog =
+            (this.selectedBroker === 'all' || serviceClass.BrokerName === this.selectedBroker);
+        return matchesSearchTerm && matchesCatalog;
+      });
       this.previousSelectedBroker_ = this.selectedBroker;
       this.previousSearchTerm_ = this.searchTerm;
     }

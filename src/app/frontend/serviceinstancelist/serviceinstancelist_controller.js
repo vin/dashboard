@@ -59,7 +59,7 @@ export class ServiceInstanceListController {
       this.filteredServiceInstanceList_ = angular.copy(this.serviceInstanceList);
       this.filteredServiceInstanceList_['serviceInstances'] =
           this.filteredServiceInstanceList_['serviceInstances'].filter(
-              (serviceInstance) => serviceInstance['name'].toLowerCase().indexOf(filterTerm) !== -1);
+              (serviceInstance) => serviceInstance['name'].toLowerCase().includes(filterTerm));
       this.filteredServiceInstanceList_['listMeta'] = {
         'totalItems': this.filteredServiceInstanceList_['serviceInstances'].length,
       };
