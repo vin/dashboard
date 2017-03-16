@@ -16,6 +16,7 @@ import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
 import filtersModule from 'common/filters/filters_module';
 import namespaceModule from 'common/namespace/namespace_module';
+import csrfTokenModule from 'common/csrftoken/csrftoken_module';
 
 import {networkFunctionCardComponent} from './networkfunctioncard_component';
 import {networkFunctionCardListComponent} from './networkfunctioncardlist_component';
@@ -34,6 +35,7 @@ export default angular
           componentsModule.name,
           chromeModule.name,
           namespaceModule.name,
+          csrfTokenModule.name,
         ])
     .component('kdNetworkFunctionCardList', networkFunctionCardListComponent)
     .component('kdNetworkFunctionCard', networkFunctionCardComponent);

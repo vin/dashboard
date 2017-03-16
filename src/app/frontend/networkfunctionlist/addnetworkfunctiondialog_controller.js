@@ -59,9 +59,10 @@ export class AddNetworkFunctionDialogController {
 
   /**
    * @export
+   * @return {!Promise}
    */
   createNetworkFunction() {
-    this.tokenPromise_
+    return this.tokenPromise_
         .then((token) => {
           let namespace = this.serviceBinding.metadata.namespace;
           /** @type {!angular.Resource} */
