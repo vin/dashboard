@@ -65,7 +65,7 @@ export class CreateServiceBindingDialogController {
       'spec': {
         'instanceRef': {
           'name': myName,
-          'namespace': 'default',
+          'namespace': this.stateParams_.objectNamespace,
         },
         'serviceName': myName,
         // 'AppLabelSelector': this.parseLabelSelector(this.formData['labelSelector']),
@@ -134,9 +134,10 @@ export class CreateServiceBindingDialogController {
 
   /**
    * @export
+   * @return {!Promise}
    */
   createBinding() {
-    this.tokenPromise_
+    return this.tokenPromise_
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(

@@ -14,7 +14,9 @@
 
 import chromeModule from 'chrome/chrome_module';
 import componentsModule from 'common/components/components_module';
+import csrfTokenModule from 'common/csrftoken/csrftoken_module';
 import filtersModule from 'common/filters/filters_module';
+
 import {serviceBindingCardComponent} from './servicebindingcard_component';
 import {serviceBindingCardListComponent} from './servicebindingcardlist_component';
 
@@ -33,6 +35,7 @@ export default angular
           filtersModule.name,
           componentsModule.name,
           chromeModule.name,
+          csrfTokenModule.name,
         ])
     .component('kdServiceBindingCardList', serviceBindingCardListComponent)
     .component('kdServiceBindingCard', serviceBindingCardComponent)
