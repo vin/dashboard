@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import csrfTokenModule from 'common/csrftoken/csrftoken_module';
 import filtersModule from 'common/filters/filters_module';
 
 import componentsModule from './../common/components/components_module';
@@ -37,6 +38,7 @@ export default angular
           'ui.router',
           filtersModule.name,
           componentsModule.name,
+          csrfTokenModule.name,
         ])
     .config(stateConfig)
     .component('kdServiceClassDetailCreateForm', serviceClassDetailCreateFormComponent)

@@ -87,9 +87,10 @@ export class ServiceClassDetailCreateFormController {
 
   /**
    * @export
+   * @return {!Promise}
    */
   createInstance() {
-    this.tokenPromise_
+    return this.tokenPromise_
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
