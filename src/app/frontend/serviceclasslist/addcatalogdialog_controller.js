@@ -75,9 +75,10 @@ export class AddCatalogDialogController {
 
   /**
    * @export
+   * @return {!Promise}
    */
   createCatalog() {
-    this.tokenPromise_
+    return this.tokenPromise_
         .then((token) => {
           /** @type {!angular.Resource} */
           let resource = this.resource_(
@@ -87,10 +88,13 @@ export class AddCatalogDialogController {
         })
         .then(() => {
           this.isCreatingCatalog = true;
-          setTimeout(() => {
-            this.state_.reload();
-            this.hide();
-          }, 5000);
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              this.state_.reload();
+              this.hide();
+              resolve();
+            }, 5000);
+          });
         })
         .catch(() => {
           // TODO rossholland: better error handling
