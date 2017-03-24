@@ -28,13 +28,18 @@ export class ServiceClassCardListController {
 
   /**
    * @param {!backendApi.ServiceClass} serviceClass
-   * @return {backendApi.ServiceBroker}
+   * @return {!backendApi.ServiceBroker}
    * @export
    */
   getServiceBrokerForServiceClass(serviceClass) {
-    return this.serviceBrokerList.items.find(
-               (serviceBroker) => serviceBroker.name === serviceClass.BrokerName) ||
-        null;
+    let ret = this.serviceBrokerList.items.find(
+        (serviceBroker) => serviceBroker.name === serviceClass.BrokerName);
+    if (!ret) {
+      throw new Error(
+          `Could not find broker "${serviceClass.BrokerName}" ` +
+          `in the service broker list`);
+    }
+    return ret;
   }
 }
 
