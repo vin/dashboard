@@ -113,6 +113,8 @@ function checkGoVersion() {
         // semver requires a patch number, so we'll append '.0' if it isn't present.
         if (currentGoVersion.split('.').length === 2) {
           currentGoVersion = `${currentGoVersion}.0`;
+        } else if(currentGoVersion.slice(-1) === '.'){
+          currentGoVersion = `${currentGoVersion}0`;
         }
         if (semver.lt(currentGoVersion, minGoVersion)) {
           deferred.reject(new Error(
